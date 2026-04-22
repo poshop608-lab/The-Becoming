@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<meta name="theme-color" content="#0a0a0a" />
+<title>The Becoming · Mohammed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a; --bg-card: #131313; --bg-elevated: #1c1c1c; --bg-deep: #050505;
+    --border: #2a2a2a; --border-light: #383838;
+    --text: #f5f5f0; --text-muted: #8a8a82; --text-dim: #5a5a55;
+    --gold: #c9a961; --gold-dim: #8a7340; --gold-bright: #e4c881;
+    --green: #6ba36b; --red: #a36b6b; --blue: #6b8aa3;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --arabic: 'Amiri', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+  body { background-image: radial-gradient(circle at 15% 10%, rgba(201, 169, 97, 0.05) 0%, transparent 45%), radial-gradient(circle at 85% 85%, rgba(107, 138, 163, 0.03) 0%, transparent 50%); }
+  ::selection { background: var(--gold); color: var(--bg); }
+  .container { max-width: 1280px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* ================ AUTH SCREEN ================ */
+  .auth-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .auth-box { max-width: 440px; width: 100%; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 48px 36px; text-align: center; }
+  .auth-box .bismillah { font-family: var(--arabic); font-size: 32px; color: var(--gold); margin-bottom: 20px; direction: rtl; font-weight: 400; }
+  .auth-box h1 { font-family: var(--serif); font-size: 44px; font-weight: 600; font-style: italic; margin-bottom: 8px; line-height: 1; }
+  .auth-box h1 .accent { color: var(--gold); }
+  .auth-box .subtitle { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 32px; font-weight: 500; }
+  .auth-box .ayah { font-family: var(--serif); font-style: italic; font-size: 16px; font-weight: 500; color: var(--text-muted); margin-bottom: 32px; line-height: 1.5; }
+  .auth-box input { width: 100%; background: var(--bg-elevated); border: 1px solid var(--border-light); color: var(--text); padding: 14px 16px; font-family: var(--sans); font-size: 15px; font-weight: 500; border-radius: 4px; margin-bottom: 14px; }
+  .auth-box input:focus { outline: none; border-color: var(--gold); }
+  .auth-box .btn { width: 100%; padding: 15px 0; background: var(--gold); color: var(--bg); border: none; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+  .auth-box .btn:hover { background: var(--gold-bright); }
+  .auth-box .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .auth-box .msg { font-family: var(--serif); font-style: italic; font-size: 15px; font-weight: 500; margin-top: 20px; padding: 14px; border-radius: 4px; }
+  .auth-box .msg.ok { background: rgba(107, 163, 107, 0.12); color: #8fc98f; border: 1px solid rgba(107, 163, 107, 0.3); }
+  .auth-box .msg.err { background: rgba(163, 107, 107, 0.12); color: #c98f8f; border: 1px solid rgba(163, 107, 107, 0.3); }
+  .hidden { display: none !important; }
+
+  /* ================ TOP BAR ================ */
+  .topbar { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-bottom: 24px; padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; }
+  .user-email { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; font-weight: 500; }
+  .sync-status { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 600; }
+  .sync-status.synced { background: rgba(107, 163, 107, 0.15); color: #8fc98f; }
+  .sync-status.syncing { background: rgba(201, 169, 97, 0.15); color: var(--gold); }
+  .sync-status.offline { background: rgba(163, 107, 107, 0.15); color: #c98f8f; }
+  .signout-btn { background: transparent; border: 1px solid var(--border-light); color: var(--text-muted); padding: 6px 12px; font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 3px; cursor: pointer; }
+  .signout-btn:hover { border-color: var(--red); color: var(--red); }
+
+  /* ================ HERO ================ */
+  .hero { text-align: center; padding: 30px 0 50px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+  .hero .bismillah { font-family: var(--arabic); font-size: 36px; color: var(--gold); margin-bottom: 22px; font-weight: 400; direction: rtl; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(40px, 6vw, 68px); font-weight: 600; font-style: italic; letter-spacing: -0.02em; margin-bottom: 8px; line-height: 1; }
+  .hero h1 .accent { color: var(--gold); }
+  .hero .subtitle { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 24px; font-weight: 500; }
+  .hero .ayah-arabic { font-family: var(--arabic); font-size: 22px; color: var(--gold-bright); direction: rtl; margin-bottom: 14px; line-height: 1.8; font-weight: 400; }
+  .hero .ayah { font-family: var(--serif); font-style: italic; font-size: 18px; font-weight: 500; color: var(--text); max-width: 620px; margin: 0 auto; line-height: 1.5; }
+  .hero .ayah-ref { display: block; font-family: var(--mono); font-style: normal; font-size: 10px; color: var(--text-dim); letter-spacing: 0.25em; margin-top: 12px; text-transform: uppercase; font-weight: 600; }
+
+  .global-date { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .global-date .icon { font-family: var(--arabic); font-size: 24px; color: var(--gold); font-weight: 700; }
+  .global-date .info { flex: 1; min-width: 180px; }
+  .global-date .label { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px; font-weight: 600; }
+  .global-date .selected-display { font-family: var(--serif); font-size: 22px; font-weight: 600; font-style: italic; color: var(--gold); }
+  .global-date input[type="date"] { background: var(--bg-elevated); border: 1px solid var(--border-light); color: var(--text); padding: 10px 14px; font-family: var(--mono); font-size: 13px; font-weight: 500; border-radius: 4px; min-width: 170px; cursor: pointer; }
+  .global-date input[type="date"]:focus { outline: none; border-color: var(--gold); }
+  .global-date .day-num { font-family: var(--serif); font-size: 26px; font-style: italic; font-weight: 700; color: var(--gold-bright); padding: 0 16px; border-left: 1px solid var(--border); }
+
+  .tabs { display: flex; gap: 2px; padding: 4px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 32px; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 1; min-width: max-content; padding: 13px 20px; background: transparent; border: none; color: var(--text-muted); font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: all 0.2s; white-space: nowrap; }
+  .tab:hover { color: var(--text); }
+  .tab.active { background: var(--bg-elevated); color: var(--gold); }
+
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .quote-strip { background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-deep) 100%); border: 1px solid var(--border); border-radius: 6px; padding: 26px 30px; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .quote-strip::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--gold) 0%, transparent 100%); }
+  .quote-arabic { font-family: var(--arabic); font-size: 22px; color: var(--gold-bright); direction: rtl; text-align: right; margin-bottom: 14px; line-height: 1.9; font-weight: 400; }
+  .quote-translation { font-family: var(--serif); font-style: italic; font-size: 17px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 10px; }
+  .quote-source { font-family: var(--mono); font-size: 10px; color: var(--gold-dim); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-bottom: 36px; }
+  .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 22px; position: relative; overflow: hidden; }
+  .stat-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); }
+  .stat-card.green::before { background: var(--green); }
+  .stat-card.red::before { background: var(--red); }
+  .stat-card.blue::before { background: var(--blue); }
+  .stat-label { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
+  .stat-value { font-family: var(--serif); font-size: 42px; font-weight: 700; line-height: 1; margin-bottom: 4px; color: var(--text); }
+  .stat-value .unit { font-size: 17px; color: var(--text-muted); margin-left: 4px; font-weight: 500; }
+  .stat-sub { font-size: 12px; color: var(--text-dim); font-weight: 500; }
+
+  .section-title { font-family: var(--serif); font-size: 30px; font-weight: 700; font-style: italic; margin-bottom: 8px; display: flex; align-items: baseline; gap: 16px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section-arabic { font-family: var(--arabic); font-size: 19px; color: var(--gold); margin-bottom: 20px; direction: rtl; text-align: right; font-weight: 400; }
+  .section-sub { font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+
+  .progress-hero { background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-deep) 100%); border: 1px solid var(--border); border-radius: 6px; padding: 36px 28px; margin-bottom: 28px; text-align: center; }
+  .progress-big { font-family: var(--serif); font-size: 74px; font-weight: 700; line-height: 1; margin-bottom: 10px; color: var(--gold); }
+  .progress-big .slash { color: var(--text-dim); margin: 0 6px; font-weight: 400; }
+  .progress-big .total { color: var(--text-muted); font-size: 48px; font-weight: 500; }
+  .progress-label { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 22px; font-weight: 600; }
+  .progress-bar { height: 4px; background: var(--bg-elevated); border-radius: 2px; overflow: hidden; max-width: 380px; margin: 0 auto 16px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold-dim) 0%, var(--gold) 50%, var(--gold-bright) 100%); transition: width 0.5s ease; border-radius: 2px; }
+  .progress-arabic { font-family: var(--arabic); font-size: 15px; color: var(--gold-dim); direction: rtl; margin-top: 6px; }
+
+  .block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 14px; overflow: hidden; }
+  .block-header { padding: 16px 20px; background: var(--bg-elevated); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+  .block-num { font-family: var(--serif); font-size: 22px; font-style: italic; font-weight: 700; color: var(--gold); min-width: 26px; }
+  .block-title { flex: 1; font-family: var(--sans); font-size: 15px; font-weight: 700; }
+  .block-time { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; }
+  .block-count { font-family: var(--mono); font-size: 12px; color: var(--gold); margin-left: 8px; font-weight: 700; }
+  .block-quote { padding: 14px 20px; background: rgba(201, 169, 97, 0.04); border-bottom: 1px solid var(--border); font-family: var(--serif); font-style: italic; font-size: 14px; font-weight: 500; color: var(--text-muted); line-height: 1.5; }
+  .block-quote .arabic-small { font-family: var(--arabic); font-size: 16px; color: var(--gold); direction: rtl; display: block; margin-bottom: 6px; font-style: normal; font-weight: 400; text-align: right; }
+  .block-quote .src { font-family: var(--mono); font-style: normal; font-size: 9px; color: var(--gold-dim); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 4px; display: block; font-weight: 600; }
+  .block-items { padding: 4px 0; }
+  .item { display: flex; align-items: flex-start; gap: 14px; padding: 13px 20px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  .item:last-child { border-bottom: none; }
+  .item:hover { background: var(--bg-elevated); }
+  .checkbox { width: 20px; height: 20px; border: 2px solid var(--border-light); border-radius: 4px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .item.done .checkbox { background: var(--gold); border-color: var(--gold); }
+  .item.done .checkbox::after { content: ''; width: 5px; height: 10px; border-right: 2.5px solid var(--bg); border-bottom: 2.5px solid var(--bg); transform: rotate(45deg) translateY(-1px); }
+  .item-text { flex: 1; font-size: 14px; font-weight: 500; color: var(--text); }
+  .item-note { font-family: var(--serif); font-style: italic; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-top: 4px; }
+  .item.done .item-text { color: var(--text-dim); text-decoration: line-through; }
+  .item.critical { border-left: 3px solid var(--red); }
+  .item.sunnah { border-left: 3px solid var(--green); }
+
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px; }
+  .form-field { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 18px 22px; }
+  .form-field label { display: block; font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
+  .form-field input, .form-field select, .form-field textarea { width: 100%; background: var(--bg-elevated); border: 1px solid var(--border-light); color: var(--text); padding: 11px 14px; font-family: var(--sans); font-size: 14px; font-weight: 500; border-radius: 4px; }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline: none; border-color: var(--gold); }
+  .form-field textarea { resize: vertical; min-height: 80px; font-family: var(--serif); font-size: 15px; font-weight: 500; font-style: italic; line-height: 1.55; }
+  .slider-row { display: flex; align-items: center; gap: 14px; }
+  .slider-row input[type="range"] { flex: 1; accent-color: var(--gold); background: transparent; padding: 0; border: none; }
+  .slider-val { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--gold); min-width: 34px; text-align: right; }
+  .rating-row { display: flex; gap: 6px; }
+  .rating-btn { flex: 1; padding: 11px 0; background: var(--bg-elevated); border: 1px solid var(--border-light); color: var(--text-muted); font-family: var(--mono); font-size: 12px; font-weight: 600; cursor: pointer; border-radius: 4px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .rating-btn:hover { border-color: var(--gold); color: var(--text); }
+  .rating-btn.selected { background: var(--gold); color: var(--bg); border-color: var(--gold); font-weight: 700; }
+
+  .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; margin-bottom: 20px; }
+  .chart-card h3 { font-family: var(--serif); font-style: italic; font-size: 22px; font-weight: 700; margin-bottom: 18px; }
+  .chart-wrap { position: relative; height: 240px; }
+
+  .history-table { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .history-row { display: grid; grid-template-columns: 140px 1fr 1fr 1fr 1fr 80px; gap: 14px; padding: 15px 20px; border-bottom: 1px solid var(--border); align-items: center; font-size: 13px; font-weight: 500; }
+  .history-row:last-child { border-bottom: none; }
+  .history-row.header { background: var(--bg-elevated); font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; }
+  .history-row .date { font-family: var(--mono); color: var(--text); font-size: 12px; font-weight: 600; }
+  .history-row .date small { color: var(--gold); font-weight: 500; }
+  .score-pill { display: inline-block; padding: 4px 11px; border-radius: 3px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; }
+  .score-pill.good { background: rgba(107, 163, 107, 0.18); color: #8fc98f; }
+  .score-pill.mid { background: rgba(201, 169, 97, 0.18); color: var(--gold); }
+  .score-pill.low { background: rgba(163, 107, 107, 0.18); color: #c98f8f; }
+  .del-btn { background: transparent; border: 1px solid var(--border-light); color: var(--text-muted); padding: 5px 10px; font-family: var(--mono); font-size: 10px; font-weight: 600; border-radius: 3px; cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; }
+  .del-btn:hover { color: var(--red); border-color: var(--red); }
+
+  .actions-bar { display: flex; gap: 12px; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .btn { padding: 13px 24px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; border-radius: 4px; border: 1px solid var(--border-light); background: var(--bg-card); color: var(--text); }
+  .btn:hover { border-color: var(--gold); color: var(--gold); }
+  .btn.primary { background: var(--gold); color: var(--bg); border-color: var(--gold); font-weight: 700; }
+  .btn.primary:hover { background: var(--gold-bright); color: var(--bg); }
+  .btn.danger:hover { border-color: var(--red); color: var(--red); }
+
+  @media (max-width: 700px) { .history-row { grid-template-columns: 1fr; gap: 8px; padding: 16px; } .history-row.header { display: none; } .form-grid { grid-template-columns: 1fr; } }
+  .streak-visual { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 10px; }
+  .streak-cell { width: 16px; height: 16px; border-radius: 3px; background: var(--bg-elevated); border: 1px solid var(--border); }
+  .streak-cell.filled { background: var(--gold); border-color: var(--gold); }
+  .streak-cell.partial { background: rgba(201, 169, 97, 0.4); border-color: var(--gold); }
+
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--gold); color: var(--bg); padding: 14px 28px; border-radius: 4px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; box-shadow: 0 8px 32px rgba(0,0,0,0.5); transition: transform 0.3s ease; z-index: 100; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast.err { background: var(--red); color: var(--text); }
+
+  .dua-card { background: linear-gradient(135deg, rgba(201, 169, 97, 0.08) 0%, rgba(10, 10, 10, 0) 100%); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 6px; padding: 26px 30px; margin-bottom: 18px; }
+  .dua-card .dua-title { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 14px; font-weight: 700; }
+  .dua-arabic { font-family: var(--arabic); font-size: 24px; color: var(--gold-bright); direction: rtl; text-align: right; margin-bottom: 12px; line-height: 2; font-weight: 400; }
+  .dua-transliteration { font-family: var(--serif); font-style: italic; font-size: 16px; font-weight: 500; color: var(--text-muted); margin-bottom: 10px; }
+  .dua-meaning { font-family: var(--serif); font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.55; }
+
+  .loading { text-align: center; padding: 60px 20px; }
+  .loading .spinner { display: inline-block; width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading p { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--text-muted); margin-top: 16px; }
+
+  @media (max-width: 640px) {
+    .container { padding: 16px 12px 60px; }
+    .auth-box { padding: 36px 24px; }
+    .hero { padding: 16px 0 32px; margin-bottom: 24px; }
+    .hero .ayah-arabic { font-size: 18px; }
+    .hero .ayah { font-size: 15px; }
+    .tab { padding: 11px 12px; font-size: 10px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .dua-arabic, .quote-arabic { font-size: 19px; }
+    .topbar { flex-wrap: wrap; gap: 8px; }
+    .user-email { font-size: 10px; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================ AUTH SCREEN ================ -->
+<div class="auth-screen" id="authScreen">
+  <div class="auth-box">
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <h1>The <span class="accent">Becoming</span></h1>
+    <div class="subtitle">Private · Encrypted · Yours</div>
+    <p class="ayah">"Indeed, Allah will not change the condition of a people until they change what is within themselves."<br><span style="font-family: var(--mono); font-style: normal; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); font-weight: 600; display: inline-block; margin-top: 10px;">Ar-Ra'd · 13:11</span></p>
+    <input type="email" id="authEmail" placeholder="your@email.com" autocomplete="email" />
+    <button class="btn" id="authBtn" onclick="sendMagicLink()">Send login link</button>
+    <div class="msg" id="authMsg" style="display:none"></div>
+  </div>
+</div>
+
+<!-- ================ MAIN APP ================ -->
+<div class="container hidden" id="appContainer">
+
+  <div class="topbar">
+    <span class="user-email" id="userEmail">—</span>
+    <span class="sync-status synced" id="syncStatus">Synced</span>
+    <button class="signout-btn" onclick="signOut()">Sign out</button>
+  </div>
+
+  <section class="hero">
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <h1>The <span class="accent">Becoming</span></h1>
+    <div class="subtitle">Mohammed · Private Dashboard</div>
+    <div class="ayah-arabic">إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ</div>
+    <p class="ayah">Indeed, Allah will not change the condition of a people until they change what is within themselves.<span class="ayah-ref">Surah Ar-Ra'd · 13:11</span></p>
+  </section>
+
+  <div class="global-date">
+    <span class="icon">﷽</span>
+    <div class="info">
+      <div class="label">Selected date · All tabs sync</div>
+      <div class="selected-display" id="selectedDisplay">—</div>
+    </div>
+    <input type="date" id="globalDate" />
+    <div class="day-num" id="dayNum">Day —</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-panel="today">Today</button>
+    <button class="tab" data-panel="physical">Physical</button>
+    <button class="tab" data-panel="trading">Trading</button>
+    <button class="tab" data-panel="reflection">Reflection</button>
+    <button class="tab" data-panel="duas">Duas</button>
+    <button class="tab" data-panel="stats">Stats</button>
+    <button class="tab" data-panel="history">History</button>
+  </div>
+
+  <section class="panel active" id="panel-today">
+    <div class="quote-strip">
+      <div class="quote-arabic">أَحَبُّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ</div>
+      <div class="quote-translation">"The most beloved deeds to Allah are those done consistently, even if small."</div>
+      <div class="quote-source">Prophet Muhammad ﷺ · Sahih al-Bukhari 6464</div>
+    </div>
+    <div class="progress-hero">
+      <div class="progress-label">Today's completion</div>
+      <div class="progress-big"><span id="progDone">0</span><span class="slash">/</span><span class="total" id="progTotal">0</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progFill" style="width: 0%"></div></div>
+      <div class="progress-arabic">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</div>
+    </div>
+    <h2 class="section-title">Daily checklist<span class="section-sub">Tap to tick</span></h2>
+    <div class="section-arabic">الْقَائِمَةُ الْيَوْمِيَّةُ</div>
+    <div id="checklist"></div>
+    <div class="actions-bar">
+      <button class="btn" onclick="resetDay()">Reset day</button>
+      <button class="btn primary" onclick="saveDay()">Sync now</button>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-physical">
+    <div class="quote-strip">
+      <div class="quote-arabic">إِنَّ لِبَدَنِكَ عَلَيْكَ حَقًّا</div>
+      <div class="quote-translation">"Indeed, your body has a right over you."</div>
+      <div class="quote-source">Prophet Muhammad ﷺ · Sahih al-Bukhari 1975</div>
+    </div>
+    <h2 class="section-title">Physical body<span class="section-sub">The amanah</span></h2>
+    <div class="section-arabic">الْجَسَدُ أَمَانَةٌ</div>
+    <div class="form-grid">
+      <div class="form-field"><label>Weight (kg)</label><input type="number" step="0.1" id="weight" placeholder="—" /></div>
+      <div class="form-field"><label>Sleep (hours)</label><input type="number" step="0.25" id="sleep" placeholder="—" /></div>
+      <div class="form-field"><label>Water (litres)</label><input type="number" step="0.25" id="water" placeholder="—" /></div>
+      <div class="form-field"><label>Gym session</label><select id="gym"><option value="none">—</option><option value="yes">Yes, full session</option><option value="partial">Partial / light</option><option value="no">Skipped</option></select></div>
+    </div>
+    <div class="form-grid">
+      <div class="form-field"><label>Energy (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="energy" /><span class="slider-val" id="energyVal">5</span></div></div>
+      <div class="form-field"><label>Mood (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="mood" /><span class="slider-val" id="moodVal">5</span></div></div>
+      <div class="form-field"><label>Nafs loudness (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="nafs" /><span class="slider-val" id="nafsVal">5</span></div></div>
+      <div class="form-field"><label>Screen time (hours)</label><input type="number" step="0.25" id="screentime" placeholder="—" /></div>
+    </div>
+    <h2 class="section-title" style="margin-top: 36px;">Meals<span class="section-sub">What fueled me</span></h2>
+    <div class="section-arabic">الطَّعَامُ</div>
+    <div class="quote-strip">
+      <div class="quote-arabic">مَا مَلَأَ ابْنُ آدَمَ وِعَاءً شَرًّا مِنْ بَطْنٍ</div>
+      <div class="quote-translation">"The son of Adam fills no vessel worse than his stomach."</div>
+      <div class="quote-source">Prophet Muhammad ﷺ · Jami at-Tirmidhi 2380</div>
+    </div>
+    <div class="form-grid">
+      <div class="form-field"><label>Breakfast</label><textarea id="breakfast" placeholder="What you ate..."></textarea></div>
+      <div class="form-field"><label>Lunch</label><textarea id="lunch" placeholder="What you ate..."></textarea></div>
+      <div class="form-field"><label>Pre-session snack</label><textarea id="snack" placeholder="Dates? Tea?..."></textarea></div>
+      <div class="form-field"><label>Dinner</label><textarea id="dinner" placeholder="What you ate..."></textarea></div>
+    </div>
+    <div class="actions-bar"><button class="btn primary" onclick="savePhysical()">Save physical</button></div>
+  </section>
+
+  <section class="panel" id="panel-trading">
+    <div class="quote-strip">
+      <div class="quote-arabic">وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ</div>
+      <div class="quote-translation">"Whoever fears Allah, He will make for him a way out, and provide for him from where he does not expect."</div>
+      <div class="quote-source">Surah At-Talaq · 65:2-3</div>
+    </div>
+    <h2 class="section-title">Trading session<span class="section-sub">The craft</span></h2>
+    <div class="section-arabic">الرِّزْقُ بِيَدِ اللَّهِ</div>
+    <div class="form-grid">
+      <div class="form-field"><label>Session type</label><select id="sessionType"><option value="none">—</option><option value="sim">Sim / Paper</option><option value="live">Live (eval)</option><option value="skipped">Skipped</option></select></div>
+      <div class="form-field"><label>Number of trades</label><input type="number" id="tradeCount" placeholder="—" /></div>
+      <div class="form-field"><label>Wins</label><input type="number" id="wins" placeholder="—" /></div>
+      <div class="form-field"><label>Losses</label><input type="number" id="losses" placeholder="—" /></div>
+    </div>
+    <div class="form-grid">
+      <div class="form-field"><label>Followed plan?</label><div class="rating-row" data-field="followedPlan"><button class="rating-btn" data-val="yes">Yes</button><button class="rating-btn" data-val="partial">Partial</button><button class="rating-btn" data-val="no">No</button></div></div>
+      <div class="form-field"><label>Revenge traded?</label><div class="rating-row" data-field="revenge"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
+      <div class="form-field"><label>Overtraded?</label><div class="rating-row" data-field="overtraded"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
+      <div class="form-field"><label>Discipline (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="discipline" /><span class="slider-val" id="disciplineVal">5</span></div></div>
+    </div>
+    <div class="form-grid" style="grid-template-columns: 1fr;">
+      <div class="form-field"><label>One lesson / observation</label><textarea id="lesson" placeholder="What did the market teach you today..."></textarea></div>
+    </div>
+    <div class="actions-bar"><button class="btn primary" onclick="saveTrading()">Save trading</button></div>
+  </section>
+
+  <section class="panel" id="panel-reflection">
+    <div class="quote-strip">
+      <div class="quote-arabic">قَدْ أَفْلَحَ مَنْ زَكَّاهَا وَقَدْ خَابَ مَنْ دَسَّاهَا</div>
+      <div class="quote-translation">"He has succeeded who purifies his soul, and he has failed who corrupts it."</div>
+      <div class="quote-source">Surah Ash-Shams · 91:9-10</div>
+    </div>
+    <h2 class="section-title">Reflection<span class="section-sub">The inner work</span></h2>
+    <div class="section-arabic">الْمُحَاسَبَةُ</div>
+    <div class="form-grid" style="grid-template-columns: 1fr;">
+      <div class="form-field"><label>What did I do right today?</label><textarea id="didRight" rows="3"></textarea></div>
+      <div class="form-field"><label>Challenge faced today</label><textarea id="challenge" rows="3"></textarea></div>
+      <div class="form-field"><label>The man I want to be — was I close?</label><textarea id="manClose" rows="3"></textarea></div>
+      <div class="form-field"><label>One thing I am grateful to Allah for</label><textarea id="gratitude" rows="3"></textarea></div>
+      <div class="form-field"><label>Talks with my Rabb</label><textarea id="talksRabb" rows="4"></textarea></div>
+      <div class="form-field"><label>Tomorrow's ONE thing</label><textarea id="tomorrow" rows="2"></textarea></div>
+    </div>
+    <div class="form-grid" style="margin-top: 12px;">
+      <div class="form-field"><label>Bad habit today</label><div class="rating-row" data-field="badHabit"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
+      <div class="form-field"><label>Scrolled / wasted time</label><div class="rating-row" data-field="scrolled"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
+      <div class="form-field"><label>Fasted today</label><div class="rating-row" data-field="fasted"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
+    </div>
+    <div class="actions-bar"><button class="btn primary" onclick="saveReflection()">Save reflection</button></div>
+  </section>
+
+  <section class="panel" id="panel-duas">
+    <h2 class="section-title">Duas & Dhikr<span class="section-sub">Weapons of the believer</span></h2>
+    <div class="section-arabic">الْأَذْكَارُ وَالْأَدْعِيَةُ</div>
+    <div class="dua-card"><div class="dua-title">When the nafs whispers</div><div class="dua-arabic">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div><div class="dua-transliteration">A'udhu billahi min ash-shaytanir-rajeem</div><div class="dua-meaning">"I seek refuge in Allah from the accursed Shaytan."</div></div>
+    <div class="dua-card"><div class="dua-title">Before sleep · Protection till morning</div><div class="dua-arabic">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ</div><div class="dua-transliteration">Ayat al-Kursi · Al-Baqarah 2:255</div><div class="dua-meaning">Prophet ﷺ: "Whoever recites Ayat al-Kursi before sleep, Allah appoints a guardian over him, and Shaytan cannot come near him till morning." — Sahih al-Bukhari 2311</div></div>
+    <div class="dua-card"><div class="dua-title">Before any important task</div><div class="dua-arabic">بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</div><div class="dua-transliteration">Bismillahi, tawakkaltu 'alallahi, wa la hawla wa la quwwata illa billah</div><div class="dua-meaning">"In the name of Allah, I place my trust in Allah, and there is no power or strength except with Allah."</div></div>
+    <div class="dua-card"><div class="dua-title">For discipline of self · Prophet's ﷺ dua</div><div class="dua-arabic">اللَّهُمَّ آتِ نَفْسِي تَقْوَاهَا وَزَكِّهَا أَنْتَ خَيْرُ مَنْ زَكَّاهَا أَنْتَ وَلِيُّهَا وَمَوْلَاهَا</div><div class="dua-transliteration">Allahumma aati nafsi taqwaha, wa zakkiha anta khayru man zakkaha</div><div class="dua-meaning">"O Allah, grant my soul its taqwa and purify it — You are the best to purify it. You are its Protector and Master." — Sahih Muslim 2722</div></div>
+    <div class="dua-card"><div class="dua-title">Against anxiety, grief, debt</div><div class="dua-arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ وَالْعَجْزِ وَالْكَسَلِ وَالْبُخْلِ وَالْجُبْنِ وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ</div><div class="dua-transliteration">Allahumma inni a'udhu bika min al-hammi wal-hazan...</div><div class="dua-meaning">"O Allah, I seek refuge in You from anxiety and grief, weakness and laziness, miserliness and cowardice, the burden of debt, and being overpowered by men." — Sahih al-Bukhari 6369</div></div>
+    <div class="dua-card"><div class="dua-title">Sayyid al-Istighfar · Master of forgiveness</div><div class="dua-arabic">اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ</div><div class="dua-transliteration">Sayyid al-Istighfar</div><div class="dua-meaning">Prophet ﷺ: "Whoever says this during the day with firm belief and dies before evening will be among the people of Paradise." — Sahih al-Bukhari 6306</div></div>
+    <div class="dua-card"><div class="dua-title">For barakah in rizq and trading</div><div class="dua-arabic">اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ</div><div class="dua-transliteration">Allahumma-kfini bi halalika 'an haramik, wa aghnini bi fadlika 'amman siwak</div><div class="dua-meaning">"O Allah, suffice me with what You have made lawful instead of unlawful, and make me independent by Your grace." — Jami at-Tirmidhi 3563</div></div>
+    <div class="dua-card"><div class="dua-title">Morning & evening shield · 7x</div><div class="dua-arabic">حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ</div><div class="dua-transliteration">Hasbiyallahu la ilaha illa huwa, 'alayhi tawakkaltu wa huwa rabbul-'arshil-'adheem</div><div class="dua-meaning">Whoever says this 7 times, Allah will suffice him of all that worries him. — Sunan Abu Dawud 5081</div></div>
+    <div class="dua-card"><div class="dua-title">For knowledge</div><div class="dua-arabic">رَبِّ زِدْنِي عِلْمًا</div><div class="dua-transliteration">Rabbi zidni 'ilma</div><div class="dua-meaning">"My Lord, increase me in knowledge." — Surah Ta-Ha 20:114</div></div>
+    <div class="dua-card"><div class="dua-title">After every fard prayer · The 33s</div><div class="dua-arabic">سُبْحَانَ اللَّهِ (٣٣) الْحَمْدُ لِلَّهِ (٣٣) اللَّهُ أَكْبَرُ (٣٤)</div><div class="dua-transliteration">Subhan'Allah 33x · Alhamdulillah 33x · Allahu Akbar 34x</div><div class="dua-meaning">Prophet ﷺ: "Whoever says these after every prayer, his sins are forgiven even if they be like the foam of the sea." — Sahih Muslim 597</div></div>
+  </section>
+
+  <section class="panel" id="panel-stats">
+    <div class="quote-strip">
+      <div class="quote-arabic">يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَلْتَنْظُرْ نَفْسٌ مَا قَدَّمَتْ لِغَدٍ</div>
+      <div class="quote-translation">"O you who believe, fear Allah and let every soul look to what it has sent forth for tomorrow."</div>
+      <div class="quote-source">Surah Al-Hashr · 59:18</div>
+    </div>
+    <h2 class="section-title">The numbers<span class="section-sub">Proof of becoming</span></h2>
+    <div class="section-arabic">الْأَرْقَامُ لَا تَكْذِبُ</div>
+    <div class="stats-grid" id="statsGrid"></div>
+    <div class="chart-card"><h3>Completion over time</h3><div class="chart-wrap"><canvas id="completionChart"></canvas></div></div>
+    <div class="chart-card"><h3>Nafs vs Discipline</h3><div class="chart-wrap"><canvas id="nafsChart"></canvas></div></div>
+    <div class="chart-card"><h3>Last 30 days · streak</h3><div class="streak-visual" id="streakVisual"></div><p style="margin-top: 14px; font-family: var(--serif); font-style: italic; font-size: 13px; font-weight: 500; color: var(--text-muted);">Gold = 80%+ · Faded = partial · Empty = missed</p></div>
+  </section>
+
+  <section class="panel" id="panel-history">
+    <h2 class="section-title">All days<span class="section-sub">The record</span></h2>
+    <div class="section-arabic">السِّجِلُّ الْكَامِلُ</div>
+    <div class="history-table" id="historyTable"></div>
+    <div class="actions-bar">
+      <button class="btn" onclick="exportData()">Export backup</button>
+      <button class="btn" onclick="migrateLocalStorage()">Import old local data</button>
+    </div>
+  </section>
+
+</div>
+
+<div class="toast" id="toast">Saved</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
+
+// ============================================
+// CONFIG — Supabase credentials
+// ============================================
+const SUPABASE_URL = 'https://ggszthbqteiehsmdwcmq.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdnc3p0aGJxdGVpZWhzbWR3Y21xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4ODQyMjQsImV4cCI6MjA5MjQ2MDIyNH0.0Z65c2_kiU8EevXIPXUR4rPK-VFUwozL_11PF1F2M1g';
+const START_DATE = '2026-04-23';
+
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+});
+window.sb = sb;
+
+// ============================================
+// CHECKLIST STRUCTURE
+// ============================================
+const CHECKLIST_STRUCTURE = [
+  { num: 1, title: 'Dawn', time: 'Fajr block',
+    quote: { ar: 'رَكْعَتَا الْفَجْرِ خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا', en: '"The two rakats of Fajr are better than the world and everything in it."', src: 'Sahih Muslim 725' },
+    items: [
+      { id: 'fajr_wake', text: 'Woke for Fajr — no snooze, no phone' },
+      { id: 'fajr_wudu', text: 'Made wudu immediately (Sunnah)' },
+      { id: 'fajr_masjid', text: 'Prayed Fajr in jamaah at masjid' },
+      { id: 'fajr_sunnah', text: '2 rakats sunnah before Fajr', sunnah: true, note: 'Better than the world & everything in it' },
+      { id: 'fajr_dhikr', text: '33x dhikr: SubhanAllah / Alhamdulillah / Allahu Akbar' },
+      { id: 'fajr_kursi', text: 'Ayat al-Kursi after Fajr' },
+      { id: 'fajr_quls_morn', text: '3 Quls (Ikhlas, Falaq, Nas) — 3x morning' },
+      { id: 'fajr_hasbiyallah', text: 'Hasbiyallahu... 7x morning (shield)' },
+      { id: 'fajr_sit', text: 'Sat 10+ min for dhikr after Fajr' },
+      { id: 'gym', text: 'Gym session' },
+      { id: 'quran_post_gym', text: 'Quran recitation after gym (15 min)' },
+    ]
+  },
+  { num: 2, title: 'Barakah hours', time: 'Fajr to Dhuhr',
+    quote: { ar: 'اللَّهُمَّ بَارِكْ لِأُمَّتِي فِي بُكُورِهَا', en: '"O Allah, bless my nation in their early mornings."', src: 'Jami at-Tirmidhi 1212' },
+    items: [
+      { id: 'no_sleep', text: 'NO sleep between Fajr and Dhuhr', critical: true, note: 'The bed is haram in this window' },
+      { id: 'quran_meaning', text: '15 min Quran with meaning (tafsir)' },
+      { id: 'mulk', text: 'Surah Mulk recited' },
+      { id: 'duha', text: '2 rakats Salat ad-Duha (mid-morning)', sunnah: true, note: 'Charity for every joint of your body' },
+      { id: 'book', text: 'Book reading — 30 min' },
+      { id: 'trading_work', text: 'Trading deep work (backtest / journal)' },
+      { id: 'skill', text: 'Skill building / BCA prep' },
+      { id: 'istighfar_100', text: '100x Istighfar (Astaghfirullah)' },
+    ]
+  },
+  { num: 3, title: 'Midday', time: 'Dhuhr to Asr',
+    quote: { ar: 'مَنْ حَافَظَ عَلَى أَرْبَعٍ قَبْلَ الظُّهْرِ وَأَرْبَعٍ بَعْدَهَا حَرَّمَهُ اللَّهُ عَلَى النَّارِ', en: '"Whoever persists in 4 rakats before Dhuhr and 4 after, Allah will forbid Hellfire from him."', src: 'Sunan Abu Dawud 1269' },
+    items: [
+      { id: 'dhuhr', text: 'Prayed Dhuhr on time' },
+      { id: 'dhuhr_sunnah_before', text: '4 rakats sunnah before Dhuhr', sunnah: true },
+      { id: 'dhuhr_sunnah_after', text: '2 rakats sunnah after Dhuhr', sunnah: true },
+      { id: 'dhuhr_dhikr', text: '33x dhikr + Ayat al-Kursi' },
+      { id: 'lunch_mod', text: 'Moderate lunch — 2/3 full max' },
+      { id: 'qailulah', text: 'Qailulah nap (15-25 min, alarm set)', sunnah: true },
+      { id: 'no_scroll', text: 'Did NOT scroll Instagram / reels', critical: true },
+    ]
+  },
+  { num: 4, title: 'Critical hour', time: 'Asr to Maghrib',
+    quote: { ar: 'حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ', en: '"Guard strictly your prayers, especially the middle prayer."', src: 'Surah Al-Baqarah 2:238' },
+    items: [
+      { id: 'asr_sunnah', text: '4 rakats sunnah before Asr', sunnah: true },
+      { id: 'asr', text: 'Prayed Asr in jamaah' },
+      { id: 'asr_dhikr', text: '33x dhikr after Asr' },
+      { id: 'asr_quls', text: '3 Quls — 3x evening' },
+      { id: 'asr_hasbiyallah', text: 'Hasbiyallahu... 7x evening' },
+      { id: 'no_charts', text: 'NO CHARTS between Asr and Maghrib', critical: true },
+      { id: 'quran_asr', text: 'Quran / dhikr / istighfar instead' },
+      { id: 'wudu_maghrib', text: 'Wudu before Maghrib' },
+    ]
+  },
+  { num: 5, title: 'Trading pivot', time: 'Maghrib + Session',
+    quote: { ar: 'أَحَبُّ الصَّلَاةِ إِلَى اللَّهِ الصَّلَاةُ لِوَقْتِهَا', en: '"The most beloved prayer to Allah is the one prayed at the beginning of its time."', src: 'Sahih al-Bukhari 527' },
+    items: [
+      { id: 'maghrib_full', text: 'Prayed Maghrib at start — NOT rushed', critical: true },
+      { id: 'maghrib_dhikr', text: '33x dhikr after Maghrib' },
+      { id: 'maghrib_sunnah', text: '2 rakats sunnah after Maghrib', sunnah: true },
+      { id: 'barakah_dua', text: 'Dua for barakah in rizq before trading' },
+      { id: 'observe_only', text: 'Observed market 6:50-7:10 — no clicks' },
+      { id: 'sim_only', text: 'Sim only — NO real money' },
+      { id: 'a_plus', text: 'Took only A+ setups (my model)' },
+      { id: 'no_revenge', text: 'Did NOT revenge trade' },
+      { id: 'no_overtrade', text: 'Did NOT overtrade' },
+      { id: 'close_830', text: 'Closed charts at 8:30 sharp' },
+    ]
+  },
+  { num: 6, title: 'Night', time: 'Isha to Sleep',
+    quote: { ar: 'مَنْ صَلَّى الْعِشَاءَ فِي جَمَاعَةٍ فَكَأَنَّمَا قَامَ نِصْفَ اللَّيْلِ', en: '"Whoever prays Isha in congregation, it is as if he stood half the night in prayer."', src: 'Sahih Muslim 656' },
+    items: [
+      { id: 'isha', text: 'Prayed Isha on time' },
+      { id: 'isha_dhikr', text: '33x dhikr after Isha' },
+      { id: 'isha_sunnah', text: '2 rakats sunnah after Isha', sunnah: true },
+      { id: 'witr', text: 'Witr prayed (3 rakats)', critical: true },
+      { id: 'sayyid_istighfar', text: 'Sayyid al-Istighfar recited' },
+      { id: 'journal', text: 'Filled physical journal (all 9 sections)' },
+      { id: 'wudu_sleep', text: 'Wudu before sleep (Sunnah)' },
+      { id: 'kursi_sleep', text: 'Ayat al-Kursi + 3 Quls (blow into palms)' },
+      { id: 'mulk_sleep', text: 'Surah Mulk recited before sleep' },
+      { id: 'durood', text: 'Durood Ibrahim recited' },
+      { id: 'phone_other', text: 'Phone in OTHER ROOM', critical: true },
+      { id: 'right_side', text: 'Slept on right side with sleep dua' },
+    ]
+  },
+  { num: 7, title: 'Guardrails', time: 'All-day',
+    quote: { ar: 'وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا', en: '"Whoever fears Allah, He will make for him a way out."', src: 'Surah At-Talaq 65:2' },
+    items: [
+      { id: 'no_mast', text: 'Did NOT masturbate today', critical: true, note: 'Urge → wudu + 2 rakats. It passes.' },
+      { id: 'no_ig', text: 'Instagram app NOT on phone', critical: true },
+      { id: 'no_ig_browser', text: 'Did NOT access IG via browser' },
+      { id: 'no_reels', text: 'Did NOT watch reels on any platform' },
+      { id: 'low_screen', text: 'Screen time under 1 hour (excl. trading)' },
+      { id: 'lower_gaze', text: 'Guarded my gaze (Surah An-Nur 24:30)' },
+    ]
+  },
+];
+
+const TOTAL_ITEMS = CHECKLIST_STRUCTURE.reduce((s, b) => s + b.items.length, 0);
+
+// ============================================
+// STATE
+// ============================================
+let currentDate = new Date().toISOString().split('T')[0];
+let currentUser = null;
+let cache = {}; // date -> day data
+let saveTimers = {};
+
+// ============================================
+// AUTH FLOW
+// ============================================
+async function sendMagicLink() {
+  const email = document.getElementById('authEmail').value.trim();
+  const msg = document.getElementById('authMsg');
+  const btn = document.getElementById('authBtn');
+  if (!email || !email.includes('@')) {
+    msg.style.display = 'block'; msg.className = 'msg err'; msg.textContent = 'Please enter a valid email.';
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Sending...';
+  const { error } = await sb.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: window.location.origin + window.location.pathname }
+  });
+  btn.disabled = false; btn.textContent = 'Send login link';
+  msg.style.display = 'block';
+  if (error) { msg.className = 'msg err'; msg.textContent = error.message; }
+  else { msg.className = 'msg ok'; msg.textContent = '✓ Check your email. Open the link on this device. Bismillah.'; }
+}
+window.sendMagicLink = sendMagicLink;
+
+async function signOut() {
+  if (!confirm('Sign out?')) return;
+  await sb.auth.signOut();
+  location.reload();
+}
+window.signOut = signOut;
+
+// ============================================
+// SESSION HANDLING
+// ============================================
+async function checkSession() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (session && session.user) {
+    currentUser = session.user;
+    document.getElementById('authScreen').classList.add('hidden');
+    document.getElementById('appContainer').classList.remove('hidden');
+    document.getElementById('userEmail').textContent = currentUser.email;
+    await initApp();
+  } else {
+    document.getElementById('authScreen').classList.remove('hidden');
+    document.getElementById('appContainer').classList.add('hidden');
+  }
+}
+
+sb.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN' && session) {
+    checkSession();
+    // Clean the URL after magic link redirect
+    if (window.location.hash.includes('access_token')) {
+      history.replaceState(null, '', window.location.pathname);
+    }
+  } else if (event === 'SIGNED_OUT') {
+    location.reload();
+  }
+});
+
+// ============================================
+// SYNC STATUS
+// ============================================
+function setSyncStatus(state) {
+  const el = document.getElementById('syncStatus');
+  el.className = 'sync-status ' + state;
+  el.textContent = state === 'synced' ? 'Synced' : state === 'syncing' ? 'Syncing...' : 'Offline';
+}
+
+// ============================================
+// DATA OPERATIONS
+// ============================================
+async function fetchDay(dateStr) {
+  if (cache[dateStr]) return cache[dateStr];
+  setSyncStatus('syncing');
+  const { data, error } = await sb.from('becoming_days')
+    .select('*')
+    .eq('user_id', currentUser.id)
+    .eq('day_date', dateStr)
+    .maybeSingle();
+  setSyncStatus(error ? 'offline' : 'synced');
+  if (error) { console.error(error); return { checks: {}, physical: {}, trading: {}, reflection: {} }; }
+  const result = data ? { checks: data.checks || {}, physical: data.physical || {}, trading: data.trading || {}, reflection: data.reflection || {} }
+                      : { checks: {}, physical: {}, trading: {}, reflection: {} };
+  cache[dateStr] = result;
+  return result;
+}
+
+async function upsertDay(dateStr, updates) {
+  if (!cache[dateStr]) cache[dateStr] = { checks: {}, physical: {}, trading: {}, reflection: {} };
+  Object.assign(cache[dateStr], updates);
+  setSyncStatus('syncing');
+  const { error } = await sb.from('becoming_days').upsert({
+    user_id: currentUser.id,
+    day_date: dateStr,
+    checks: cache[dateStr].checks,
+    physical: cache[dateStr].physical,
+    trading: cache[dateStr].trading,
+    reflection: cache[dateStr].reflection,
+  }, { onConflict: 'user_id,day_date' });
+  setSyncStatus(error ? 'offline' : 'synced');
+  if (error) { console.error(error); toast('Sync error', true); return false; }
+  return true;
+}
+
+// Debounced auto-save on checkbox toggle
+function scheduleSave(dateStr) {
+  clearTimeout(saveTimers[dateStr]);
+  saveTimers[dateStr] = setTimeout(() => upsertDay(dateStr, { checks: cache[dateStr].checks }), 400);
+}
+
+async function fetchAllDays() {
+  const { data, error } = await sb.from('becoming_days')
+    .select('*')
+    .eq('user_id', currentUser.id)
+    .order('day_date', { ascending: true });
+  if (error) { console.error(error); return []; }
+  data.forEach(row => {
+    cache[row.day_date] = {
+      checks: row.checks || {}, physical: row.physical || {},
+      trading: row.trading || {}, reflection: row.reflection || {}
+    };
+  });
+  return data;
+}
+
+// ============================================
+// UTILITIES
+// ============================================
+function dayNumber(dateStr) { return Math.floor((new Date(dateStr) - new Date(START_DATE)) / 86400000) + 1; }
+function formatDisplayDate(s) { return new Date(s).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); }
+
+function toast(msg, isErr) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isErr ? ' err' : '');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+window.toast = toast;
+
+// ============================================
+// INIT
+// ============================================
+async function initApp() {
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+      if (tab.dataset.panel === 'stats') renderStats();
+      if (tab.dataset.panel === 'history') renderHistory();
+      loadForms();
+    });
+  });
+
+  // Rating buttons
+  document.querySelectorAll('.rating-row').forEach(row => {
+    row.querySelectorAll('.rating-btn').forEach(btn => {
+      btn.addEventListener('click', () => { row.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); });
+    });
+  });
+
+  // Sliders
+  ['energy','mood','nafs','discipline'].forEach(k => {
+    const el = document.getElementById(k);
+    if (el) el.addEventListener('input', () => { document.getElementById(k+'Val').textContent = el.value; });
+  });
+
+  // Global date
+  const globalDateInput = document.getElementById('globalDate');
+  globalDateInput.value = currentDate;
+  globalDateInput.addEventListener('change', async () => {
+    currentDate = globalDateInput.value;
+    updateDateDisplay();
+    await fetchDay(currentDate);
+    renderChecklist();
+    loadForms();
+  });
+
+  updateDateDisplay();
+  await fetchDay(currentDate);
+  renderChecklist();
+  loadForms();
+}
+
+function updateDateDisplay() {
+  document.getElementById('selectedDisplay').textContent = formatDisplayDate(currentDate);
+  const dn = dayNumber(currentDate);
+  document.getElementById('dayNum').textContent = dn > 0 ? 'Day ' + dn : 'Pre-start';
+}
+
+// ============================================
+// CHECKLIST RENDER
+// ============================================
+function renderChecklist() {
+  const data = cache[currentDate] || { checks: {} };
+  const container = document.getElementById('checklist');
+  container.innerHTML = '';
+  let done = 0;
+  CHECKLIST_STRUCTURE.forEach(block => {
+    let blockDone = 0;
+    block.items.forEach(it => { if (data.checks[it.id]) { blockDone++; done++; } });
+    const blockEl = document.createElement('div');
+    blockEl.className = 'block';
+    blockEl.innerHTML = `
+      <div class="block-header">
+        <div class="block-num">${block.num}</div>
+        <div class="block-title">${block.title}</div>
+        <div class="block-time">${block.time}</div>
+        <div class="block-count">${blockDone}/${block.items.length}</div>
+      </div>
+      ${block.quote ? `<div class="block-quote"><span class="arabic-small">${block.quote.ar}</span>${block.quote.en}<span class="src">${block.quote.src}</span></div>` : ''}
+      <div class="block-items"></div>`;
+    const itemsWrap = blockEl.querySelector('.block-items');
+    block.items.forEach(it => {
+      const isDone = !!data.checks[it.id];
+      const itemEl = document.createElement('div');
+      let cls = 'item';
+      if (isDone) cls += ' done';
+      if (it.critical) cls += ' critical';
+      else if (it.sunnah) cls += ' sunnah';
+      itemEl.className = cls;
+      itemEl.innerHTML = `<div class="checkbox"></div><div><div class="item-text">${it.text}</div>${it.note ? `<div class="item-note">${it.note}</div>` : ''}</div>`;
+      itemEl.addEventListener('click', () => {
+        if (!cache[currentDate]) cache[currentDate] = { checks: {}, physical: {}, trading: {}, reflection: {} };
+        cache[currentDate].checks[it.id] = !cache[currentDate].checks[it.id];
+        renderChecklist();
+        scheduleSave(currentDate);
+      });
+      itemsWrap.appendChild(itemEl);
+    });
+    container.appendChild(blockEl);
+  });
+  document.getElementById('progDone').textContent = done;
+  document.getElementById('progTotal').textContent = TOTAL_ITEMS;
+  document.getElementById('progFill').style.width = (done / TOTAL_ITEMS * 100) + '%';
+}
+
+// ============================================
+// FORMS
+// ============================================
+function loadForms() {
+  const data = cache[currentDate] || { physical: {}, trading: {}, reflection: {} };
+  const p = data.physical || {}, t = data.trading || {}, r = data.reflection || {};
+  ['weight','sleep','water','screentime','breakfast','lunch','snack','dinner'].forEach(k => { const el = document.getElementById(k); if (el) el.value = p[k] || ''; });
+  const gymEl = document.getElementById('gym'); if (gymEl) gymEl.value = p.gym || 'none';
+  ['energy','mood','nafs'].forEach(k => { const el = document.getElementById(k); const val = p[k] || 5; if (el) { el.value = val; document.getElementById(k+'Val').textContent = val; } });
+  const st = document.getElementById('sessionType'); if (st) st.value = t.sessionType || 'none';
+  ['tradeCount','wins','losses','lesson'].forEach(k => { const el = document.getElementById(k); if (el) el.value = t[k] || ''; });
+  const discEl = document.getElementById('discipline'); if (discEl) { const v = t.discipline || 5; discEl.value = v; document.getElementById('disciplineVal').textContent = v; }
+  setRatingSelected('followedPlan', t.followedPlan);
+  setRatingSelected('revenge', t.revenge);
+  setRatingSelected('overtraded', t.overtraded);
+  ['didRight','challenge','manClose','gratitude','talksRabb','tomorrow'].forEach(k => { const el = document.getElementById(k); if (el) el.value = r[k] || ''; });
+  setRatingSelected('badHabit', r.badHabit);
+  setRatingSelected('scrolled', r.scrolled);
+  setRatingSelected('fasted', r.fasted);
+}
+
+function setRatingSelected(field, val) {
+  document.querySelectorAll(`[data-field="${field}"] .rating-btn`).forEach(b => { b.classList.toggle('selected', b.dataset.val === val); });
+}
+
+// ============================================
+// SAVES (expose globally)
+// ============================================
+window.savePhysical = async function() {
+  const physical = {
+    weight: document.getElementById('weight').value, sleep: document.getElementById('sleep').value,
+    water: document.getElementById('water').value, gym: document.getElementById('gym').value,
+    energy: parseInt(document.getElementById('energy').value), mood: parseInt(document.getElementById('mood').value),
+    nafs: parseInt(document.getElementById('nafs').value), screentime: document.getElementById('screentime').value,
+    breakfast: document.getElementById('breakfast').value, lunch: document.getElementById('lunch').value,
+    snack: document.getElementById('snack').value, dinner: document.getElementById('dinner').value,
+  };
+  const ok = await upsertDay(currentDate, { physical });
+  toast(ok ? 'Physical saved · ' + currentDate : 'Save failed', !ok);
+};
+
+window.saveTrading = async function() {
+  const getSel = f => { const s = document.querySelector(`[data-field="${f}"] .rating-btn.selected`); return s ? s.dataset.val : ''; };
+  const trading = {
+    sessionType: document.getElementById('sessionType').value, tradeCount: document.getElementById('tradeCount').value,
+    wins: document.getElementById('wins').value, losses: document.getElementById('losses').value,
+    followedPlan: getSel('followedPlan'), revenge: getSel('revenge'), overtraded: getSel('overtraded'),
+    discipline: parseInt(document.getElementById('discipline').value), lesson: document.getElementById('lesson').value,
+  };
+  const ok = await upsertDay(currentDate, { trading });
+  toast(ok ? 'Trading saved · ' + currentDate : 'Save failed', !ok);
+};
+
+window.saveReflection = async function() {
+  const getSel = f => { const s = document.querySelector(`[data-field="${f}"] .rating-btn.selected`); return s ? s.dataset.val : ''; };
+  const reflection = {
+    didRight: document.getElementById('didRight').value, challenge: document.getElementById('challenge').value,
+    manClose: document.getElementById('manClose').value, gratitude: document.getElementById('gratitude').value,
+    talksRabb: document.getElementById('talksRabb').value, tomorrow: document.getElementById('tomorrow').value,
+    badHabit: getSel('badHabit'), scrolled: getSel('scrolled'), fasted: getSel('fasted'),
+  };
+  const ok = await upsertDay(currentDate, { reflection });
+  toast(ok ? 'Reflection saved · ' + currentDate : 'Save failed', !ok);
+};
+
+window.saveDay = async function() {
+  const ok = await upsertDay(currentDate, { checks: cache[currentDate]?.checks || {} });
+  toast(ok ? 'Alhamdulillah · synced' : 'Sync failed', !ok);
+};
+
+window.resetDay = async function() {
+  if (!confirm('Reset checkboxes for ' + currentDate + '?')) return;
+  if (cache[currentDate]) cache[currentDate].checks = {};
+  await upsertDay(currentDate, { checks: {} });
+  renderChecklist();
+};
+
+// ============================================
+// STATS
+// ============================================
+let completionChartInstance = null, nafsChartInstance = null;
+
+async function renderStats() {
+  await fetchAllDays();
+  const dates = Object.keys(cache).sort();
+  let totalDays = dates.length, perfectDays = 0, currentStreak = 0, fajrCount = 0, noMastCount = 0, noScrollCount = 0, witrCount = 0;
+  const labels = [], completionData = [], nafsData = [], disciplineData = [];
+  dates.forEach(d => {
+    const day = cache[d], checks = day.checks || {};
+    const doneCount = Object.values(checks).filter(Boolean).length;
+    const pct = Math.round(doneCount / TOTAL_ITEMS * 100);
+    labels.push(d.slice(5));
+    completionData.push(pct);
+    nafsData.push((day.physical && day.physical.nafs) || null);
+    disciplineData.push((day.trading && day.trading.discipline) || null);
+    if (pct >= 80) perfectDays++;
+    if (checks.fajr_masjid) fajrCount++;
+    if (checks.no_mast) noMastCount++;
+    if (checks.no_scroll) noScrollCount++;
+    if (checks.witr) witrCount++;
+  });
+  for (let i = dates.length - 1; i >= 0; i--) {
+    const doneCount = Object.values(cache[dates[i]].checks || {}).filter(Boolean).length;
+    if (doneCount / TOTAL_ITEMS >= 0.8) currentStreak++; else break;
+  }
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card"><div class="stat-label">Total days tracked</div><div class="stat-value">${totalDays}</div><div class="stat-sub">Since ${START_DATE}</div></div>
+    <div class="stat-card green"><div class="stat-label">Strong days (80%+)</div><div class="stat-value">${perfectDays}</div><div class="stat-sub">${totalDays ? Math.round(perfectDays/totalDays*100) : 0}% rate</div></div>
+    <div class="stat-card"><div class="stat-label">Current streak</div><div class="stat-value">${currentStreak}<span class="unit">days</span></div><div class="stat-sub">Consecutive strong days</div></div>
+    <div class="stat-card blue"><div class="stat-label">Fajr in masjid</div><div class="stat-value">${fajrCount}</div><div class="stat-sub">${totalDays ? Math.round(fajrCount/totalDays*100) : 0}% of days</div></div>
+    <div class="stat-card green"><div class="stat-label">Witr prayed</div><div class="stat-value">${witrCount}</div><div class="stat-sub">${totalDays ? Math.round(witrCount/totalDays*100) : 0}% of days</div></div>
+    <div class="stat-card red"><div class="stat-label">Clean days</div><div class="stat-value">${noMastCount}</div><div class="stat-sub">${totalDays ? Math.round(noMastCount/totalDays*100) : 0}% of days</div></div>
+    <div class="stat-card red"><div class="stat-label">No-scroll days</div><div class="stat-value">${noScrollCount}</div><div class="stat-sub">${totalDays ? Math.round(noScrollCount/totalDays*100) : 0}% of days</div></div>
+    <div class="stat-card"><div class="stat-label">Avg completion</div><div class="stat-value">${completionData.length ? Math.round(completionData.reduce((a,b)=>a+b,0)/completionData.length) : 0}<span class="unit">%</span></div><div class="stat-sub">Over all tracked days</div></div>`;
+  const ctx1 = document.getElementById('completionChart').getContext('2d');
+  if (completionChartInstance) completionChartInstance.destroy();
+  completionChartInstance = new Chart(ctx1, { type: 'line', data: { labels, datasets: [{ label: 'Completion %', data: completionData, borderColor: '#c9a961', backgroundColor: 'rgba(201, 169, 97, 0.1)', fill: true, tension: 0.3, borderWidth: 2.5, pointRadius: 4, pointBackgroundColor: '#c9a961' }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 100, ticks: { color: '#8a8a82', font: { weight: 600 } }, grid: { color: '#2a2a2a' } }, x: { ticks: { color: '#8a8a82', font: { weight: 600 } }, grid: { color: '#1c1c1c' } } }, plugins: { legend: { display: false } } } });
+  const ctx2 = document.getElementById('nafsChart').getContext('2d');
+  if (nafsChartInstance) nafsChartInstance.destroy();
+  nafsChartInstance = new Chart(ctx2, { type: 'line', data: { labels, datasets: [ { label: 'Nafs', data: nafsData, borderColor: '#a36b6b', backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 4, tension: 0.3 }, { label: 'Discipline', data: disciplineData, borderColor: '#6ba36b', backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 4, tension: 0.3 } ] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 10, ticks: { color: '#8a8a82', font: { weight: 600 } }, grid: { color: '#2a2a2a' } }, x: { ticks: { color: '#8a8a82', font: { weight: 600 } }, grid: { color: '#1c1c1c' } } }, plugins: { legend: { labels: { color: '#f5f5f0', font: { weight: 600 } } } } } });
+  const streakVis = document.getElementById('streakVisual');
+  streakVis.innerHTML = '';
+  const today = new Date();
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date(today); d.setDate(today.getDate() - i);
+    const key = d.toISOString().split('T')[0];
+    const cell = document.createElement('div'); cell.className = 'streak-cell'; cell.title = key;
+    if (cache[key]) { const dc = Object.values(cache[key].checks || {}).filter(Boolean).length; const pct = dc / TOTAL_ITEMS; if (pct >= 0.8) cell.classList.add('filled'); else if (pct >= 0.4) cell.classList.add('partial'); }
+    streakVis.appendChild(cell);
+  }
+}
+
+// ============================================
+// HISTORY
+// ============================================
+async function renderHistory() {
+  await fetchAllDays();
+  const dates = Object.keys(cache).sort().reverse();
+  const tbl = document.getElementById('historyTable');
+  if (dates.length === 0) {
+    tbl.innerHTML = '<div style="text-align:center; padding:60px 24px; color: var(--text-muted);"><p style="font-family: var(--serif); font-style: italic; font-size: 20px; font-weight: 600;">No days tracked yet.</p><small style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); font-weight: 600;">Start with today, bismillah</small></div>';
+    return;
+  }
+  tbl.innerHTML = `<div class="history-row header"><div>Date</div><div>Completion</div><div>Nafs</div><div>Discipline</div><div>Trades</div><div></div></div>`;
+  dates.forEach(d => {
+    const day = cache[d], checks = day.checks || {};
+    const doneCount = Object.values(checks).filter(Boolean).length;
+    const pct = Math.round(doneCount / TOTAL_ITEMS * 100);
+    const pctClass = pct >= 80 ? 'good' : pct >= 50 ? 'mid' : 'low';
+    const nafs = (day.physical && day.physical.nafs) || '—';
+    const disc = (day.trading && day.trading.discipline) || '—';
+    const trades = (day.trading && day.trading.tradeCount) || '—';
+    const dn = dayNumber(d);
+    const row = document.createElement('div');
+    row.className = 'history-row';
+    row.innerHTML = `<div class="date">${d}<br/><small>Day ${dn}</small></div><div><span class="score-pill ${pctClass}">${pct}%</span></div><div>${nafs}</div><div>${disc}</div><div>${trades}</div><div><button class="del-btn" data-d="${d}">Del</button></div>`;
+    row.querySelector('.del-btn').addEventListener('click', async (e) => {
+      const dd = e.target.dataset.d;
+      if (!confirm('Delete all data for ' + dd + '?')) return;
+      await sb.from('becoming_days').delete().eq('user_id', currentUser.id).eq('day_date', dd);
+      delete cache[dd];
+      renderHistory();
+    });
+    tbl.appendChild(row);
+  });
+}
+
+// ============================================
+// EXPORT / IMPORT
+// ============================================
+window.exportData = async function() {
+  await fetchAllDays();
+  const blob = new Blob([JSON.stringify(cache, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'becoming_backup_' + new Date().toISOString().split('T')[0] + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('Exported');
+};
+
+window.migrateLocalStorage = async function() {
+  const raw = localStorage.getItem('mohammed_becoming_v2') || localStorage.getItem('mohammed_becoming_v1');
+  if (!raw) { toast('No local data found'); return; }
+  if (!confirm('Migrate local data to your account? (Existing cloud data stays)')) return;
+  try {
+    const data = JSON.parse(raw);
+    let count = 0;
+    for (const [dateStr, dayData] of Object.entries(data)) {
+      await sb.from('becoming_days').upsert({
+        user_id: currentUser.id,
+        day_date: dateStr,
+        checks: dayData.checks || {},
+        physical: dayData.physical || {},
+        trading: dayData.trading || {},
+        reflection: dayData.reflection || {},
+      }, { onConflict: 'user_id,day_date' });
+      count++;
+    }
+    toast(`Migrated ${count} days`);
+    cache = {};
+    await fetchDay(currentDate);
+    renderChecklist();
+    loadForms();
+  } catch (err) { console.error(err); toast('Migration failed', true); }
+};
+
+// ============================================
+// BOOT
+// ============================================
+checkSession();
+</script>
+
+</body>
+</html>
