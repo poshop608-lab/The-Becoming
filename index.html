@@ -26,7 +26,6 @@
   ::selection { background: var(--gold); color: var(--bg); }
   .container { max-width: 1280px; margin: 0 auto; padding: 40px 24px 80px; }
 
-  /* ================ AUTH SCREEN ================ */
   .auth-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
   .auth-box { max-width: 440px; width: 100%; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 48px 36px; text-align: center; }
   .auth-box .bismillah { font-family: var(--arabic); font-size: 32px; color: var(--gold); margin-bottom: 20px; direction: rtl; font-weight: 400; }
@@ -36,7 +35,7 @@
   .auth-box .ayah { font-family: var(--serif); font-style: italic; font-size: 16px; font-weight: 500; color: var(--text-muted); margin-bottom: 32px; line-height: 1.5; }
   .auth-box input { width: 100%; background: var(--bg-elevated); border: 1px solid var(--border-light); color: var(--text); padding: 14px 16px; font-family: var(--sans); font-size: 15px; font-weight: 500; border-radius: 4px; margin-bottom: 14px; }
   .auth-box input:focus { outline: none; border-color: var(--gold); }
-  .auth-box .btn { width: 100%; padding: 15px 0; background: var(--gold); color: var(--bg); border: none; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+  .auth-box .btn { width: 100%; padding: 15px 0; background: var(--gold); color: var(--bg); border: none; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; border-radius: 4px; }
   .auth-box .btn:hover { background: var(--gold-bright); }
   .auth-box .btn:disabled { opacity: 0.6; cursor: not-allowed; }
   .auth-box .msg { font-family: var(--serif); font-style: italic; font-size: 15px; font-weight: 500; margin-top: 20px; padding: 14px; border-radius: 4px; }
@@ -44,7 +43,6 @@
   .auth-box .msg.err { background: rgba(163, 107, 107, 0.12); color: #c98f8f; border: 1px solid rgba(163, 107, 107, 0.3); }
   .hidden { display: none !important; }
 
-  /* ================ TOP BAR ================ */
   .topbar { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-bottom: 24px; padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; }
   .user-email { font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; font-weight: 500; }
   .sync-status { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; font-weight: 600; }
@@ -54,7 +52,6 @@
   .signout-btn { background: transparent; border: 1px solid var(--border-light); color: var(--text-muted); padding: 6px 12px; font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 3px; cursor: pointer; }
   .signout-btn:hover { border-color: var(--red); color: var(--red); }
 
-  /* ================ HERO ================ */
   .hero { text-align: center; padding: 30px 0 50px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
   .hero .bismillah { font-family: var(--arabic); font-size: 36px; color: var(--gold); margin-bottom: 22px; font-weight: 400; direction: rtl; }
   .hero h1 { font-family: var(--serif); font-size: clamp(40px, 6vw, 68px); font-weight: 600; font-style: italic; letter-spacing: -0.02em; margin-bottom: 8px; line-height: 1; }
@@ -70,12 +67,11 @@
   .global-date .label { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px; font-weight: 600; }
   .global-date .selected-display { font-family: var(--serif); font-size: 22px; font-weight: 600; font-style: italic; color: var(--gold); }
   .global-date input[type="date"] { background: var(--bg-elevated); border: 1px solid var(--border-light); color: var(--text); padding: 10px 14px; font-family: var(--mono); font-size: 13px; font-weight: 500; border-radius: 4px; min-width: 170px; cursor: pointer; }
-  .global-date input[type="date"]:focus { outline: none; border-color: var(--gold); }
   .global-date .day-num { font-family: var(--serif); font-size: 26px; font-style: italic; font-weight: 700; color: var(--gold-bright); padding: 0 16px; border-left: 1px solid var(--border); }
 
   .tabs { display: flex; gap: 2px; padding: 4px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 32px; overflow-x: auto; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
-  .tab { flex: 1; min-width: max-content; padding: 13px 20px; background: transparent; border: none; color: var(--text-muted); font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: all 0.2s; white-space: nowrap; }
+  .tab { flex: 1; min-width: max-content; padding: 13px 20px; background: transparent; border: none; color: var(--text-muted); font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 4px; white-space: nowrap; }
   .tab:hover { color: var(--text); }
   .tab.active { background: var(--bg-elevated); color: var(--gold); }
 
@@ -124,10 +120,10 @@
   .block-quote .arabic-small { font-family: var(--arabic); font-size: 16px; color: var(--gold); direction: rtl; display: block; margin-bottom: 6px; font-style: normal; font-weight: 400; text-align: right; }
   .block-quote .src { font-family: var(--mono); font-style: normal; font-size: 9px; color: var(--gold-dim); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 4px; display: block; font-weight: 600; }
   .block-items { padding: 4px 0; }
-  .item { display: flex; align-items: flex-start; gap: 14px; padding: 13px 20px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  .item { display: flex; align-items: flex-start; gap: 14px; padding: 13px 20px; cursor: pointer; border-bottom: 1px solid var(--border); }
   .item:last-child { border-bottom: none; }
   .item:hover { background: var(--bg-elevated); }
-  .checkbox { width: 20px; height: 20px; border: 2px solid var(--border-light); border-radius: 4px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .checkbox { width: 20px; height: 20px; border: 2px solid var(--border-light); border-radius: 4px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; }
   .item.done .checkbox { background: var(--gold); border-color: var(--gold); }
   .item.done .checkbox::after { content: ''; width: 5px; height: 10px; border-right: 2.5px solid var(--bg); border-bottom: 2.5px solid var(--bg); transform: rotate(45deg) translateY(-1px); }
   .item-text { flex: 1; font-size: 14px; font-weight: 500; color: var(--text); }
@@ -190,20 +186,34 @@
   .dua-transliteration { font-family: var(--serif); font-style: italic; font-size: 16px; font-weight: 500; color: var(--text-muted); margin-bottom: 10px; }
   .dua-meaning { font-family: var(--serif); font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.55; }
 
-  .loading { text-align: center; padding: 60px 20px; }
-  .loading .spinner { display: inline-block; width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .loading p { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--text-muted); margin-top: 16px; }
+  .cust-info { background: rgba(201, 169, 97, 0.06); border: 1px solid var(--border); border-radius: 6px; padding: 18px 22px; margin-bottom: 24px; font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--text-muted); }
+  .cust-info strong { color: var(--gold); font-style: normal; font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+  .cust-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 16px; overflow: hidden; }
+  .cust-head { padding: 14px 20px; background: var(--bg-elevated); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .cust-title { flex: 1; min-width: 150px; font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--gold); }
+  .cust-badge { font-family: var(--mono); font-size: 9px; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; }
+  .cust-badge.d { background: rgba(107, 138, 163, 0.15); color: #8fb0ca; }
+  .cust-badge.u { background: rgba(201, 169, 97, 0.15); color: var(--gold); }
+  .cust-items { padding: 6px 0; }
+  .cust-item { display: flex; align-items: center; gap: 10px; padding: 10px 20px; border-bottom: 1px solid var(--border); }
+  .cust-item:last-child { border-bottom: none; }
+  .cust-item-text { flex: 1; font-size: 14px; font-weight: 500; color: var(--text); }
+  .cust-item-text.hid { color: var(--text-dim); text-decoration: line-through; }
+  .cust-action { background: transparent; border: 1px solid var(--border-light); color: var(--text-muted); padding: 5px 10px; font-family: var(--mono); font-size: 10px; font-weight: 600; border-radius: 3px; cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; }
+  .cust-action:hover { border-color: var(--gold); color: var(--gold); }
+  .cust-action.d:hover { border-color: var(--red); color: var(--red); }
+  .cust-add { display: flex; gap: 8px; padding: 14px 20px; background: rgba(201, 169, 97, 0.04); flex-wrap: wrap; }
+  .cust-add input { flex: 1; min-width: 150px; background: var(--bg-elevated); border: 1px solid var(--border-light); color: var(--text); padding: 9px 12px; font-family: var(--sans); font-size: 13px; font-weight: 500; border-radius: 3px; }
+  .cust-add select { background: var(--bg-elevated); border: 1px solid var(--border-light); color: var(--text); padding: 9px 10px; font-family: var(--mono); font-size: 11px; font-weight: 600; border-radius: 3px; }
+  .cust-add button { background: var(--gold); color: var(--bg); border: none; padding: 9px 16px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 3px; cursor: pointer; }
+  .mk-s { display: inline-block; width: 3px; height: 14px; background: var(--green); border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+  .mk-c { display: inline-block; width: 3px; height: 14px; background: var(--red); border-radius: 2px; margin-right: 6px; vertical-align: middle; }
 
   @media (max-width: 640px) {
     .container { padding: 16px 12px 60px; }
     .auth-box { padding: 36px 24px; }
-    .hero { padding: 16px 0 32px; margin-bottom: 24px; }
-    .hero .ayah-arabic { font-size: 18px; }
-    .hero .ayah { font-size: 15px; }
     .tab { padding: 11px 12px; font-size: 10px; }
     .stats-grid { grid-template-columns: 1fr 1fr; }
-    .dua-arabic, .quote-arabic { font-size: 19px; }
     .topbar { flex-wrap: wrap; gap: 8px; }
     .user-email { font-size: 10px; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   }
@@ -211,26 +221,23 @@
 </head>
 <body>
 
-<!-- ================ AUTH SCREEN ================ -->
 <div class="auth-screen" id="authScreen">
   <div class="auth-box">
     <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <h1>The <span class="accent">Becoming</span></h1>
     <div class="subtitle">Private · Encrypted · Yours</div>
-    <p class="ayah">"Indeed, Allah will not change the condition of a people until they change what is within themselves."<br><span style="font-family: var(--mono); font-style: normal; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); font-weight: 600; display: inline-block; margin-top: 10px;">Ar-Ra'd · 13:11</span></p>
+    <p class="ayah">"Indeed, Allah will not change the condition of a people until they change what is within themselves."</p>
     <input type="email" id="authEmail" placeholder="your@email.com" autocomplete="email" />
-    <button class="btn" id="authBtn" onclick="sendMagicLink()">Send login link</button>
+    <button class="btn" id="authBtn">Send login link</button>
     <div class="msg" id="authMsg" style="display:none"></div>
   </div>
 </div>
 
-<!-- ================ MAIN APP ================ -->
 <div class="container hidden" id="appContainer">
-
   <div class="topbar">
     <span class="user-email" id="userEmail">—</span>
     <span class="sync-status synced" id="syncStatus">Synced</span>
-    <button class="signout-btn" onclick="signOut()">Sign out</button>
+    <button class="signout-btn" id="signoutBtn">Sign out</button>
   </div>
 
   <section class="hero">
@@ -259,6 +266,7 @@
     <button class="tab" data-panel="duas">Duas</button>
     <button class="tab" data-panel="stats">Stats</button>
     <button class="tab" data-panel="history">History</button>
+    <button class="tab" data-panel="customize">Customize</button>
   </div>
 
   <section class="panel active" id="panel-today">
@@ -277,8 +285,8 @@
     <div class="section-arabic">الْقَائِمَةُ الْيَوْمِيَّةُ</div>
     <div id="checklist"></div>
     <div class="actions-bar">
-      <button class="btn" onclick="resetDay()">Reset day</button>
-      <button class="btn primary" onclick="saveDay()">Sync now</button>
+      <button class="btn" id="resetDayBtn">Reset day</button>
+      <button class="btn primary" id="saveDayBtn">Sync now</button>
     </div>
   </section>
 
@@ -291,31 +299,26 @@
     <h2 class="section-title">Physical body<span class="section-sub">The amanah</span></h2>
     <div class="section-arabic">الْجَسَدُ أَمَانَةٌ</div>
     <div class="form-grid">
-      <div class="form-field"><label>Weight (kg)</label><input type="number" step="0.1" id="weight" placeholder="—" /></div>
-      <div class="form-field"><label>Sleep (hours)</label><input type="number" step="0.25" id="sleep" placeholder="—" /></div>
-      <div class="form-field"><label>Water (litres)</label><input type="number" step="0.25" id="water" placeholder="—" /></div>
+      <div class="form-field"><label>Weight (kg)</label><input type="number" step="0.1" id="weight" /></div>
+      <div class="form-field"><label>Sleep (hours)</label><input type="number" step="0.25" id="sleep" /></div>
+      <div class="form-field"><label>Water (litres)</label><input type="number" step="0.25" id="water" /></div>
       <div class="form-field"><label>Gym session</label><select id="gym"><option value="none">—</option><option value="yes">Yes, full session</option><option value="partial">Partial / light</option><option value="no">Skipped</option></select></div>
     </div>
     <div class="form-grid">
       <div class="form-field"><label>Energy (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="energy" /><span class="slider-val" id="energyVal">5</span></div></div>
       <div class="form-field"><label>Mood (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="mood" /><span class="slider-val" id="moodVal">5</span></div></div>
       <div class="form-field"><label>Nafs loudness (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="nafs" /><span class="slider-val" id="nafsVal">5</span></div></div>
-      <div class="form-field"><label>Screen time (hours)</label><input type="number" step="0.25" id="screentime" placeholder="—" /></div>
+      <div class="form-field"><label>Screen time (hours)</label><input type="number" step="0.25" id="screentime" /></div>
     </div>
     <h2 class="section-title" style="margin-top: 36px;">Meals<span class="section-sub">What fueled me</span></h2>
     <div class="section-arabic">الطَّعَامُ</div>
-    <div class="quote-strip">
-      <div class="quote-arabic">مَا مَلَأَ ابْنُ آدَمَ وِعَاءً شَرًّا مِنْ بَطْنٍ</div>
-      <div class="quote-translation">"The son of Adam fills no vessel worse than his stomach."</div>
-      <div class="quote-source">Prophet Muhammad ﷺ · Jami at-Tirmidhi 2380</div>
-    </div>
     <div class="form-grid">
-      <div class="form-field"><label>Breakfast</label><textarea id="breakfast" placeholder="What you ate..."></textarea></div>
-      <div class="form-field"><label>Lunch</label><textarea id="lunch" placeholder="What you ate..."></textarea></div>
-      <div class="form-field"><label>Pre-session snack</label><textarea id="snack" placeholder="Dates? Tea?..."></textarea></div>
-      <div class="form-field"><label>Dinner</label><textarea id="dinner" placeholder="What you ate..."></textarea></div>
+      <div class="form-field"><label>Breakfast</label><textarea id="breakfast"></textarea></div>
+      <div class="form-field"><label>Lunch</label><textarea id="lunch"></textarea></div>
+      <div class="form-field"><label>Pre-session snack</label><textarea id="snack"></textarea></div>
+      <div class="form-field"><label>Dinner</label><textarea id="dinner"></textarea></div>
     </div>
-    <div class="actions-bar"><button class="btn primary" onclick="savePhysical()">Save physical</button></div>
+    <div class="actions-bar"><button class="btn primary" id="savePhysicalBtn">Save physical</button></div>
   </section>
 
   <section class="panel" id="panel-trading">
@@ -328,9 +331,9 @@
     <div class="section-arabic">الرِّزْقُ بِيَدِ اللَّهِ</div>
     <div class="form-grid">
       <div class="form-field"><label>Session type</label><select id="sessionType"><option value="none">—</option><option value="sim">Sim / Paper</option><option value="live">Live (eval)</option><option value="skipped">Skipped</option></select></div>
-      <div class="form-field"><label>Number of trades</label><input type="number" id="tradeCount" placeholder="—" /></div>
-      <div class="form-field"><label>Wins</label><input type="number" id="wins" placeholder="—" /></div>
-      <div class="form-field"><label>Losses</label><input type="number" id="losses" placeholder="—" /></div>
+      <div class="form-field"><label>Number of trades</label><input type="number" id="tradeCount" /></div>
+      <div class="form-field"><label>Wins</label><input type="number" id="wins" /></div>
+      <div class="form-field"><label>Losses</label><input type="number" id="losses" /></div>
     </div>
     <div class="form-grid">
       <div class="form-field"><label>Followed plan?</label><div class="rating-row" data-field="followedPlan"><button class="rating-btn" data-val="yes">Yes</button><button class="rating-btn" data-val="partial">Partial</button><button class="rating-btn" data-val="no">No</button></div></div>
@@ -339,16 +342,16 @@
       <div class="form-field"><label>Discipline (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="discipline" /><span class="slider-val" id="disciplineVal">5</span></div></div>
     </div>
     <div class="form-grid" style="grid-template-columns: 1fr;">
-      <div class="form-field"><label>One lesson / observation</label><textarea id="lesson" placeholder="What did the market teach you today..."></textarea></div>
+      <div class="form-field"><label>One lesson / observation</label><textarea id="lesson"></textarea></div>
     </div>
-    <div class="actions-bar"><button class="btn primary" onclick="saveTrading()">Save trading</button></div>
+    <div class="actions-bar"><button class="btn primary" id="saveTradingBtn">Save trading</button></div>
   </section>
 
   <section class="panel" id="panel-reflection">
     <div class="quote-strip">
-      <div class="quote-arabic">قَدْ أَفْلَحَ مَنْ زَكَّاهَا وَقَدْ خَابَ مَنْ دَسَّاهَا</div>
-      <div class="quote-translation">"He has succeeded who purifies his soul, and he has failed who corrupts it."</div>
-      <div class="quote-source">Surah Ash-Shams · 91:9-10</div>
+      <div class="quote-arabic">قَدْ أَفْلَحَ مَنْ زَكَّاهَا</div>
+      <div class="quote-translation">"He has succeeded who purifies his soul."</div>
+      <div class="quote-source">Surah Ash-Shams · 91:9</div>
     </div>
     <h2 class="section-title">Reflection<span class="section-sub">The inner work</span></h2>
     <div class="section-arabic">الْمُحَاسَبَةُ</div>
@@ -365,36 +368,31 @@
       <div class="form-field"><label>Scrolled / wasted time</label><div class="rating-row" data-field="scrolled"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
       <div class="form-field"><label>Fasted today</label><div class="rating-row" data-field="fasted"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
     </div>
-    <div class="actions-bar"><button class="btn primary" onclick="saveReflection()">Save reflection</button></div>
+    <div class="actions-bar"><button class="btn primary" id="saveReflectionBtn">Save reflection</button></div>
   </section>
 
   <section class="panel" id="panel-duas">
-    <h2 class="section-title">Duas & Dhikr<span class="section-sub">Weapons of the believer</span></h2>
+    <h2 class="section-title">Duas &amp; Dhikr<span class="section-sub">Weapons of the believer</span></h2>
     <div class="section-arabic">الْأَذْكَارُ وَالْأَدْعِيَةُ</div>
     <div class="dua-card"><div class="dua-title">When the nafs whispers</div><div class="dua-arabic">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div><div class="dua-transliteration">A'udhu billahi min ash-shaytanir-rajeem</div><div class="dua-meaning">"I seek refuge in Allah from the accursed Shaytan."</div></div>
     <div class="dua-card"><div class="dua-title">Before sleep · Protection till morning</div><div class="dua-arabic">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ</div><div class="dua-transliteration">Ayat al-Kursi · Al-Baqarah 2:255</div><div class="dua-meaning">Prophet ﷺ: "Whoever recites Ayat al-Kursi before sleep, Allah appoints a guardian over him, and Shaytan cannot come near him till morning." — Sahih al-Bukhari 2311</div></div>
     <div class="dua-card"><div class="dua-title">Before any important task</div><div class="dua-arabic">بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</div><div class="dua-transliteration">Bismillahi, tawakkaltu 'alallahi, wa la hawla wa la quwwata illa billah</div><div class="dua-meaning">"In the name of Allah, I place my trust in Allah, and there is no power or strength except with Allah."</div></div>
-    <div class="dua-card"><div class="dua-title">For discipline of self · Prophet's ﷺ dua</div><div class="dua-arabic">اللَّهُمَّ آتِ نَفْسِي تَقْوَاهَا وَزَكِّهَا أَنْتَ خَيْرُ مَنْ زَكَّاهَا أَنْتَ وَلِيُّهَا وَمَوْلَاهَا</div><div class="dua-transliteration">Allahumma aati nafsi taqwaha, wa zakkiha anta khayru man zakkaha</div><div class="dua-meaning">"O Allah, grant my soul its taqwa and purify it — You are the best to purify it. You are its Protector and Master." — Sahih Muslim 2722</div></div>
-    <div class="dua-card"><div class="dua-title">Against anxiety, grief, debt</div><div class="dua-arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ وَالْعَجْزِ وَالْكَسَلِ وَالْبُخْلِ وَالْجُبْنِ وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ</div><div class="dua-transliteration">Allahumma inni a'udhu bika min al-hammi wal-hazan...</div><div class="dua-meaning">"O Allah, I seek refuge in You from anxiety and grief, weakness and laziness, miserliness and cowardice, the burden of debt, and being overpowered by men." — Sahih al-Bukhari 6369</div></div>
-    <div class="dua-card"><div class="dua-title">Sayyid al-Istighfar · Master of forgiveness</div><div class="dua-arabic">اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ</div><div class="dua-transliteration">Sayyid al-Istighfar</div><div class="dua-meaning">Prophet ﷺ: "Whoever says this during the day with firm belief and dies before evening will be among the people of Paradise." — Sahih al-Bukhari 6306</div></div>
-    <div class="dua-card"><div class="dua-title">For barakah in rizq and trading</div><div class="dua-arabic">اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ</div><div class="dua-transliteration">Allahumma-kfini bi halalika 'an haramik, wa aghnini bi fadlika 'amman siwak</div><div class="dua-meaning">"O Allah, suffice me with what You have made lawful instead of unlawful, and make me independent by Your grace." — Jami at-Tirmidhi 3563</div></div>
-    <div class="dua-card"><div class="dua-title">Morning & evening shield · 7x</div><div class="dua-arabic">حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ</div><div class="dua-transliteration">Hasbiyallahu la ilaha illa huwa, 'alayhi tawakkaltu wa huwa rabbul-'arshil-'adheem</div><div class="dua-meaning">Whoever says this 7 times, Allah will suffice him of all that worries him. — Sunan Abu Dawud 5081</div></div>
+    <div class="dua-card"><div class="dua-title">For discipline of self</div><div class="dua-arabic">اللَّهُمَّ آتِ نَفْسِي تَقْوَاهَا وَزَكِّهَا أَنْتَ خَيْرُ مَنْ زَكَّاهَا</div><div class="dua-transliteration">Allahumma aati nafsi taqwaha, wa zakkiha anta khayru man zakkaha</div><div class="dua-meaning">"O Allah, grant my soul its taqwa and purify it — You are the best to purify it." — Sahih Muslim 2722</div></div>
+    <div class="dua-card"><div class="dua-title">Against anxiety, grief, debt</div><div class="dua-arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ وَالْعَجْزِ وَالْكَسَلِ</div><div class="dua-transliteration">Allahumma inni a'udhu bika min al-hammi wal-hazan, wal-'ajzi wal-kasal...</div><div class="dua-meaning">"O Allah, I seek refuge in You from anxiety and grief, weakness and laziness..." — Sahih al-Bukhari 6369</div></div>
+    <div class="dua-card"><div class="dua-title">Sayyid al-Istighfar</div><div class="dua-arabic">اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ</div><div class="dua-transliteration">Sayyid al-Istighfar · Master of seeking forgiveness</div><div class="dua-meaning">Prophet ﷺ: "Whoever says this during the day with firm belief and dies before evening will be among the people of Paradise." — Sahih al-Bukhari 6306</div></div>
+    <div class="dua-card"><div class="dua-title">For barakah in rizq and trading</div><div class="dua-arabic">اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ</div><div class="dua-transliteration">Allahumma-kfini bi halalika 'an haramik</div><div class="dua-meaning">"O Allah, suffice me with what You have made lawful instead of unlawful." — Jami at-Tirmidhi 3563</div></div>
+    <div class="dua-card"><div class="dua-title">Morning &amp; evening shield · 7x</div><div class="dua-arabic">حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ</div><div class="dua-transliteration">Hasbiyallahu la ilaha illa huwa, 'alayhi tawakkaltu wa huwa rabbul-'arshil-'adheem</div><div class="dua-meaning">Whoever says this 7 times, Allah will suffice him of all that worries him. — Sunan Abu Dawud 5081</div></div>
     <div class="dua-card"><div class="dua-title">For knowledge</div><div class="dua-arabic">رَبِّ زِدْنِي عِلْمًا</div><div class="dua-transliteration">Rabbi zidni 'ilma</div><div class="dua-meaning">"My Lord, increase me in knowledge." — Surah Ta-Ha 20:114</div></div>
-    <div class="dua-card"><div class="dua-title">After every fard prayer · The 33s</div><div class="dua-arabic">سُبْحَانَ اللَّهِ (٣٣) الْحَمْدُ لِلَّهِ (٣٣) اللَّهُ أَكْبَرُ (٣٤)</div><div class="dua-transliteration">Subhan'Allah 33x · Alhamdulillah 33x · Allahu Akbar 34x</div><div class="dua-meaning">Prophet ﷺ: "Whoever says these after every prayer, his sins are forgiven even if they be like the foam of the sea." — Sahih Muslim 597</div></div>
+    <div class="dua-card"><div class="dua-title">After every fard prayer · The 33s</div><div class="dua-arabic">سُبْحَانَ اللَّهِ ٣٣ · الْحَمْدُ لِلَّهِ ٣٣ · اللَّهُ أَكْبَرُ ٣٤</div><div class="dua-transliteration">Subhan'Allah 33x · Alhamdulillah 33x · Allahu Akbar 34x</div><div class="dua-meaning">Prophet ﷺ: "Whoever says these after every prayer, his sins are forgiven even if they be like the foam of the sea." — Sahih Muslim 597</div></div>
   </section>
 
   <section class="panel" id="panel-stats">
-    <div class="quote-strip">
-      <div class="quote-arabic">يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَلْتَنْظُرْ نَفْسٌ مَا قَدَّمَتْ لِغَدٍ</div>
-      <div class="quote-translation">"O you who believe, fear Allah and let every soul look to what it has sent forth for tomorrow."</div>
-      <div class="quote-source">Surah Al-Hashr · 59:18</div>
-    </div>
     <h2 class="section-title">The numbers<span class="section-sub">Proof of becoming</span></h2>
     <div class="section-arabic">الْأَرْقَامُ لَا تَكْذِبُ</div>
     <div class="stats-grid" id="statsGrid"></div>
     <div class="chart-card"><h3>Completion over time</h3><div class="chart-wrap"><canvas id="completionChart"></canvas></div></div>
     <div class="chart-card"><h3>Nafs vs Discipline</h3><div class="chart-wrap"><canvas id="nafsChart"></canvas></div></div>
-    <div class="chart-card"><h3>Last 30 days · streak</h3><div class="streak-visual" id="streakVisual"></div><p style="margin-top: 14px; font-family: var(--serif); font-style: italic; font-size: 13px; font-weight: 500; color: var(--text-muted);">Gold = 80%+ · Faded = partial · Empty = missed</p></div>
+    <div class="chart-card"><h3>Last 30 days · streak</h3><div class="streak-visual" id="streakVisual"></div><p style="margin-top: 14px; font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--text-muted);">Gold = 80%+ · Faded = partial · Empty = missed</p></div>
   </section>
 
   <section class="panel" id="panel-history">
@@ -402,22 +400,33 @@
     <div class="section-arabic">السِّجِلُّ الْكَامِلُ</div>
     <div class="history-table" id="historyTable"></div>
     <div class="actions-bar">
-      <button class="btn" onclick="exportData()">Export backup</button>
-      <button class="btn" onclick="migrateLocalStorage()">Import old local data</button>
+      <button class="btn primary" id="downloadReportBtn">Download PDF Report</button>
+      <button class="btn" id="exportBtn">Export JSON backup</button>
     </div>
   </section>
 
+  <section class="panel" id="panel-customize">
+    <h2 class="section-title">Customize<span class="section-sub">Your checklist, your way</span></h2>
+    <div class="section-arabic">خَصِّصْ قَائِمَتَكَ</div>
+    <div class="cust-info">
+      <strong>How this works</strong>
+      Add items to any block. Hide defaults you don't need. Rename or delete your own blocks. Historical data stays intact — hiding an item never erases past days.
+    </div>
+    <div id="customizeContainer"></div>
+    <div class="actions-bar">
+      <button class="btn" id="addBlockBtn">+ Add new block</button>
+      <button class="btn danger" id="resetCustBtn">Reset to defaults</button>
+    </div>
+  </section>
 </div>
 
 <div class="toast" id="toast">Saved</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
 
-// ============================================
-// CONFIG — Supabase credentials
-// ============================================
 const SUPABASE_URL = 'https://ggszthbqteiehsmdwcmq.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdnc3p0aGJxdGVpZWhzbWR3Y21xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4ODQyMjQsImV4cCI6MjA5MjQ2MDIyNH0.0Z65c2_kiU8EevXIPXUR4rPK-VFUwozL_11PF1F2M1g';
 const START_DATE = '2026-04-23';
@@ -425,154 +434,211 @@ const START_DATE = '2026-04-23';
 const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
 });
-window.sb = sb;
 
-// ============================================
-// CHECKLIST STRUCTURE
-// ============================================
 const CHECKLIST_STRUCTURE = [
   { num: 1, title: 'Dawn', time: 'Fajr block',
-    quote: { ar: 'رَكْعَتَا الْفَجْرِ خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا', en: '"The two rakats of Fajr are better than the world and everything in it."', src: 'Sahih Muslim 725' },
+    quote: { ar: 'رَكْعَتَا الْفَجْرِ خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا', en: 'The two rakats of Fajr are better than the world and everything in it.', src: 'Sahih Muslim 725' },
     items: [
       { id: 'fajr_wake', text: 'Woke for Fajr — no snooze, no phone' },
       { id: 'fajr_wudu', text: 'Made wudu immediately (Sunnah)' },
       { id: 'fajr_masjid', text: 'Prayed Fajr in jamaah at masjid' },
-      { id: 'fajr_sunnah', text: '2 rakats sunnah before Fajr', sunnah: true, note: 'Better than the world & everything in it' },
+      { id: 'fajr_sunnah', text: '2 rakats sunnah before Fajr', sunnah: true },
       { id: 'fajr_dhikr', text: '33x dhikr: SubhanAllah / Alhamdulillah / Allahu Akbar' },
       { id: 'fajr_kursi', text: 'Ayat al-Kursi after Fajr' },
-      { id: 'fajr_quls_morn', text: '3 Quls (Ikhlas, Falaq, Nas) — 3x morning' },
-      { id: 'fajr_hasbiyallah', text: 'Hasbiyallahu... 7x morning (shield)' },
+      { id: 'fajr_quls_morn', text: '3 Quls — 3x morning' },
+      { id: 'fajr_hasbiyallah', text: 'Hasbiyallahu 7x morning (shield)' },
       { id: 'fajr_sit', text: 'Sat 10+ min for dhikr after Fajr' },
       { id: 'gym', text: 'Gym session' },
-      { id: 'quran_post_gym', text: 'Quran recitation after gym (15 min)' },
+      { id: 'quran_post_gym', text: 'Quran recitation after gym (15 min)' }
     ]
   },
   { num: 2, title: 'Barakah hours', time: 'Fajr to Dhuhr',
-    quote: { ar: 'اللَّهُمَّ بَارِكْ لِأُمَّتِي فِي بُكُورِهَا', en: '"O Allah, bless my nation in their early mornings."', src: 'Jami at-Tirmidhi 1212' },
+    quote: { ar: 'اللَّهُمَّ بَارِكْ لِأُمَّتِي فِي بُكُورِهَا', en: 'O Allah, bless my nation in their early mornings.', src: 'Jami at-Tirmidhi 1212' },
     items: [
-      { id: 'no_sleep', text: 'NO sleep between Fajr and Dhuhr', critical: true, note: 'The bed is haram in this window' },
-      { id: 'quran_meaning', text: '15 min Quran with meaning (tafsir)' },
+      { id: 'no_sleep', text: 'NO sleep between Fajr and Dhuhr', critical: true },
+      { id: 'quran_meaning', text: '15 min Quran with meaning' },
       { id: 'mulk', text: 'Surah Mulk recited' },
-      { id: 'duha', text: '2 rakats Salat ad-Duha (mid-morning)', sunnah: true, note: 'Charity for every joint of your body' },
+      { id: 'duha', text: '2 rakats Salat ad-Duha', sunnah: true },
       { id: 'book', text: 'Book reading — 30 min' },
-      { id: 'trading_work', text: 'Trading deep work (backtest / journal)' },
+      { id: 'trading_work', text: 'Trading deep work' },
       { id: 'skill', text: 'Skill building / BCA prep' },
-      { id: 'istighfar_100', text: '100x Istighfar (Astaghfirullah)' },
+      { id: 'istighfar_100', text: '100x Istighfar' }
     ]
   },
   { num: 3, title: 'Midday', time: 'Dhuhr to Asr',
-    quote: { ar: 'مَنْ حَافَظَ عَلَى أَرْبَعٍ قَبْلَ الظُّهْرِ وَأَرْبَعٍ بَعْدَهَا حَرَّمَهُ اللَّهُ عَلَى النَّارِ', en: '"Whoever persists in 4 rakats before Dhuhr and 4 after, Allah will forbid Hellfire from him."', src: 'Sunan Abu Dawud 1269' },
+    quote: { ar: 'مَنْ حَافَظَ عَلَى أَرْبَعٍ قَبْلَ الظُّهْرِ وَأَرْبَعٍ بَعْدَهَا حَرَّمَهُ اللَّهُ عَلَى النَّارِ', en: 'Whoever persists in 4 rakats before Dhuhr and 4 after, Allah will forbid Hellfire from him.', src: 'Sunan Abu Dawud 1269' },
     items: [
       { id: 'dhuhr', text: 'Prayed Dhuhr on time' },
       { id: 'dhuhr_sunnah_before', text: '4 rakats sunnah before Dhuhr', sunnah: true },
       { id: 'dhuhr_sunnah_after', text: '2 rakats sunnah after Dhuhr', sunnah: true },
       { id: 'dhuhr_dhikr', text: '33x dhikr + Ayat al-Kursi' },
       { id: 'lunch_mod', text: 'Moderate lunch — 2/3 full max' },
-      { id: 'qailulah', text: 'Qailulah nap (15-25 min, alarm set)', sunnah: true },
-      { id: 'no_scroll', text: 'Did NOT scroll Instagram / reels', critical: true },
+      { id: 'qailulah', text: 'Qailulah nap (15-25 min)', sunnah: true },
+      { id: 'no_scroll', text: 'Did NOT scroll Instagram / reels', critical: true }
     ]
   },
   { num: 4, title: 'Critical hour', time: 'Asr to Maghrib',
-    quote: { ar: 'حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ', en: '"Guard strictly your prayers, especially the middle prayer."', src: 'Surah Al-Baqarah 2:238' },
+    quote: { ar: 'حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ', en: 'Guard strictly your prayers, especially the middle prayer.', src: 'Surah Al-Baqarah 2:238' },
     items: [
       { id: 'asr_sunnah', text: '4 rakats sunnah before Asr', sunnah: true },
       { id: 'asr', text: 'Prayed Asr in jamaah' },
       { id: 'asr_dhikr', text: '33x dhikr after Asr' },
       { id: 'asr_quls', text: '3 Quls — 3x evening' },
-      { id: 'asr_hasbiyallah', text: 'Hasbiyallahu... 7x evening' },
+      { id: 'asr_hasbiyallah', text: 'Hasbiyallahu 7x evening' },
       { id: 'no_charts', text: 'NO CHARTS between Asr and Maghrib', critical: true },
       { id: 'quran_asr', text: 'Quran / dhikr / istighfar instead' },
-      { id: 'wudu_maghrib', text: 'Wudu before Maghrib' },
+      { id: 'wudu_maghrib', text: 'Wudu before Maghrib' }
     ]
   },
   { num: 5, title: 'Trading pivot', time: 'Maghrib + Session',
-    quote: { ar: 'أَحَبُّ الصَّلَاةِ إِلَى اللَّهِ الصَّلَاةُ لِوَقْتِهَا', en: '"The most beloved prayer to Allah is the one prayed at the beginning of its time."', src: 'Sahih al-Bukhari 527' },
+    quote: { ar: 'أَحَبُّ الصَّلَاةِ إِلَى اللَّهِ الصَّلَاةُ لِوَقْتِهَا', en: 'The most beloved prayer to Allah is the one prayed at the beginning of its time.', src: 'Sahih al-Bukhari 527' },
     items: [
       { id: 'maghrib_full', text: 'Prayed Maghrib at start — NOT rushed', critical: true },
       { id: 'maghrib_dhikr', text: '33x dhikr after Maghrib' },
       { id: 'maghrib_sunnah', text: '2 rakats sunnah after Maghrib', sunnah: true },
-      { id: 'barakah_dua', text: 'Dua for barakah in rizq before trading' },
+      { id: 'barakah_dua', text: 'Dua for barakah before trading' },
       { id: 'observe_only', text: 'Observed market 6:50-7:10 — no clicks' },
       { id: 'sim_only', text: 'Sim only — NO real money' },
-      { id: 'a_plus', text: 'Took only A+ setups (my model)' },
+      { id: 'a_plus', text: 'Took only A+ setups' },
       { id: 'no_revenge', text: 'Did NOT revenge trade' },
       { id: 'no_overtrade', text: 'Did NOT overtrade' },
-      { id: 'close_830', text: 'Closed charts at 8:30 sharp' },
+      { id: 'close_830', text: 'Closed charts at 8:30 sharp' }
     ]
   },
   { num: 6, title: 'Night', time: 'Isha to Sleep',
-    quote: { ar: 'مَنْ صَلَّى الْعِشَاءَ فِي جَمَاعَةٍ فَكَأَنَّمَا قَامَ نِصْفَ اللَّيْلِ', en: '"Whoever prays Isha in congregation, it is as if he stood half the night in prayer."', src: 'Sahih Muslim 656' },
+    quote: { ar: 'مَنْ صَلَّى الْعِشَاءَ فِي جَمَاعَةٍ فَكَأَنَّمَا قَامَ نِصْفَ اللَّيْلِ', en: 'Whoever prays Isha in congregation, it is as if he stood half the night in prayer.', src: 'Sahih Muslim 656' },
     items: [
       { id: 'isha', text: 'Prayed Isha on time' },
       { id: 'isha_dhikr', text: '33x dhikr after Isha' },
       { id: 'isha_sunnah', text: '2 rakats sunnah after Isha', sunnah: true },
       { id: 'witr', text: 'Witr prayed (3 rakats)', critical: true },
       { id: 'sayyid_istighfar', text: 'Sayyid al-Istighfar recited' },
-      { id: 'journal', text: 'Filled physical journal (all 9 sections)' },
-      { id: 'wudu_sleep', text: 'Wudu before sleep (Sunnah)' },
-      { id: 'kursi_sleep', text: 'Ayat al-Kursi + 3 Quls (blow into palms)' },
-      { id: 'mulk_sleep', text: 'Surah Mulk recited before sleep' },
+      { id: 'journal', text: 'Filled physical journal' },
+      { id: 'wudu_sleep', text: 'Wudu before sleep' },
+      { id: 'kursi_sleep', text: 'Ayat al-Kursi + 3 Quls before sleep' },
+      { id: 'mulk_sleep', text: 'Surah Mulk before sleep' },
       { id: 'durood', text: 'Durood Ibrahim recited' },
       { id: 'phone_other', text: 'Phone in OTHER ROOM', critical: true },
-      { id: 'right_side', text: 'Slept on right side with sleep dua' },
+      { id: 'right_side', text: 'Slept on right side with sleep dua' }
     ]
   },
   { num: 7, title: 'Guardrails', time: 'All-day',
-    quote: { ar: 'وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا', en: '"Whoever fears Allah, He will make for him a way out."', src: 'Surah At-Talaq 65:2' },
+    quote: { ar: 'وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا', en: 'Whoever fears Allah, He will make for him a way out.', src: 'Surah At-Talaq 65:2' },
     items: [
-      { id: 'no_mast', text: 'Did NOT masturbate today', critical: true, note: 'Urge → wudu + 2 rakats. It passes.' },
+      { id: 'no_mast', text: 'Did NOT masturbate today', critical: true },
       { id: 'no_ig', text: 'Instagram app NOT on phone', critical: true },
       { id: 'no_ig_browser', text: 'Did NOT access IG via browser' },
       { id: 'no_reels', text: 'Did NOT watch reels on any platform' },
-      { id: 'low_screen', text: 'Screen time under 1 hour (excl. trading)' },
-      { id: 'lower_gaze', text: 'Guarded my gaze (Surah An-Nur 24:30)' },
+      { id: 'low_screen', text: 'Screen time under 1 hour' },
+      { id: 'lower_gaze', text: 'Guarded my gaze (Surah An-Nur 24:30)' }
     ]
-  },
+  }
 ];
 
-const TOTAL_ITEMS = CHECKLIST_STRUCTURE.reduce((s, b) => s + b.items.length, 0);
+const TOTAL_DEFAULT = CHECKLIST_STRUCTURE.reduce((s, b) => s + b.items.length, 0);
 
-// ============================================
-// STATE
-// ============================================
 let currentDate = new Date().toISOString().split('T')[0];
 let currentUser = null;
-let cache = {}; // date -> day data
+let cache = {};
 let saveTimers = {};
+let realtimeChannel = null;
+let settingsChannel = null;
+let lastLocalWrite = 0;
+let lastSettingsWrite = 0;
+let userSettings = { structure: { blocks: [] }, hidden_defaults: [] };
+let completionChartInstance = null;
+let nafsChartInstance = null;
 
-// ============================================
-// AUTH FLOW
-// ============================================
+function getEffectiveChecklist() {
+  const hidden = new Set(userSettings.hidden_defaults || []);
+  const userBlocks = (userSettings.structure && userSettings.structure.blocks) || [];
+  const attached = {};
+  const standalone = [];
+  userBlocks.forEach(ub => {
+    if (ub.attachToDefault) attached[ub.attachToDefault] = ub.items || [];
+    else standalone.push(ub);
+  });
+  const result = CHECKLIST_STRUCTURE.map(b => {
+    const kept = b.items.filter(it => !hidden.has(it.id));
+    const extra = attached[b.num] || [];
+    return Object.assign({}, b, { items: kept.concat(extra) });
+  });
+  standalone.forEach((ub, idx) => {
+    result.push({
+      num: 'C' + (idx + 1),
+      title: ub.title || 'Custom block',
+      time: ub.time || '',
+      quote: null,
+      items: ub.items || []
+    });
+  });
+  return result;
+}
+
+function getEffectiveTotal() {
+  return getEffectiveChecklist().reduce((s, b) => s + b.items.length, 0);
+}
+
+function dayNumber(dateStr) {
+  return Math.floor((new Date(dateStr) - new Date(START_DATE)) / 86400000) + 1;
+}
+
+function formatDisplayDate(s) {
+  return new Date(s).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function setSyncStatus(state) {
+  const el = document.getElementById('syncStatus');
+  el.className = 'sync-status ' + state;
+  el.textContent = state === 'synced' ? 'Synced' : state === 'syncing' ? 'Syncing...' : 'Offline';
+}
+
+function toast(msg, isErr) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isErr ? ' err' : '');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function escapeHTML(s) {
+  return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// ============== AUTH ==============
 async function sendMagicLink() {
   const email = document.getElementById('authEmail').value.trim();
   const msg = document.getElementById('authMsg');
   const btn = document.getElementById('authBtn');
   if (!email || !email.includes('@')) {
-    msg.style.display = 'block'; msg.className = 'msg err'; msg.textContent = 'Please enter a valid email.';
+    msg.style.display = 'block';
+    msg.className = 'msg err';
+    msg.textContent = 'Please enter a valid email.';
     return;
   }
-  btn.disabled = true; btn.textContent = 'Sending...';
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
   const { error } = await sb.auth.signInWithOtp({
-    email,
+    email: email,
     options: { emailRedirectTo: window.location.origin + window.location.pathname }
   });
-  btn.disabled = false; btn.textContent = 'Send login link';
+  btn.disabled = false;
+  btn.textContent = 'Send login link';
   msg.style.display = 'block';
-  if (error) { msg.className = 'msg err'; msg.textContent = error.message; }
-  else { msg.className = 'msg ok'; msg.textContent = '✓ Check your email. Open the link on this device. Bismillah.'; }
+  if (error) {
+    msg.className = 'msg err';
+    msg.textContent = error.message;
+  } else {
+    msg.className = 'msg ok';
+    msg.textContent = 'Check your email. Open the link on this device. Bismillah.';
+  }
 }
-window.sendMagicLink = sendMagicLink;
 
 async function signOut() {
   if (!confirm('Sign out?')) return;
   await sb.auth.signOut();
   location.reload();
 }
-window.signOut = signOut;
 
-// ============================================
-// SESSION HANDLING
-// ============================================
 async function checkSession() {
   const { data: { session } } = await sb.auth.getSession();
   if (session && session.user) {
@@ -581,17 +647,13 @@ async function checkSession() {
     document.getElementById('appContainer').classList.remove('hidden');
     document.getElementById('userEmail').textContent = currentUser.email;
     await initApp();
-  } else {
-    document.getElementById('authScreen').classList.remove('hidden');
-    document.getElementById('appContainer').classList.add('hidden');
   }
 }
 
 sb.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN' && session) {
     checkSession();
-    // Clean the URL after magic link redirect
-    if (window.location.hash.includes('access_token')) {
+    if (window.location.hash.indexOf('access_token') !== -1) {
       history.replaceState(null, '', window.location.pathname);
     }
   } else if (event === 'SIGNED_OUT') {
@@ -599,18 +661,7 @@ sb.auth.onAuthStateChange((event, session) => {
   }
 });
 
-// ============================================
-// SYNC STATUS
-// ============================================
-function setSyncStatus(state) {
-  const el = document.getElementById('syncStatus');
-  el.className = 'sync-status ' + state;
-  el.textContent = state === 'synced' ? 'Synced' : state === 'syncing' ? 'Syncing...' : 'Offline';
-}
-
-// ============================================
-// DATA OPERATIONS
-// ============================================
+// ============== DATA ==============
 async function fetchDay(dateStr) {
   if (cache[dateStr]) return cache[dateStr];
   setSyncStatus('syncing');
@@ -620,9 +671,13 @@ async function fetchDay(dateStr) {
     .eq('day_date', dateStr)
     .maybeSingle();
   setSyncStatus(error ? 'offline' : 'synced');
-  if (error) { console.error(error); return { checks: {}, physical: {}, trading: {}, reflection: {} }; }
-  const result = data ? { checks: data.checks || {}, physical: data.physical || {}, trading: data.trading || {}, reflection: data.reflection || {} }
-                      : { checks: {}, physical: {}, trading: {}, reflection: {} };
+  if (error) {
+    console.error(error);
+    return { checks: {}, physical: {}, trading: {}, reflection: {} };
+  }
+  const result = data
+    ? { checks: data.checks || {}, physical: data.physical || {}, trading: data.trading || {}, reflection: data.reflection || {} }
+    : { checks: {}, physical: {}, trading: {}, reflection: {} };
   cache[dateStr] = result;
   return result;
 }
@@ -631,23 +686,29 @@ async function upsertDay(dateStr, updates) {
   if (!cache[dateStr]) cache[dateStr] = { checks: {}, physical: {}, trading: {}, reflection: {} };
   Object.assign(cache[dateStr], updates);
   setSyncStatus('syncing');
+  lastLocalWrite = Date.now();
   const { error } = await sb.from('becoming_days').upsert({
     user_id: currentUser.id,
     day_date: dateStr,
     checks: cache[dateStr].checks,
     physical: cache[dateStr].physical,
     trading: cache[dateStr].trading,
-    reflection: cache[dateStr].reflection,
+    reflection: cache[dateStr].reflection
   }, { onConflict: 'user_id,day_date' });
   setSyncStatus(error ? 'offline' : 'synced');
-  if (error) { console.error(error); toast('Sync error', true); return false; }
+  if (error) {
+    console.error(error);
+    toast('Sync error', true);
+    return false;
+  }
   return true;
 }
 
-// Debounced auto-save on checkbox toggle
 function scheduleSave(dateStr) {
   clearTimeout(saveTimers[dateStr]);
-  saveTimers[dateStr] = setTimeout(() => upsertDay(dateStr, { checks: cache[dateStr].checks }), 400);
+  saveTimers[dateStr] = setTimeout(() => {
+    upsertDay(dateStr, { checks: cache[dateStr].checks });
+  }, 400);
 }
 
 async function fetchAllDays() {
@@ -655,105 +716,88 @@ async function fetchAllDays() {
     .select('*')
     .eq('user_id', currentUser.id)
     .order('day_date', { ascending: true });
-  if (error) { console.error(error); return []; }
+  if (error) {
+    console.error(error);
+    return [];
+  }
   data.forEach(row => {
     cache[row.day_date] = {
-      checks: row.checks || {}, physical: row.physical || {},
-      trading: row.trading || {}, reflection: row.reflection || {}
+      checks: row.checks || {},
+      physical: row.physical || {},
+      trading: row.trading || {},
+      reflection: row.reflection || {}
     };
   });
   return data;
 }
 
-// ============================================
-// UTILITIES
-// ============================================
-function dayNumber(dateStr) { return Math.floor((new Date(dateStr) - new Date(START_DATE)) / 86400000) + 1; }
-function formatDisplayDate(s) { return new Date(s).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); }
-
-function toast(msg, isErr) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show' + (isErr ? ' err' : '');
-  setTimeout(() => t.classList.remove('show'), 2000);
-}
-window.toast = toast;
-
-// ============================================
-// INIT
-// ============================================
-async function initApp() {
-  // Tab switching
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
-      if (tab.dataset.panel === 'stats') renderStats();
-      if (tab.dataset.panel === 'history') renderHistory();
-      loadForms();
-    });
-  });
-
-  // Rating buttons
-  document.querySelectorAll('.rating-row').forEach(row => {
-    row.querySelectorAll('.rating-btn').forEach(btn => {
-      btn.addEventListener('click', () => { row.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); });
-    });
-  });
-
-  // Sliders
-  ['energy','mood','nafs','discipline'].forEach(k => {
-    const el = document.getElementById(k);
-    if (el) el.addEventListener('input', () => { document.getElementById(k+'Val').textContent = el.value; });
-  });
-
-  // Global date
-  const globalDateInput = document.getElementById('globalDate');
-  globalDateInput.value = currentDate;
-  globalDateInput.addEventListener('change', async () => {
-    currentDate = globalDateInput.value;
-    updateDateDisplay();
-    await fetchDay(currentDate);
-    renderChecklist();
-    loadForms();
-  });
-
-  updateDateDisplay();
-  await fetchDay(currentDate);
-  renderChecklist();
-  loadForms();
+async function fetchSettings() {
+  const { data, error } = await sb.from('becoming_settings')
+    .select('*')
+    .eq('user_id', currentUser.id)
+    .maybeSingle();
+  if (error) {
+    console.error(error);
+    return;
+  }
+  if (data) {
+    userSettings = {
+      structure: data.structure || { blocks: [] },
+      hidden_defaults: data.hidden_defaults || []
+    };
+  }
 }
 
+async function saveSettings() {
+  setSyncStatus('syncing');
+  lastSettingsWrite = Date.now();
+  const { error } = await sb.from('becoming_settings').upsert({
+    user_id: currentUser.id,
+    structure: userSettings.structure,
+    hidden_defaults: userSettings.hidden_defaults
+  }, { onConflict: 'user_id' });
+  setSyncStatus(error ? 'offline' : 'synced');
+  if (error) {
+    toast('Settings save failed', true);
+    return false;
+  }
+  return true;
+}
+
+// ============== RENDER ==============
 function updateDateDisplay() {
   document.getElementById('selectedDisplay').textContent = formatDisplayDate(currentDate);
   const dn = dayNumber(currentDate);
   document.getElementById('dayNum').textContent = dn > 0 ? 'Day ' + dn : 'Pre-start';
 }
 
-// ============================================
-// CHECKLIST RENDER
-// ============================================
 function renderChecklist() {
   const data = cache[currentDate] || { checks: {} };
   const container = document.getElementById('checklist');
   container.innerHTML = '';
   let done = 0;
-  CHECKLIST_STRUCTURE.forEach(block => {
+  const effectiveList = getEffectiveChecklist();
+  const effectiveTotal = effectiveList.reduce((s, b) => s + b.items.length, 0);
+  effectiveList.forEach(block => {
     let blockDone = 0;
-    block.items.forEach(it => { if (data.checks[it.id]) { blockDone++; done++; } });
+    block.items.forEach(it => {
+      if (data.checks[it.id]) {
+        blockDone++;
+        done++;
+      }
+    });
     const blockEl = document.createElement('div');
     blockEl.className = 'block';
-    blockEl.innerHTML = `
-      <div class="block-header">
-        <div class="block-num">${block.num}</div>
-        <div class="block-title">${block.title}</div>
-        <div class="block-time">${block.time}</div>
-        <div class="block-count">${blockDone}/${block.items.length}</div>
-      </div>
-      ${block.quote ? `<div class="block-quote"><span class="arabic-small">${block.quote.ar}</span>${block.quote.en}<span class="src">${block.quote.src}</span></div>` : ''}
-      <div class="block-items"></div>`;
+    let inner = '<div class="block-header"><div class="block-num">' + block.num + '</div>';
+    inner += '<div class="block-title">' + escapeHTML(block.title) + '</div>';
+    inner += '<div class="block-time">' + escapeHTML(block.time) + '</div>';
+    inner += '<div class="block-count">' + blockDone + '/' + block.items.length + '</div></div>';
+    if (block.quote) {
+      inner += '<div class="block-quote"><span class="arabic-small">' + block.quote.ar + '</span>';
+      inner += escapeHTML(block.quote.en) + '<span class="src">' + escapeHTML(block.quote.src) + '</span></div>';
+    }
+    inner += '<div class="block-items"></div>';
+    blockEl.innerHTML = inner;
     const itemsWrap = blockEl.querySelector('.block-items');
     block.items.forEach(it => {
       const isDone = !!data.checks[it.id];
@@ -763,7 +807,11 @@ function renderChecklist() {
       if (it.critical) cls += ' critical';
       else if (it.sunnah) cls += ' sunnah';
       itemEl.className = cls;
-      itemEl.innerHTML = `<div class="checkbox"></div><div><div class="item-text">${it.text}</div>${it.note ? `<div class="item-note">${it.note}</div>` : ''}</div>`;
+      let itemInner = '<div class="checkbox"></div><div>';
+      itemInner += '<div class="item-text">' + escapeHTML(it.text) + '</div>';
+      if (it.note) itemInner += '<div class="item-note">' + escapeHTML(it.note) + '</div>';
+      itemInner += '</div>';
+      itemEl.innerHTML = itemInner;
       itemEl.addEventListener('click', () => {
         if (!cache[currentDate]) cache[currentDate] = { checks: {}, physical: {}, trading: {}, reflection: {} };
         cache[currentDate].checks[it.id] = !cache[currentDate].checks[it.id];
@@ -775,101 +823,149 @@ function renderChecklist() {
     container.appendChild(blockEl);
   });
   document.getElementById('progDone').textContent = done;
-  document.getElementById('progTotal').textContent = TOTAL_ITEMS;
-  document.getElementById('progFill').style.width = (done / TOTAL_ITEMS * 100) + '%';
+  document.getElementById('progTotal').textContent = effectiveTotal;
+  document.getElementById('progFill').style.width = effectiveTotal ? (done / effectiveTotal * 100) + '%' : '0%';
 }
 
-// ============================================
-// FORMS
-// ============================================
 function loadForms() {
   const data = cache[currentDate] || { physical: {}, trading: {}, reflection: {} };
-  const p = data.physical || {}, t = data.trading || {}, r = data.reflection || {};
-  ['weight','sleep','water','screentime','breakfast','lunch','snack','dinner'].forEach(k => { const el = document.getElementById(k); if (el) el.value = p[k] || ''; });
-  const gymEl = document.getElementById('gym'); if (gymEl) gymEl.value = p.gym || 'none';
-  ['energy','mood','nafs'].forEach(k => { const el = document.getElementById(k); const val = p[k] || 5; if (el) { el.value = val; document.getElementById(k+'Val').textContent = val; } });
-  const st = document.getElementById('sessionType'); if (st) st.value = t.sessionType || 'none';
-  ['tradeCount','wins','losses','lesson'].forEach(k => { const el = document.getElementById(k); if (el) el.value = t[k] || ''; });
-  const discEl = document.getElementById('discipline'); if (discEl) { const v = t.discipline || 5; discEl.value = v; document.getElementById('disciplineVal').textContent = v; }
+  const p = data.physical || {};
+  const t = data.trading || {};
+  const r = data.reflection || {};
+  ['weight','sleep','water','screentime','breakfast','lunch','snack','dinner'].forEach(k => {
+    const el = document.getElementById(k);
+    if (el) el.value = p[k] || '';
+  });
+  const gymEl = document.getElementById('gym');
+  if (gymEl) gymEl.value = p.gym || 'none';
+  ['energy','mood','nafs'].forEach(k => {
+    const el = document.getElementById(k);
+    const val = p[k] || 5;
+    if (el) {
+      el.value = val;
+      document.getElementById(k + 'Val').textContent = val;
+    }
+  });
+  const st = document.getElementById('sessionType');
+  if (st) st.value = t.sessionType || 'none';
+  ['tradeCount','wins','losses','lesson'].forEach(k => {
+    const el = document.getElementById(k);
+    if (el) el.value = t[k] || '';
+  });
+  const discEl = document.getElementById('discipline');
+  if (discEl) {
+    const v = t.discipline || 5;
+    discEl.value = v;
+    document.getElementById('disciplineVal').textContent = v;
+  }
   setRatingSelected('followedPlan', t.followedPlan);
   setRatingSelected('revenge', t.revenge);
   setRatingSelected('overtraded', t.overtraded);
-  ['didRight','challenge','manClose','gratitude','talksRabb','tomorrow'].forEach(k => { const el = document.getElementById(k); if (el) el.value = r[k] || ''; });
+  ['didRight','challenge','manClose','gratitude','talksRabb','tomorrow'].forEach(k => {
+    const el = document.getElementById(k);
+    if (el) el.value = r[k] || '';
+  });
   setRatingSelected('badHabit', r.badHabit);
   setRatingSelected('scrolled', r.scrolled);
   setRatingSelected('fasted', r.fasted);
 }
 
 function setRatingSelected(field, val) {
-  document.querySelectorAll(`[data-field="${field}"] .rating-btn`).forEach(b => { b.classList.toggle('selected', b.dataset.val === val); });
+  const rows = document.querySelectorAll('[data-field="' + field + '"] .rating-btn');
+  rows.forEach(b => b.classList.toggle('selected', b.dataset.val === val));
 }
 
-// ============================================
-// SAVES (expose globally)
-// ============================================
-window.savePhysical = async function() {
+function getRatingSelected(field) {
+  const sel = document.querySelector('[data-field="' + field + '"] .rating-btn.selected');
+  return sel ? sel.dataset.val : '';
+}
+
+// ============== SAVES ==============
+async function savePhysical() {
   const physical = {
-    weight: document.getElementById('weight').value, sleep: document.getElementById('sleep').value,
-    water: document.getElementById('water').value, gym: document.getElementById('gym').value,
-    energy: parseInt(document.getElementById('energy').value), mood: parseInt(document.getElementById('mood').value),
-    nafs: parseInt(document.getElementById('nafs').value), screentime: document.getElementById('screentime').value,
-    breakfast: document.getElementById('breakfast').value, lunch: document.getElementById('lunch').value,
-    snack: document.getElementById('snack').value, dinner: document.getElementById('dinner').value,
+    weight: document.getElementById('weight').value,
+    sleep: document.getElementById('sleep').value,
+    water: document.getElementById('water').value,
+    gym: document.getElementById('gym').value,
+    energy: parseInt(document.getElementById('energy').value),
+    mood: parseInt(document.getElementById('mood').value),
+    nafs: parseInt(document.getElementById('nafs').value),
+    screentime: document.getElementById('screentime').value,
+    breakfast: document.getElementById('breakfast').value,
+    lunch: document.getElementById('lunch').value,
+    snack: document.getElementById('snack').value,
+    dinner: document.getElementById('dinner').value
   };
-  const ok = await upsertDay(currentDate, { physical });
+  const ok = await upsertDay(currentDate, { physical: physical });
   toast(ok ? 'Physical saved · ' + currentDate : 'Save failed', !ok);
-};
+}
 
-window.saveTrading = async function() {
-  const getSel = f => { const s = document.querySelector(`[data-field="${f}"] .rating-btn.selected`); return s ? s.dataset.val : ''; };
+async function saveTrading() {
   const trading = {
-    sessionType: document.getElementById('sessionType').value, tradeCount: document.getElementById('tradeCount').value,
-    wins: document.getElementById('wins').value, losses: document.getElementById('losses').value,
-    followedPlan: getSel('followedPlan'), revenge: getSel('revenge'), overtraded: getSel('overtraded'),
-    discipline: parseInt(document.getElementById('discipline').value), lesson: document.getElementById('lesson').value,
+    sessionType: document.getElementById('sessionType').value,
+    tradeCount: document.getElementById('tradeCount').value,
+    wins: document.getElementById('wins').value,
+    losses: document.getElementById('losses').value,
+    followedPlan: getRatingSelected('followedPlan'),
+    revenge: getRatingSelected('revenge'),
+    overtraded: getRatingSelected('overtraded'),
+    discipline: parseInt(document.getElementById('discipline').value),
+    lesson: document.getElementById('lesson').value
   };
-  const ok = await upsertDay(currentDate, { trading });
+  const ok = await upsertDay(currentDate, { trading: trading });
   toast(ok ? 'Trading saved · ' + currentDate : 'Save failed', !ok);
-};
+}
 
-window.saveReflection = async function() {
-  const getSel = f => { const s = document.querySelector(`[data-field="${f}"] .rating-btn.selected`); return s ? s.dataset.val : ''; };
+async function saveReflection() {
   const reflection = {
-    didRight: document.getElementById('didRight').value, challenge: document.getElementById('challenge').value,
-    manClose: document.getElementById('manClose').value, gratitude: document.getElementById('gratitude').value,
-    talksRabb: document.getElementById('talksRabb').value, tomorrow: document.getElementById('tomorrow').value,
-    badHabit: getSel('badHabit'), scrolled: getSel('scrolled'), fasted: getSel('fasted'),
+    didRight: document.getElementById('didRight').value,
+    challenge: document.getElementById('challenge').value,
+    manClose: document.getElementById('manClose').value,
+    gratitude: document.getElementById('gratitude').value,
+    talksRabb: document.getElementById('talksRabb').value,
+    tomorrow: document.getElementById('tomorrow').value,
+    badHabit: getRatingSelected('badHabit'),
+    scrolled: getRatingSelected('scrolled'),
+    fasted: getRatingSelected('fasted')
   };
-  const ok = await upsertDay(currentDate, { reflection });
+  const ok = await upsertDay(currentDate, { reflection: reflection });
   toast(ok ? 'Reflection saved · ' + currentDate : 'Save failed', !ok);
-};
+}
 
-window.saveDay = async function() {
-  const ok = await upsertDay(currentDate, { checks: cache[currentDate]?.checks || {} });
+async function saveDay() {
+  const checks = (cache[currentDate] && cache[currentDate].checks) || {};
+  const ok = await upsertDay(currentDate, { checks: checks });
   toast(ok ? 'Alhamdulillah · synced' : 'Sync failed', !ok);
-};
+}
 
-window.resetDay = async function() {
+async function resetDay() {
   if (!confirm('Reset checkboxes for ' + currentDate + '?')) return;
   if (cache[currentDate]) cache[currentDate].checks = {};
   await upsertDay(currentDate, { checks: {} });
   renderChecklist();
-};
+}
 
-// ============================================
-// STATS
-// ============================================
-let completionChartInstance = null, nafsChartInstance = null;
-
+// ============== STATS ==============
 async function renderStats() {
   await fetchAllDays();
   const dates = Object.keys(cache).sort();
-  let totalDays = dates.length, perfectDays = 0, currentStreak = 0, fajrCount = 0, noMastCount = 0, noScrollCount = 0, witrCount = 0;
-  const labels = [], completionData = [], nafsData = [], disciplineData = [];
+  const effectiveTotal = getEffectiveTotal() || TOTAL_DEFAULT;
+  let totalDays = dates.length;
+  let perfectDays = 0;
+  let currentStreak = 0;
+  let fajrCount = 0;
+  let noMastCount = 0;
+  let noScrollCount = 0;
+  let witrCount = 0;
+  const labels = [];
+  const completionData = [];
+  const nafsData = [];
+  const disciplineData = [];
   dates.forEach(d => {
-    const day = cache[d], checks = day.checks || {};
+    const day = cache[d];
+    const checks = day.checks || {};
     const doneCount = Object.values(checks).filter(Boolean).length;
-    const pct = Math.round(doneCount / TOTAL_ITEMS * 100);
+    const pct = Math.round(doneCount / effectiveTotal * 100);
     labels.push(d.slice(5));
     completionData.push(pct);
     nafsData.push((day.physical && day.physical.nafs) || null);
@@ -882,76 +978,302 @@ async function renderStats() {
   });
   for (let i = dates.length - 1; i >= 0; i--) {
     const doneCount = Object.values(cache[dates[i]].checks || {}).filter(Boolean).length;
-    if (doneCount / TOTAL_ITEMS >= 0.8) currentStreak++; else break;
+    if (doneCount / effectiveTotal >= 0.8) currentStreak++;
+    else break;
   }
-  document.getElementById('statsGrid').innerHTML = `
-    <div class="stat-card"><div class="stat-label">Total days tracked</div><div class="stat-value">${totalDays}</div><div class="stat-sub">Since ${START_DATE}</div></div>
-    <div class="stat-card green"><div class="stat-label">Strong days (80%+)</div><div class="stat-value">${perfectDays}</div><div class="stat-sub">${totalDays ? Math.round(perfectDays/totalDays*100) : 0}% rate</div></div>
-    <div class="stat-card"><div class="stat-label">Current streak</div><div class="stat-value">${currentStreak}<span class="unit">days</span></div><div class="stat-sub">Consecutive strong days</div></div>
-    <div class="stat-card blue"><div class="stat-label">Fajr in masjid</div><div class="stat-value">${fajrCount}</div><div class="stat-sub">${totalDays ? Math.round(fajrCount/totalDays*100) : 0}% of days</div></div>
-    <div class="stat-card green"><div class="stat-label">Witr prayed</div><div class="stat-value">${witrCount}</div><div class="stat-sub">${totalDays ? Math.round(witrCount/totalDays*100) : 0}% of days</div></div>
-    <div class="stat-card red"><div class="stat-label">Clean days</div><div class="stat-value">${noMastCount}</div><div class="stat-sub">${totalDays ? Math.round(noMastCount/totalDays*100) : 0}% of days</div></div>
-    <div class="stat-card red"><div class="stat-label">No-scroll days</div><div class="stat-value">${noScrollCount}</div><div class="stat-sub">${totalDays ? Math.round(noScrollCount/totalDays*100) : 0}% of days</div></div>
-    <div class="stat-card"><div class="stat-label">Avg completion</div><div class="stat-value">${completionData.length ? Math.round(completionData.reduce((a,b)=>a+b,0)/completionData.length) : 0}<span class="unit">%</span></div><div class="stat-sub">Over all tracked days</div></div>`;
+  const avgPct = completionData.length ? Math.round(completionData.reduce((a,b) => a+b, 0) / completionData.length) : 0;
+  const grid = document.getElementById('statsGrid');
+  let html = '';
+  html += '<div class="stat-card"><div class="stat-label">Total days tracked</div><div class="stat-value">' + totalDays + '</div><div class="stat-sub">Since ' + START_DATE + '</div></div>';
+  html += '<div class="stat-card green"><div class="stat-label">Strong days 80%+</div><div class="stat-value">' + perfectDays + '</div><div class="stat-sub">' + (totalDays ? Math.round(perfectDays/totalDays*100) : 0) + '% rate</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Current streak</div><div class="stat-value">' + currentStreak + '<span class="unit">days</span></div><div class="stat-sub">Consecutive strong days</div></div>';
+  html += '<div class="stat-card blue"><div class="stat-label">Fajr in masjid</div><div class="stat-value">' + fajrCount + '</div><div class="stat-sub">' + (totalDays ? Math.round(fajrCount/totalDays*100) : 0) + '% of days</div></div>';
+  html += '<div class="stat-card green"><div class="stat-label">Witr prayed</div><div class="stat-value">' + witrCount + '</div><div class="stat-sub">' + (totalDays ? Math.round(witrCount/totalDays*100) : 0) + '% of days</div></div>';
+  html += '<div class="stat-card red"><div class="stat-label">Clean days</div><div class="stat-value">' + noMastCount + '</div><div class="stat-sub">' + (totalDays ? Math.round(noMastCount/totalDays*100) : 0) + '% of days</div></div>';
+  html += '<div class="stat-card red"><div class="stat-label">No-scroll days</div><div class="stat-value">' + noScrollCount + '</div><div class="stat-sub">' + (totalDays ? Math.round(noScrollCount/totalDays*100) : 0) + '% of days</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Avg completion</div><div class="stat-value">' + avgPct + '<span class="unit">%</span></div><div class="stat-sub">Over all tracked days</div></div>';
+  grid.innerHTML = html;
+
   const ctx1 = document.getElementById('completionChart').getContext('2d');
   if (completionChartInstance) completionChartInstance.destroy();
-  completionChartInstance = new Chart(ctx1, { type: 'line', data: { labels, datasets: [{ label: 'Completion %', data: completionData, borderColor: '#c9a961', backgroundColor: 'rgba(201, 169, 97, 0.1)', fill: true, tension: 0.3, borderWidth: 2.5, pointRadius: 4, pointBackgroundColor: '#c9a961' }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 100, ticks: { color: '#8a8a82', font: { weight: 600 } }, grid: { color: '#2a2a2a' } }, x: { ticks: { color: '#8a8a82', font: { weight: 600 } }, grid: { color: '#1c1c1c' } } }, plugins: { legend: { display: false } } } });
+  completionChartInstance = new Chart(ctx1, {
+    type: 'line',
+    data: { labels: labels, datasets: [{ label: 'Completion %', data: completionData, borderColor: '#c9a961', backgroundColor: 'rgba(201, 169, 97, 0.1)', fill: true, tension: 0.3, borderWidth: 2.5, pointRadius: 4, pointBackgroundColor: '#c9a961' }] },
+    options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 100, ticks: { color: '#8a8a82' }, grid: { color: '#2a2a2a' } }, x: { ticks: { color: '#8a8a82' }, grid: { color: '#1c1c1c' } } }, plugins: { legend: { display: false } } }
+  });
   const ctx2 = document.getElementById('nafsChart').getContext('2d');
   if (nafsChartInstance) nafsChartInstance.destroy();
-  nafsChartInstance = new Chart(ctx2, { type: 'line', data: { labels, datasets: [ { label: 'Nafs', data: nafsData, borderColor: '#a36b6b', backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 4, tension: 0.3 }, { label: 'Discipline', data: disciplineData, borderColor: '#6ba36b', backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 4, tension: 0.3 } ] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 10, ticks: { color: '#8a8a82', font: { weight: 600 } }, grid: { color: '#2a2a2a' } }, x: { ticks: { color: '#8a8a82', font: { weight: 600 } }, grid: { color: '#1c1c1c' } } }, plugins: { legend: { labels: { color: '#f5f5f0', font: { weight: 600 } } } } } });
+  nafsChartInstance = new Chart(ctx2, {
+    type: 'line',
+    data: { labels: labels, datasets: [
+      { label: 'Nafs', data: nafsData, borderColor: '#a36b6b', backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 4, tension: 0.3 },
+      { label: 'Discipline', data: disciplineData, borderColor: '#6ba36b', backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 4, tension: 0.3 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 10, ticks: { color: '#8a8a82' }, grid: { color: '#2a2a2a' } }, x: { ticks: { color: '#8a8a82' }, grid: { color: '#1c1c1c' } } }, plugins: { legend: { labels: { color: '#f5f5f0' } } } }
+  });
   const streakVis = document.getElementById('streakVisual');
   streakVis.innerHTML = '';
   const today = new Date();
   for (let i = 29; i >= 0; i--) {
-    const d = new Date(today); d.setDate(today.getDate() - i);
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
     const key = d.toISOString().split('T')[0];
-    const cell = document.createElement('div'); cell.className = 'streak-cell'; cell.title = key;
-    if (cache[key]) { const dc = Object.values(cache[key].checks || {}).filter(Boolean).length; const pct = dc / TOTAL_ITEMS; if (pct >= 0.8) cell.classList.add('filled'); else if (pct >= 0.4) cell.classList.add('partial'); }
+    const cell = document.createElement('div');
+    cell.className = 'streak-cell';
+    cell.title = key;
+    if (cache[key]) {
+      const dc = Object.values(cache[key].checks || {}).filter(Boolean).length;
+      const pct = dc / effectiveTotal;
+      if (pct >= 0.8) cell.classList.add('filled');
+      else if (pct >= 0.4) cell.classList.add('partial');
+    }
     streakVis.appendChild(cell);
   }
 }
 
-// ============================================
-// HISTORY
-// ============================================
+// ============== HISTORY ==============
 async function renderHistory() {
   await fetchAllDays();
   const dates = Object.keys(cache).sort().reverse();
   const tbl = document.getElementById('historyTable');
   if (dates.length === 0) {
-    tbl.innerHTML = '<div style="text-align:center; padding:60px 24px; color: var(--text-muted);"><p style="font-family: var(--serif); font-style: italic; font-size: 20px; font-weight: 600;">No days tracked yet.</p><small style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); font-weight: 600;">Start with today, bismillah</small></div>';
+    tbl.innerHTML = '<div style="text-align:center; padding:60px 24px; color: var(--text-muted);"><p style="font-family: var(--serif); font-style: italic; font-size: 20px;">No days tracked yet.</p></div>';
     return;
   }
-  tbl.innerHTML = `<div class="history-row header"><div>Date</div><div>Completion</div><div>Nafs</div><div>Discipline</div><div>Trades</div><div></div></div>`;
+  const effTotal = getEffectiveTotal() || TOTAL_DEFAULT;
+  let html = '<div class="history-row header"><div>Date</div><div>Completion</div><div>Nafs</div><div>Discipline</div><div>Trades</div><div></div></div>';
   dates.forEach(d => {
-    const day = cache[d], checks = day.checks || {};
+    const day = cache[d];
+    const checks = day.checks || {};
     const doneCount = Object.values(checks).filter(Boolean).length;
-    const pct = Math.round(doneCount / TOTAL_ITEMS * 100);
+    const pct = Math.round(doneCount / effTotal * 100);
     const pctClass = pct >= 80 ? 'good' : pct >= 50 ? 'mid' : 'low';
     const nafs = (day.physical && day.physical.nafs) || '—';
     const disc = (day.trading && day.trading.discipline) || '—';
     const trades = (day.trading && day.trading.tradeCount) || '—';
     const dn = dayNumber(d);
-    const row = document.createElement('div');
-    row.className = 'history-row';
-    row.innerHTML = `<div class="date">${d}<br/><small>Day ${dn}</small></div><div><span class="score-pill ${pctClass}">${pct}%</span></div><div>${nafs}</div><div>${disc}</div><div>${trades}</div><div><button class="del-btn" data-d="${d}">Del</button></div>`;
-    row.querySelector('.del-btn').addEventListener('click', async (e) => {
+    html += '<div class="history-row">';
+    html += '<div class="date">' + d + '<br/><small>Day ' + dn + '</small></div>';
+    html += '<div><span class="score-pill ' + pctClass + '">' + pct + '%</span></div>';
+    html += '<div>' + nafs + '</div><div>' + disc + '</div><div>' + trades + '</div>';
+    html += '<div><button class="del-btn" data-d="' + d + '">Del</button></div>';
+    html += '</div>';
+  });
+  tbl.innerHTML = html;
+  tbl.querySelectorAll('.del-btn').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
       const dd = e.target.dataset.d;
       if (!confirm('Delete all data for ' + dd + '?')) return;
       await sb.from('becoming_days').delete().eq('user_id', currentUser.id).eq('day_date', dd);
       delete cache[dd];
       renderHistory();
     });
-    tbl.appendChild(row);
   });
 }
 
-// ============================================
-// EXPORT / IMPORT
-// ============================================
-window.exportData = async function() {
+// ============== CUSTOMIZE ==============
+function renderCustomize() {
+  const container = document.getElementById('customizeContainer');
+  container.innerHTML = '';
+  const hidden = new Set(userSettings.hidden_defaults || []);
+  const userBlocks = (userSettings.structure && userSettings.structure.blocks) || [];
+  const attached = {};
+  const standalone = [];
+  userBlocks.forEach(ub => {
+    if (ub.attachToDefault) attached[ub.attachToDefault] = ub.items || [];
+    else standalone.push(ub);
+  });
+
+  CHECKLIST_STRUCTURE.forEach(block => {
+    const blk = document.createElement('div');
+    blk.className = 'cust-block';
+    let html = '<div class="cust-head">';
+    html += '<div class="cust-title">' + block.num + '. ' + escapeHTML(block.title) + '</div>';
+    html += '<span class="cust-badge d">Default · ' + escapeHTML(block.time) + '</span>';
+    html += '</div><div class="cust-items"></div>';
+    html += '<div class="cust-add">';
+    html += '<input type="text" placeholder="Add item to this block..." data-role="add-text" data-block="' + block.num + '" />';
+    html += '<select data-role="add-type" data-block="' + block.num + '"><option value="normal">Normal</option><option value="sunnah">Sunnah</option><option value="critical">Critical</option></select>';
+    html += '<button data-role="add-default" data-block="' + block.num + '">+ Add</button>';
+    html += '</div>';
+    blk.innerHTML = html;
+    const itemsWrap = blk.querySelector('.cust-items');
+
+    block.items.forEach(it => {
+      const isHidden = hidden.has(it.id);
+      const row = document.createElement('div');
+      row.className = 'cust-item';
+      const marker = it.critical ? '<span class="mk-c"></span>' : (it.sunnah ? '<span class="mk-s"></span>' : '');
+      let rowHtml = '<span class="cust-item-text' + (isHidden ? ' hid' : '') + '">' + marker + escapeHTML(it.text) + '</span>';
+      rowHtml += '<span class="cust-badge d">Default</span>';
+      rowHtml += '<button class="cust-action" data-role="toggle-hide" data-id="' + escapeHTML(it.id) + '">' + (isHidden ? 'Show' : 'Hide') + '</button>';
+      row.innerHTML = rowHtml;
+      itemsWrap.appendChild(row);
+    });
+
+    (attached[block.num] || []).forEach(it => {
+      const row = document.createElement('div');
+      row.className = 'cust-item';
+      const marker = it.critical ? '<span class="mk-c"></span>' : (it.sunnah ? '<span class="mk-s"></span>' : '');
+      let rowHtml = '<span class="cust-item-text">' + marker + escapeHTML(it.text) + '</span>';
+      rowHtml += '<span class="cust-badge u">Yours</span>';
+      rowHtml += '<button class="cust-action d" data-role="del-attached" data-block="' + block.num + '" data-id="' + escapeHTML(it.id) + '">Delete</button>';
+      row.innerHTML = rowHtml;
+      itemsWrap.appendChild(row);
+    });
+
+    container.appendChild(blk);
+  });
+
+  standalone.forEach(ub => {
+    const blk = document.createElement('div');
+    blk.className = 'cust-block';
+    let html = '<div class="cust-head">';
+    html += '<div class="cust-title">' + escapeHTML(ub.title || 'Custom block') + '</div>';
+    html += '<span class="cust-badge u">Yours</span>';
+    html += '<button class="cust-action" data-role="rename-block" data-id="' + escapeHTML(ub.id) + '">Rename</button>';
+    html += '<button class="cust-action d" data-role="del-block" data-id="' + escapeHTML(ub.id) + '">Delete block</button>';
+    html += '</div><div class="cust-items"></div>';
+    html += '<div class="cust-add">';
+    html += '<input type="text" placeholder="Add item..." data-role="add-text" data-block="' + escapeHTML(ub.id) + '" />';
+    html += '<select data-role="add-type" data-block="' + escapeHTML(ub.id) + '"><option value="normal">Normal</option><option value="sunnah">Sunnah</option><option value="critical">Critical</option></select>';
+    html += '<button data-role="add-user" data-id="' + escapeHTML(ub.id) + '">+ Add</button>';
+    html += '</div>';
+    blk.innerHTML = html;
+    const itemsWrap = blk.querySelector('.cust-items');
+
+    (ub.items || []).forEach(it => {
+      const row = document.createElement('div');
+      row.className = 'cust-item';
+      const marker = it.critical ? '<span class="mk-c"></span>' : (it.sunnah ? '<span class="mk-s"></span>' : '');
+      let rowHtml = '<span class="cust-item-text">' + marker + escapeHTML(it.text) + '</span>';
+      rowHtml += '<span class="cust-badge u">Yours</span>';
+      rowHtml += '<button class="cust-action d" data-role="del-user" data-block="' + escapeHTML(ub.id) + '" data-id="' + escapeHTML(it.id) + '">Delete</button>';
+      row.innerHTML = rowHtml;
+      itemsWrap.appendChild(row);
+    });
+
+    container.appendChild(blk);
+  });
+
+  container.querySelectorAll('[data-role]').forEach(el => {
+    el.addEventListener('click', handleCustAction);
+  });
+}
+
+async function handleCustAction(e) {
+  const el = e.currentTarget;
+  const role = el.dataset.role;
+  const id = el.dataset.id;
+  const blockRef = el.dataset.block;
+
+  if (role === 'toggle-hide') {
+    const hidden = new Set(userSettings.hidden_defaults || []);
+    if (hidden.has(id)) hidden.delete(id);
+    else hidden.add(id);
+    userSettings.hidden_defaults = Array.from(hidden);
+    await saveSettings();
+    renderCustomize();
+    renderChecklist();
+  } else if (role === 'del-attached') {
+    if (!confirm('Delete this item? (Historical check data stays)')) return;
+    const b = (userSettings.structure.blocks || []).find(x => x.attachToDefault == blockRef);
+    if (b) b.items = (b.items || []).filter(i => i.id !== id);
+    await saveSettings();
+    renderCustomize();
+    renderChecklist();
+  } else if (role === 'del-user') {
+    if (!confirm('Delete this item?')) return;
+    const b = (userSettings.structure.blocks || []).find(x => x.id === blockRef);
+    if (b) b.items = (b.items || []).filter(i => i.id !== id);
+    await saveSettings();
+    renderCustomize();
+    renderChecklist();
+  } else if (role === 'del-block') {
+    if (!confirm('Delete this entire block and all items inside?')) return;
+    userSettings.structure.blocks = (userSettings.structure.blocks || []).filter(b => b.id !== id);
+    await saveSettings();
+    renderCustomize();
+    renderChecklist();
+  } else if (role === 'rename-block') {
+    const b = (userSettings.structure.blocks || []).find(x => x.id === id);
+    if (!b) return;
+    const newName = prompt('Rename block:', b.title || 'Custom block');
+    if (newName === null) return;
+    b.title = newName.trim() || 'Custom block';
+    await saveSettings();
+    renderCustomize();
+    renderChecklist();
+  } else if (role === 'add-default') {
+    const blockNum = parseInt(blockRef);
+    const textInput = document.querySelector('[data-role="add-text"][data-block="' + blockNum + '"]');
+    const typeSelect = document.querySelector('[data-role="add-type"][data-block="' + blockNum + '"]');
+    const text = textInput.value.trim();
+    if (!text) { toast('Enter item text first'); return; }
+    if (!userSettings.structure.blocks) userSettings.structure.blocks = [];
+    let target = userSettings.structure.blocks.find(b => b.attachToDefault == blockNum);
+    if (!target) {
+      target = { id: 'attach-' + blockNum, attachToDefault: blockNum, items: [] };
+      userSettings.structure.blocks.push(target);
+    }
+    const newItem = { id: 'usr_' + Date.now(), text: text };
+    if (typeSelect.value === 'sunnah') newItem.sunnah = true;
+    if (typeSelect.value === 'critical') newItem.critical = true;
+    target.items.push(newItem);
+    await saveSettings();
+    renderCustomize();
+    renderChecklist();
+    toast('Item added');
+  } else if (role === 'add-user') {
+    const textInput = document.querySelector('[data-role="add-text"][data-block="' + id + '"]');
+    const typeSelect = document.querySelector('[data-role="add-type"][data-block="' + id + '"]');
+    const text = textInput.value.trim();
+    if (!text) { toast('Enter item text first'); return; }
+    const block = (userSettings.structure.blocks || []).find(b => b.id === id);
+    if (!block) return;
+    if (!block.items) block.items = [];
+    const newItem = { id: 'usr_' + Date.now(), text: text };
+    if (typeSelect.value === 'sunnah') newItem.sunnah = true;
+    if (typeSelect.value === 'critical') newItem.critical = true;
+    block.items.push(newItem);
+    await saveSettings();
+    renderCustomize();
+    renderChecklist();
+    toast('Item added');
+  }
+}
+
+async function addNewBlock() {
+  const title = prompt('Block title:', 'My block');
+  if (!title) return;
+  const time = prompt('Time / subtitle (optional):', '') || '';
+  if (!userSettings.structure.blocks) userSettings.structure.blocks = [];
+  userSettings.structure.blocks.push({
+    id: 'blk_' + Date.now(),
+    title: title.trim(),
+    time: time.trim(),
+    items: []
+  });
+  await saveSettings();
+  renderCustomize();
+  renderChecklist();
+  toast('Block added');
+}
+
+async function resetCustomization() {
+  if (!confirm('Reset checklist to defaults? (Your historical check data stays)')) return;
+  userSettings = { structure: { blocks: [] }, hidden_defaults: [] };
+  await saveSettings();
+  renderCustomize();
+  renderChecklist();
+  toast('Reset to defaults');
+}
+
+// ============== EXPORT ==============
+async function exportData() {
   await fetchAllDays();
-  const blob = new Blob([JSON.stringify(cache, null, 2)], { type: 'application/json' });
+  const payload = { days: cache, settings: userSettings };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -959,37 +1281,340 @@ window.exportData = async function() {
   a.click();
   URL.revokeObjectURL(url);
   toast('Exported');
-};
+}
 
-window.migrateLocalStorage = async function() {
-  const raw = localStorage.getItem('mohammed_becoming_v2') || localStorage.getItem('mohammed_becoming_v1');
-  if (!raw) { toast('No local data found'); return; }
-  if (!confirm('Migrate local data to your account? (Existing cloud data stays)')) return;
-  try {
-    const data = JSON.parse(raw);
-    let count = 0;
-    for (const [dateStr, dayData] of Object.entries(data)) {
-      await sb.from('becoming_days').upsert({
-        user_id: currentUser.id,
-        day_date: dateStr,
-        checks: dayData.checks || {},
-        physical: dayData.physical || {},
-        trading: dayData.trading || {},
-        reflection: dayData.reflection || {},
-      }, { onConflict: 'user_id,day_date' });
-      count++;
+async function downloadReport() {
+  toast('Generating PDF...');
+  await fetchAllDays();
+  const dates = Object.keys(cache).sort();
+  if (dates.length === 0) { toast('No data to export yet', true); return; }
+
+  const jsPDF = window.jspdf.jsPDF;
+  const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+  const pageW = doc.internal.pageSize.getWidth();
+  const pageH = doc.internal.pageSize.getHeight();
+
+  // Cover
+  doc.setFillColor(10, 10, 10);
+  doc.rect(0, 0, pageW, pageH, 'F');
+  doc.setTextColor(201, 169, 97);
+  doc.setFont('helvetica', 'italic');
+  doc.setFontSize(44);
+  doc.text('The Becoming', pageW / 2, 200, { align: 'center' });
+  doc.setFontSize(14);
+  doc.setTextColor(200, 200, 190);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Mohammed · Private Progress Report', pageW / 2, 230, { align: 'center' });
+  doc.setFontSize(10);
+  doc.setTextColor(120, 120, 112);
+  doc.text('Generated ' + new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }), pageW / 2, 250, { align: 'center' });
+  doc.setFontSize(12);
+  doc.setTextColor(201, 169, 97);
+  doc.setFont('helvetica', 'italic');
+  doc.text('"Indeed, Allah will not change the condition of a people', pageW / 2, 340, { align: 'center' });
+  doc.text('until they change what is within themselves."', pageW / 2, 358, { align: 'center' });
+  doc.setFontSize(9);
+  doc.setTextColor(138, 115, 64);
+  doc.text('Surah Ar-Ra\'d · 13:11', pageW / 2, 380, { align: 'center' });
+
+  // Summary
+  doc.addPage();
+  doc.setFillColor(255, 255, 255);
+  doc.rect(0, 0, pageW, pageH, 'F');
+  doc.setTextColor(20, 20, 20);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(24);
+  doc.text('Summary', 40, 60);
+  doc.setDrawColor(201, 169, 97);
+  doc.setLineWidth(1);
+  doc.line(40, 70, pageW - 40, 70);
+
+  const effTotal = getEffectiveTotal() || TOTAL_DEFAULT;
+  let totalDays = dates.length;
+  let perfectDays = 0;
+  let fajrCount = 0;
+  let noMastCount = 0;
+  let noScrollCount = 0;
+  let witrCount = 0;
+  let totalCompletion = 0;
+  dates.forEach(d => {
+    const checks = cache[d].checks || {};
+    const doneCount = Object.values(checks).filter(Boolean).length;
+    const pct = doneCount / effTotal * 100;
+    totalCompletion += pct;
+    if (pct >= 80) perfectDays++;
+    if (checks.fajr_masjid) fajrCount++;
+    if (checks.no_mast) noMastCount++;
+    if (checks.no_scroll) noScrollCount++;
+    if (checks.witr) witrCount++;
+  });
+  const avgCompletion = totalDays ? Math.round(totalCompletion / totalDays) : 0;
+  const stats = [
+    ['Total days tracked', String(totalDays)],
+    ['Strong days 80%+', perfectDays + ' (' + (totalDays ? Math.round(perfectDays/totalDays*100) : 0) + '%)'],
+    ['Average completion', avgCompletion + '%'],
+    ['Fajr in masjid', fajrCount + ' days (' + (totalDays ? Math.round(fajrCount/totalDays*100) : 0) + '%)'],
+    ['Witr prayed', witrCount + ' days (' + (totalDays ? Math.round(witrCount/totalDays*100) : 0) + '%)'],
+    ['Clean days', noMastCount + ' days (' + (totalDays ? Math.round(noMastCount/totalDays*100) : 0) + '%)'],
+    ['No-scroll days', noScrollCount + ' days (' + (totalDays ? Math.round(noScrollCount/totalDays*100) : 0) + '%)']
+  ];
+  let y = 100;
+  doc.setFontSize(11);
+  stats.forEach(row => {
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(80, 80, 80);
+    doc.text(row[0], 50, y);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(201, 169, 97);
+    doc.text(row[1], pageW - 50, y, { align: 'right' });
+    doc.setDrawColor(230, 230, 225);
+    doc.line(50, y + 6, pageW - 50, y + 6);
+    y += 24;
+  });
+
+  // Daily log
+  doc.addPage();
+  doc.setTextColor(20, 20, 20);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(22);
+  doc.text('Daily log', 40, 60);
+  doc.setDrawColor(201, 169, 97);
+  doc.line(40, 70, pageW - 40, 70);
+  y = 100;
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(100, 100, 100);
+  doc.text('Date', 40, y);
+  doc.text('Day', 140, y);
+  doc.text('Complete', 200, y);
+  doc.text('Nafs', 290, y);
+  doc.text('Discipline', 340, y);
+  doc.text('Trades', 420, y);
+  doc.text('Notes', 480, y);
+  y += 8;
+  doc.setLineWidth(0.5);
+  doc.line(40, y, pageW - 40, y);
+  y += 14;
+  doc.setFont('helvetica', 'normal');
+  dates.slice().reverse().forEach(d => {
+    if (y > pageH - 60) { doc.addPage(); y = 60; }
+    const day = cache[d];
+    const checks = day.checks || {};
+    const doneCount = Object.values(checks).filter(Boolean).length;
+    const pct = Math.round(doneCount / effTotal * 100);
+    const dn = dayNumber(d);
+    const nafs = (day.physical && day.physical.nafs) || '-';
+    const disc = (day.trading && day.trading.discipline) || '-';
+    const trades = (day.trading && day.trading.tradeCount) || '-';
+    const lesson = (day.trading && day.trading.lesson) || '';
+    doc.setTextColor(40, 40, 40);
+    doc.setFontSize(9);
+    doc.text(d, 40, y);
+    doc.setTextColor(138, 115, 64);
+    doc.text('#' + dn, 140, y);
+    if (pct >= 80) doc.setTextColor(80, 140, 80);
+    else if (pct >= 50) doc.setTextColor(160, 130, 60);
+    else doc.setTextColor(180, 80, 80);
+    doc.setFont('helvetica', 'bold');
+    doc.text(pct + '%', 200, y);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(40, 40, 40);
+    doc.text(String(nafs), 290, y);
+    doc.text(String(disc), 340, y);
+    doc.text(String(trades), 420, y);
+    if (lesson) {
+      const trimmed = lesson.length > 50 ? lesson.slice(0, 47) + '...' : lesson;
+      doc.setTextColor(100, 100, 100);
+      doc.setFont('helvetica', 'italic');
+      doc.text(trimmed, 480, y);
+      doc.setFont('helvetica', 'normal');
     }
-    toast(`Migrated ${count} days`);
-    cache = {};
+    y += 18;
+  });
+
+  // Reflections
+  const reflectionDates = dates.filter(d => {
+    const r = cache[d].reflection || {};
+    return r.didRight || r.talksRabb || r.gratitude;
+  });
+  if (reflectionDates.length) {
+    doc.addPage();
+    doc.setTextColor(20, 20, 20);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(22);
+    doc.text('Reflections', 40, 60);
+    doc.setDrawColor(201, 169, 97);
+    doc.line(40, 70, pageW - 40, 70);
+    y = 100;
+    reflectionDates.slice(-10).reverse().forEach(d => {
+      if (y > pageH - 120) { doc.addPage(); y = 60; }
+      const r = cache[d].reflection;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor(201, 169, 97);
+      doc.text(d + ' · Day ' + dayNumber(d), 40, y);
+      y += 16;
+      doc.setFontSize(9);
+      const fields = [
+        ['Did right', r.didRight],
+        ['Challenge', r.challenge],
+        ['Gratitude', r.gratitude],
+        ['Talks with Rabb', r.talksRabb],
+        ['Tomorrow ONE', r.tomorrow]
+      ];
+      fields.forEach(row => {
+        if (!row[1]) return;
+        if (y > pageH - 40) { doc.addPage(); y = 60; }
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(138, 115, 64);
+        doc.text(row[0] + ':', 50, y);
+        doc.setFont('helvetica', 'italic');
+        doc.setTextColor(60, 60, 60);
+        const wrapped = doc.splitTextToSize(row[1], pageW - 160);
+        doc.text(wrapped, 140, y);
+        y += Math.max(14, wrapped.length * 12);
+      });
+      y += 10;
+      doc.setDrawColor(230, 230, 225);
+      doc.line(40, y - 4, pageW - 40, y - 4);
+      y += 8;
+    });
+  }
+
+  const pageCount = doc.internal.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 145);
+    doc.setFont('helvetica', 'normal');
+    if (i > 1) doc.text(i + ' / ' + pageCount + '  ·  The Becoming', pageW / 2, pageH - 20, { align: 'center' });
+  }
+
+  doc.save('becoming_report_' + new Date().toISOString().split('T')[0] + '.pdf');
+  toast('Report downloaded');
+}
+
+// ============== REALTIME ==============
+function setupRealtime() {
+  if (realtimeChannel) sb.removeChannel(realtimeChannel);
+  if (settingsChannel) sb.removeChannel(settingsChannel);
+
+  realtimeChannel = sb.channel('days_' + currentUser.id)
+    .on('postgres_changes', {
+      event: '*', schema: 'public', table: 'becoming_days',
+      filter: 'user_id=eq.' + currentUser.id
+    }, (payload) => {
+      if (Date.now() - lastLocalWrite < 1500) return;
+      const row = payload.new || payload.old;
+      if (!row || !row.day_date) return;
+      if (payload.eventType === 'DELETE') {
+        delete cache[row.day_date];
+      } else {
+        cache[row.day_date] = {
+          checks: payload.new.checks || {},
+          physical: payload.new.physical || {},
+          trading: payload.new.trading || {},
+          reflection: payload.new.reflection || {}
+        };
+      }
+      if (row.day_date === currentDate) {
+        renderChecklist();
+        loadForms();
+        const el = document.getElementById('syncStatus');
+        el.textContent = 'Updated';
+        setTimeout(() => setSyncStatus('synced'), 1500);
+      }
+      if (document.getElementById('panel-stats').classList.contains('active')) renderStats();
+      if (document.getElementById('panel-history').classList.contains('active')) renderHistory();
+    })
+    .subscribe((status) => {
+      if (status === 'SUBSCRIBED') setSyncStatus('synced');
+      if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') setSyncStatus('offline');
+    });
+
+  settingsChannel = sb.channel('settings_' + currentUser.id)
+    .on('postgres_changes', {
+      event: '*', schema: 'public', table: 'becoming_settings',
+      filter: 'user_id=eq.' + currentUser.id
+    }, (payload) => {
+      if (Date.now() - lastSettingsWrite < 1500) return;
+      if (payload.new) {
+        userSettings = {
+          structure: payload.new.structure || { blocks: [] },
+          hidden_defaults: payload.new.hidden_defaults || []
+        };
+        renderChecklist();
+        if (document.getElementById('panel-customize').classList.contains('active')) renderCustomize();
+      }
+    })
+    .subscribe();
+}
+
+// ============== INIT ==============
+async function initApp() {
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+      if (tab.dataset.panel === 'stats') renderStats();
+      if (tab.dataset.panel === 'history') renderHistory();
+      if (tab.dataset.panel === 'customize') renderCustomize();
+      loadForms();
+    });
+  });
+
+  document.querySelectorAll('.rating-row').forEach(row => {
+    row.querySelectorAll('.rating-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        row.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+  });
+
+  ['energy','mood','nafs','discipline'].forEach(k => {
+    const el = document.getElementById(k);
+    if (el) el.addEventListener('input', () => {
+      document.getElementById(k + 'Val').textContent = el.value;
+    });
+  });
+
+  const gd = document.getElementById('globalDate');
+  gd.value = currentDate;
+  gd.addEventListener('change', async () => {
+    currentDate = gd.value;
+    updateDateDisplay();
     await fetchDay(currentDate);
     renderChecklist();
     loadForms();
-  } catch (err) { console.error(err); toast('Migration failed', true); }
-};
+  });
 
-// ============================================
-// BOOT
-// ============================================
+  document.getElementById('resetDayBtn').addEventListener('click', resetDay);
+  document.getElementById('saveDayBtn').addEventListener('click', saveDay);
+  document.getElementById('savePhysicalBtn').addEventListener('click', savePhysical);
+  document.getElementById('saveTradingBtn').addEventListener('click', saveTrading);
+  document.getElementById('saveReflectionBtn').addEventListener('click', saveReflection);
+  document.getElementById('signoutBtn').addEventListener('click', signOut);
+  document.getElementById('downloadReportBtn').addEventListener('click', downloadReport);
+  document.getElementById('exportBtn').addEventListener('click', exportData);
+  document.getElementById('addBlockBtn').addEventListener('click', addNewBlock);
+  document.getElementById('resetCustBtn').addEventListener('click', resetCustomization);
+
+  updateDateDisplay();
+  await fetchSettings();
+  await fetchDay(currentDate);
+  renderChecklist();
+  loadForms();
+  setupRealtime();
+}
+
+document.getElementById('authBtn').addEventListener('click', sendMagicLink);
+document.getElementById('authEmail').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') sendMagicLink();
+});
+
 checkSession();
 </script>
 
