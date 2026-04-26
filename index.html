@@ -74,14 +74,25 @@
   .hero h1 .accent{background:linear-gradient(135deg,#c4b5fd 0%,#a78bfa 45%,#67e8f9 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:hueShift 8s ease-in-out infinite;text-shadow:none}
   @keyframes hueShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
   .hero .subtitle{font-family:var(--sans);font-size:11px;color:var(--text-muted);letter-spacing:.32em;text-transform:uppercase;margin-bottom:26px;font-weight:500}
-  .wisdom-rotator{max-width:680px;margin:8px auto 0;display:grid}
-  .wisdom-rotator > .wisdom-slide{grid-area:1/1;opacity:0;transition:opacity 1.1s ease,transform 1.1s ease;transform:translateY(8px);pointer-events:none;visibility:hidden}
-  .wisdom-rotator > .wisdom-slide.active{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible}
-  .wisdom-arabic{font-family:var(--arabic);font-size:clamp(20px,3vw,28px);color:var(--gold-bright);direction:rtl;margin-bottom:16px;line-height:2;font-weight:500;text-shadow:0 0 22px rgba(196,181,253,0.35)}
-  .wisdom-en{font-family:var(--sans);font-style:normal;font-size:clamp(15px,1.6vw,18px);font-weight:500;color:var(--text);max-width:620px;margin:0 auto;line-height:1.55;letter-spacing:-0.005em}
-  .wisdom-en::before,.wisdom-en::after{content:'"';color:var(--gold-bright);opacity:.6;font-weight:700;margin:0 4px}
-  .wisdom-ref{display:block;font-family:var(--sans);font-style:normal;font-size:11px;color:var(--text-dim);letter-spacing:.12em;margin-top:14px;text-transform:uppercase;font-weight:600}
-  .wisdom-ref .by{color:var(--gold-bright);text-shadow:0 0 10px rgba(196,181,253,0.4)}
+  .wisdom-rotator{max-width:720px;margin:8px auto 0;display:grid;will-change:contents}
+  .wisdom-rotator > .wisdom-slide{grid-area:1/1;opacity:0;transform:translateY(16px) scale(.985);filter:blur(8px);transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1),filter 1s cubic-bezier(.22,1,.36,1);pointer-events:none;visibility:hidden;will-change:opacity,transform,filter}
+  .wisdom-rotator > .wisdom-slide.active{opacity:1;transform:translateY(0) scale(1);filter:blur(0);pointer-events:auto;visibility:visible}
+  .wisdom-arabic{font-family:var(--arabic);font-size:clamp(20px,3vw,28px);color:var(--gold-bright);direction:rtl;margin-bottom:18px;line-height:2;font-weight:500;text-shadow:0 0 24px rgba(196,181,253,0.4)}
+  .wisdom-en{font-family:var(--sans);font-style:normal;font-size:clamp(15px,1.6vw,18px);font-weight:500;color:var(--text);max-width:640px;margin:0 auto;line-height:1.6;letter-spacing:-0.005em}
+  .wisdom-en::before,.wisdom-en::after{content:'"';color:var(--gold-bright);opacity:.55;font-weight:700;margin:0 4px}
+  .wisdom-ref{display:block;font-family:var(--sans);font-style:normal;font-size:11.5px;color:var(--text-dim);letter-spacing:.06em;margin-top:18px;text-transform:none;font-weight:500}
+  .wisdom-ref .by{color:var(--gold-bright);text-shadow:0 0 10px rgba(196,181,253,0.45);font-weight:700}
+  .wisdom-dots{display:flex;justify-content:center;gap:6px;margin-top:18px}
+  .wisdom-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.18);transition:all .5s cubic-bezier(.22,1,.36,1);cursor:pointer;border:none;padding:0}
+  .wisdom-dot.active{background:var(--gold-bright);box-shadow:0 0 10px rgba(196,181,253,0.6);width:20px;border-radius:3px}
+  @media (prefers-reduced-motion:reduce){.wisdom-rotator > .wisdom-slide{transition:opacity .3s ease;transform:none;filter:none}.wisdom-rotator > .wisdom-slide.active{transform:none;filter:none}.hero h1 .accent{animation:none}}
+  /* Dua categories + cards */
+  .dua-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+  .dua-cat-btn{padding:8px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--border-light);color:var(--text-muted);font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.01em;border-radius:999px;cursor:pointer;transition:all .2s}
+  .dua-cat-btn:hover{color:#fff;border-color:rgba(167,139,250,0.4);background:rgba(167,139,250,0.08)}
+  .dua-cat-btn.active{background:linear-gradient(135deg,rgba(167,139,250,0.22),rgba(103,232,249,0.12));color:#fff;border-color:rgba(167,139,250,0.5);box-shadow:0 0 18px rgba(167,139,250,0.2)}
+  .dua-card{position:relative}
+  .dua-card .dua-cat-tag{position:absolute;top:14px;right:14px;font-family:var(--sans);font-size:10px;font-weight:600;color:var(--gold-bright);background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);padding:3px 9px;border-radius:999px;letter-spacing:.02em}
   .hero .ayah-arabic,.hero .ayah,.hero .ayah-ref{display:none}
   .global-date{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
   .global-date .icon{font-family:var(--arabic);font-size:24px;color:var(--gold);font-weight:700}
@@ -373,24 +384,24 @@
     <h2 class="section-title">Physical body<span class="section-sub">The amanah</span></h2>
     <div class="section-arabic">الْجَسَدُ أَمَانَةٌ</div>
     <div class="form-grid">
-      <div class="form-field"><label>Weight (kg)</label><input type="number" step="0.1" id="weight" /></div>
-      <div class="form-field"><label>Sleep (hours)</label><input type="number" step="0.25" id="sleep" /></div>
-      <div class="form-field"><label>Water (litres)</label><input type="number" step="0.25" id="water" /></div>
-      <div class="form-field"><label>Gym session</label><select id="gym"><option value="none">—</option><option value="yes">Yes, full session</option><option value="partial">Partial / light</option><option value="no">Skipped</option></select></div>
+      <div class="form-field" data-field="weight"><label>Weight (kg)</label><input type="number" step="0.1" id="weight" /></div>
+      <div class="form-field" data-field="sleep"><label>Sleep (hours)</label><input type="number" step="0.25" id="sleep" /></div>
+      <div class="form-field" data-field="water"><label>Water (litres)</label><input type="number" step="0.25" id="water" /></div>
+      <div class="form-field" data-field="gym_sess"><label>Gym session</label><select id="gym"><option value="none">—</option><option value="yes">Yes, full session</option><option value="partial">Partial / light</option><option value="no">Skipped</option></select></div>
     </div>
     <div class="form-grid">
-      <div class="form-field"><label>Energy (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="energy" /><span class="slider-val" id="energyVal">5</span></div></div>
-      <div class="form-field"><label>Mood (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="mood" /><span class="slider-val" id="moodVal">5</span></div></div>
-      <div class="form-field"><label>Nafs loudness (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="nafs" /><span class="slider-val" id="nafsVal">5</span></div></div>
-      <div class="form-field"><label>Screen time (hours)</label><input type="number" step="0.25" id="screentime" /></div>
+      <div class="form-field" data-field="energy"><label>Energy (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="energy" /><span class="slider-val" id="energyVal">5</span></div></div>
+      <div class="form-field" data-field="mood"><label>Mood (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="mood" /><span class="slider-val" id="moodVal">5</span></div></div>
+      <div class="form-field" data-field="nafs"><label>Nafs loudness (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="nafs" /><span class="slider-val" id="nafsVal">5</span></div></div>
+      <div class="form-field" data-field="screentime"><label>Screen time (hours)</label><input type="number" step="0.25" id="screentime" /></div>
     </div>
     <h2 class="section-title" style="margin-top:32px">Meals<span class="section-sub">What fueled me</span></h2>
     <div class="section-arabic">الطَّعَامُ</div>
     <div class="form-grid">
-      <div class="form-field"><label>Breakfast</label><textarea id="breakfast"></textarea></div>
-      <div class="form-field"><label>Lunch</label><textarea id="lunch"></textarea></div>
-      <div class="form-field"><label>Pre-session snack</label><textarea id="snack"></textarea></div>
-      <div class="form-field"><label>Dinner</label><textarea id="dinner"></textarea></div>
+      <div class="form-field" data-field="breakfast"><label>Breakfast</label><textarea id="breakfast"></textarea></div>
+      <div class="form-field" data-field="lunch"><label>Lunch</label><textarea id="lunch"></textarea></div>
+      <div class="form-field" data-field="snack"><label>Pre-session snack</label><textarea id="snack"></textarea></div>
+      <div class="form-field" data-field="dinner"><label>Dinner</label><textarea id="dinner"></textarea></div>
     </div>
     <div class="actions-bar"><button class="btn primary" id="savePhysicalBtn">Save physical</button></div>
   </section>
@@ -400,18 +411,18 @@
     <h2 class="section-title">Trading session<span class="section-sub">The craft</span></h2>
     <div class="section-arabic">الرِّزْقُ بِيَدِ اللَّهِ</div>
     <div class="form-grid">
-      <div class="form-field"><label>Session type</label><select id="sessionType"><option value="none">—</option><option value="sim">Sim / Paper</option><option value="live">Live (eval)</option><option value="skipped">Skipped</option></select></div>
-      <div class="form-field"><label>Number of trades</label><input type="number" id="tradeCount" /></div>
-      <div class="form-field"><label>Wins</label><input type="number" id="wins" /></div>
-      <div class="form-field"><label>Losses</label><input type="number" id="losses" /></div>
+      <div class="form-field" data-field="sessionType"><label>Session type</label><select id="sessionType"><option value="none">—</option><option value="sim">Sim / Paper</option><option value="live">Live (eval)</option><option value="skipped">Skipped</option></select></div>
+      <div class="form-field" data-field="tradeCount"><label>Number of trades</label><input type="number" id="tradeCount" /></div>
+      <div class="form-field" data-field="wins"><label>Wins</label><input type="number" id="wins" /></div>
+      <div class="form-field" data-field="losses"><label>Losses</label><input type="number" id="losses" /></div>
     </div>
     <div class="form-grid">
-      <div class="form-field"><label>Followed plan?</label><div class="rating-row" data-field="followedPlan"><button class="rating-btn" data-val="yes">Yes</button><button class="rating-btn" data-val="partial">Partial</button><button class="rating-btn" data-val="no">No</button></div></div>
-      <div class="form-field"><label>Revenge traded?</label><div class="rating-row" data-field="revenge"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
-      <div class="form-field"><label>Overtraded?</label><div class="rating-row" data-field="overtraded"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
-      <div class="form-field"><label>Discipline (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="discipline" /><span class="slider-val" id="disciplineVal">5</span></div></div>
+      <div class="form-field" data-field="followedPlan"><label>Followed plan?</label><div class="rating-row" data-field="followedPlan"><button class="rating-btn" data-val="yes">Yes</button><button class="rating-btn" data-val="partial">Partial</button><button class="rating-btn" data-val="no">No</button></div></div>
+      <div class="form-field" data-field="revenge"><label>Revenge traded?</label><div class="rating-row" data-field="revenge"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
+      <div class="form-field" data-field="overtraded"><label>Overtraded?</label><div class="rating-row" data-field="overtraded"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
+      <div class="form-field" data-field="discipline"><label>Discipline (1-10)</label><div class="slider-row"><input type="range" min="1" max="10" value="5" id="discipline" /><span class="slider-val" id="disciplineVal">5</span></div></div>
     </div>
-    <div class="form-grid" style="grid-template-columns:1fr"><div class="form-field"><label>One lesson / observation</label><textarea id="lesson"></textarea></div></div>
+    <div class="form-grid" style="grid-template-columns:1fr"><div class="form-field" data-field="lesson"><label>One lesson / observation</label><textarea id="lesson"></textarea></div></div>
     <div class="actions-bar"><button class="btn primary" id="saveTradingBtn">Save trading</button></div>
   </section>
 
@@ -434,17 +445,17 @@
     <h2 class="section-title">Reflection<span class="section-sub">The inner work</span></h2>
     <div class="section-arabic">الْمُحَاسَبَةُ</div>
     <div class="form-grid" style="grid-template-columns:1fr">
-      <div class="form-field"><label>What did I do right today?</label><textarea id="didRight" rows="3"></textarea></div>
-      <div class="form-field"><label>Challenge faced today</label><textarea id="challenge" rows="3"></textarea></div>
-      <div class="form-field"><label>The man I want to be — was I close?</label><textarea id="manClose" rows="3"></textarea></div>
-      <div class="form-field"><label>One thing I am grateful to Allah for</label><textarea id="gratitude" rows="3"></textarea></div>
-      <div class="form-field"><label>Talks with my Rabb</label><textarea id="talksRabb" rows="4"></textarea></div>
-      <div class="form-field"><label>Tomorrow's ONE thing</label><textarea id="tomorrow" rows="2"></textarea></div>
+      <div class="form-field" data-field="didRight"><label>What did I do right today?</label><textarea id="didRight" rows="3"></textarea></div>
+      <div class="form-field" data-field="challenge"><label>Challenge faced today</label><textarea id="challenge" rows="3"></textarea></div>
+      <div class="form-field" data-field="manClose"><label>The man I want to be — was I close?</label><textarea id="manClose" rows="3"></textarea></div>
+      <div class="form-field" data-field="gratitude"><label>One thing I am grateful to Allah for</label><textarea id="gratitude" rows="3"></textarea></div>
+      <div class="form-field" data-field="talksRabb"><label>Talks with my Rabb</label><textarea id="talksRabb" rows="4"></textarea></div>
+      <div class="form-field" data-field="tomorrow"><label>Tomorrow's ONE thing</label><textarea id="tomorrow" rows="2"></textarea></div>
     </div>
     <div class="form-grid" style="margin-top:12px">
-      <div class="form-field"><label>Bad habit today</label><div class="rating-row" data-field="badHabit"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
-      <div class="form-field"><label>Scrolled / wasted time</label><div class="rating-row" data-field="scrolled"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
-      <div class="form-field"><label>Fasted today</label><div class="rating-row" data-field="fasted"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
+      <div class="form-field" data-field="badHabit"><label>Bad habit today</label><div class="rating-row" data-field="badHabit"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
+      <div class="form-field" data-field="scrolled"><label>Scrolled / wasted time</label><div class="rating-row" data-field="scrolled"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
+      <div class="form-field" data-field="fasted"><label>Fasted today</label><div class="rating-row" data-field="fasted"><button class="rating-btn" data-val="no">No</button><button class="rating-btn" data-val="yes">Yes</button></div></div>
     </div>
     <div class="actions-bar"><button class="btn primary" id="saveReflectionBtn">Save reflection</button></div>
   </section>
@@ -452,6 +463,9 @@
   <section class="panel" id="panel-duas">
     <h2 class="section-title">Duas &amp; Dhikr<span class="section-sub">Weapons of the believer</span></h2>
     <div class="section-arabic">الْأَذْكَارُ وَالْأَدْعِيَةُ</div>
+    <div class="dua-cats" id="duaCats"></div>
+    <div id="duasContainer"></div>
+    <div class="dua-old-static" style="display:none">
     <div class="dua-card"><div class="dua-title">When the nafs whispers</div><div class="dua-arabic">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div><div class="dua-transliteration">A'udhu billahi min ash-shaytanir-rajeem</div><div class="dua-meaning">"I seek refuge in Allah from the accursed Shaytan."</div></div>
     <div class="dua-card"><div class="dua-title">Before sleep · Protection till morning</div><div class="dua-arabic">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ</div><div class="dua-transliteration">Ayat al-Kursi · Al-Baqarah 2:255</div><div class="dua-meaning">Prophet ﷺ: "Whoever recites Ayat al-Kursi before sleep, Allah appoints a guardian over him, and Shaytan cannot come near him till morning." — Sahih al-Bukhari 2311</div></div>
     <div class="dua-card"><div class="dua-title">Before any important task</div><div class="dua-arabic">بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</div><div class="dua-transliteration">Bismillahi, tawakkaltu 'alallahi, wa la hawla wa la quwwata illa billah</div><div class="dua-meaning">"In the name of Allah, I place my trust in Allah, and there is no power or strength except with Allah."</div></div>
@@ -462,6 +476,7 @@
     <div class="dua-card"><div class="dua-title">Morning &amp; evening shield · 7x</div><div class="dua-arabic">حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ</div><div class="dua-transliteration">Hasbiyallahu la ilaha illa huwa, 'alayhi tawakkaltu wa huwa rabbul-'arshil-'adheem</div><div class="dua-meaning">Whoever says this 7 times, Allah will suffice him of all that worries him. — Sunan Abu Dawud 5081</div></div>
     <div class="dua-card"><div class="dua-title">For knowledge</div><div class="dua-arabic">رَبِّ زِدْنِي عِلْمًا</div><div class="dua-transliteration">Rabbi zidni 'ilma</div><div class="dua-meaning">"My Lord, increase me in knowledge." — Surah Ta-Ha 20:114</div></div>
     <div class="dua-card"><div class="dua-title">After every fard prayer · The 33s</div><div class="dua-arabic">سُبْحَانَ اللَّهِ ٣٣ · الْحَمْدُ لِلَّهِ ٣٣ · اللَّهُ أَكْبَرُ ٣٤</div><div class="dua-transliteration">Subhan'Allah 33x · Alhamdulillah 33x · Allahu Akbar 34x</div><div class="dua-meaning">Prophet ﷺ: "Whoever says these after every prayer, his sins are forgiven even if they be like the foam of the sea." — Sahih Muslim 597</div></div>
+    </div>
   </section>
 
   <section class="panel" id="panel-stats">
@@ -483,10 +498,25 @@
   <section class="panel" id="panel-customize">
     <h2 class="section-title">Customize<span class="section-sub">Your checklist, your way</span></h2>
     <div class="section-arabic">خَصِّصْ قَائِمَتَكَ</div>
+
+    <h3 class="section-title" style="font-size:18px;margin-top:24px">Your journey<span class="section-sub">Day counter</span></h3>
+    <div class="cust-info" id="journeyStatus"></div>
+    <div class="actions-bar" style="margin-top:0;padding-top:0;border:none">
+      <button class="btn primary" id="startJourneyBtn">Start Day 1 today</button>
+      <button class="btn" id="customStartBtn">Set custom start date</button>
+      <button class="btn danger" id="resetJourneyBtn">Reset journey</button>
+    </div>
+
+    <h3 class="section-title" style="font-size:18px;margin-top:36px">Daily checklist<span class="section-sub">Add, hide, rename</span></h3>
     <div class="cust-info"><strong>How this works</strong>Add items to any block. Hide defaults you don't need. Rename or delete your own blocks. Historical data stays intact.</div>
     <div id="customizeContainer"></div>
     <div class="actions-bar"><button class="btn" id="addBlockBtn">+ Add new block</button><button class="btn danger" id="resetCustBtn">Reset checklist defaults</button></div>
-    <h2 class="section-title" style="margin-top:40px">Workout Split<span class="section-sub">Your weekly training</span></h2>
+
+    <h3 class="section-title" style="font-size:18px;margin-top:36px">Visibility<span class="section-sub">Hide tabs, fields, and duas</span></h3>
+    <div class="cust-info"><strong>Trim the app</strong>Hide any tab, form field, or dua you don't need. Customize itself can never be hidden. Changes sync instantly across your devices.</div>
+    <div id="visibilityControls"></div>
+
+    <h3 class="section-title" style="font-size:18px;margin-top:36px">Workout split<span class="section-sub">Your weekly training</span></h3>
     <div class="section-arabic">جَدْوَلُ التَّدْرِيبِ</div>
     <div class="cust-info"><strong>Configure your split</strong>Edit day labels, add/remove exercises, mark rest days. Changes sync to the Gym tab instantly.</div>
     <div id="workoutSplitContainer"></div>
@@ -556,7 +586,7 @@ let workoutsChannel = null;
 let lastLocalWrite = 0;
 let lastSettingsWrite = 0;
 let lastWorkoutWrite = 0;
-let userSettings = { structure:{blocks:[]}, hidden_defaults:[], workout_structure:{} };
+let userSettings = { structure:{blocks:[]}, hidden_defaults:[], workout_structure:{}, hidden_fields:[], hidden_tabs:[], hidden_duas:[], journey_start:null };
 let completionChartInstance = null;
 let nafsChartInstance = null;
 let gymCharts = {};
@@ -585,7 +615,13 @@ function getWorkoutStructure() {
   if (ws && Object.keys(ws).length > 0) return ws;
   return DEFAULT_WORKOUT_SPLIT;
 }
-function dayNumber(dateStr) { return Math.floor((new Date(dateStr) - new Date(START_DATE)) / 86400000) + 1; }
+function getJourneyStart() { return userSettings.journey_start || null; }
+function dayNumber(dateStr) {
+  const start = getJourneyStart();
+  if (!start) return null;
+  const n = Math.floor((new Date(dateStr+'T00:00:00') - new Date(start+'T00:00:00')) / 86400000) + 1;
+  return n >= 1 ? n : null;
+}
 function formatDisplayDate(s) { return new Date(s).toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' }); }
 function dowFromDate(dateStr) { return new Date(dateStr + 'T00:00:00').getDay(); }
 function epley1RM(w, r) { if (!w || !r) return 0; return Math.round(w * (1 + r/30) * 10) / 10; }
@@ -696,12 +732,30 @@ async function fetchAllDays() {
 async function fetchSettings() {
   const { data, error } = await sb.from('becoming_settings').select('*').eq('user_id', currentUser.id).maybeSingle();
   if (error) { console.error(error); return; }
-  if (data) userSettings = { structure:data.structure||{blocks:[]}, hidden_defaults:data.hidden_defaults||[], workout_structure:data.workout_structure||{} };
+  if (data) {
+    const meta = (data.structure && data.structure.meta) || {};
+    userSettings = {
+      structure:data.structure||{blocks:[]},
+      hidden_defaults:data.hidden_defaults||[],
+      workout_structure:data.workout_structure||{},
+      hidden_fields:meta.hidden_fields||[],
+      hidden_tabs:meta.hidden_tabs||[],
+      hidden_duas:meta.hidden_duas||[],
+      journey_start:meta.journey_start||null,
+    };
+  }
 }
 async function saveSettings() {
   setSyncStatus('syncing');
   lastSettingsWrite = Date.now();
-  const { error } = await sb.from('becoming_settings').upsert({ user_id:currentUser.id, structure:userSettings.structure, hidden_defaults:userSettings.hidden_defaults, workout_structure:userSettings.workout_structure }, { onConflict:'user_id' });
+  // Persist new visibility/journey keys inside structure.meta to avoid needing a DB migration
+  const structureToSave = Object.assign({}, userSettings.structure || {blocks:[]}, { meta:{
+    hidden_fields:userSettings.hidden_fields||[],
+    hidden_tabs:userSettings.hidden_tabs||[],
+    hidden_duas:userSettings.hidden_duas||[],
+    journey_start:userSettings.journey_start||null,
+  }});
+  const { error } = await sb.from('becoming_settings').upsert({ user_id:currentUser.id, structure:structureToSave, hidden_defaults:userSettings.hidden_defaults, workout_structure:userSettings.workout_structure }, { onConflict:'user_id' });
   setSyncStatus(error ? 'offline' : 'synced');
   if (error) { toast('Settings save failed', true); return false; }
   return true;
@@ -757,7 +811,10 @@ function collectWorkoutFromDOM() {
 function updateDateDisplay() {
   document.getElementById('selectedDisplay').textContent = formatDisplayDate(currentDate);
   const dn = dayNumber(currentDate);
-  document.getElementById('dayNum').textContent = dn > 0 ? 'Day ' + dn : 'Pre-start';
+  const el = document.getElementById('dayNum');
+  if (dn === null) { el.textContent = 'Not started'; el.style.cursor = 'pointer'; el.title = 'Tap to start your journey'; el.onclick = openJourneyStart; }
+  else if (dn > 0) { el.textContent = 'Day ' + dn; el.style.cursor = 'pointer'; el.title = 'Tap to manage start date'; el.onclick = openJourneyStart; }
+  else { el.textContent = 'Pre-start'; el.style.cursor = 'pointer'; el.onclick = openJourneyStart; }
 }
 function renderChecklist() {
   const data = cache[currentDate] || { checks:{} };
@@ -1046,7 +1103,7 @@ async function renderStats() {
   const workouts = Object.values(workoutCache).filter(w => w);
   const totalVolume = workouts.reduce((sum, w) => { let v = 0; (w.exercises||[]).forEach(ex => (ex.sets||[]).forEach(s => { if (s.weight && s.reps) v += s.weight*s.reps; })); return sum + v; }, 0);
   let html = '';
-  html += '<div class="stat-card"><div class="stat-label">Total days tracked</div><div class="stat-value">'+totalDays+'</div><div class="stat-sub">Since '+START_DATE+'</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Total days tracked</div><div class="stat-value">'+totalDays+'</div><div class="stat-sub">'+(getJourneyStart()?'Since '+getJourneyStart():'Journey not started')+'</div></div>';
   html += '<div class="stat-card green"><div class="stat-label">Strong days 80%+</div><div class="stat-value">'+perfectDays+'</div><div class="stat-sub">'+(totalDays?Math.round(perfectDays/totalDays*100):0)+'% rate</div></div>';
   html += '<div class="stat-card"><div class="stat-label">Current streak</div><div class="stat-value">'+currentStreak+'<span class="unit">days</span></div><div class="stat-sub">Consecutive strong days</div></div>';
   html += '<div class="stat-card blue"><div class="stat-label">Fajr in masjid</div><div class="stat-value">'+fajrCount+'</div><div class="stat-sub">'+(totalDays?Math.round(fajrCount/totalDays*100):0)+'% of days</div></div>';
@@ -1092,7 +1149,7 @@ async function renderHistory() {
     const disc = (day.trading && day.trading.discipline) || '—';
     const trades = (day.trading && day.trading.tradeCount) || '—';
     const dn = dayNumber(d);
-    html += '<div class="history-row"><div class="date">'+d+'<br/><small>Day '+dn+'</small></div>';
+    html += '<div class="history-row"><div class="date">'+d+'<br/><small>'+(dn?'Day '+dn:'—')+'</small></div>';
     html += '<div><span class="score-pill '+pc+'">'+pct+'%</span></div>';
     html += '<div>'+nafs+'</div><div>'+disc+'</div><div>'+trades+'</div>';
     html += '<div><button class="del-btn" data-d="'+d+'">Del</button></div></div>';
@@ -1111,6 +1168,8 @@ async function renderHistory() {
 
 // CUSTOMIZE
 function renderCustomize() {
+  renderJourneyStatus();
+  renderVisibilityControls();
   const container = document.getElementById('customizeContainer');
   container.innerHTML = '';
   const hidden = new Set(userSettings.hidden_defaults || []);
@@ -1443,7 +1502,7 @@ async function downloadReport() {
       if (y > pageH-120) { doc.addPage(); y = 60; }
       const r = cache[d].reflection;
       doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(201,169,97);
-      doc.text(d + ' · Day ' + dayNumber(d), 40, y); y += 16;
+      doc.text(d + (dayNumber(d) ? ' · Day ' + dayNumber(d) : ''), 40, y); y += 16;
       doc.setFontSize(9);
       const fields = [['Did right',r.didRight],['Challenge',r.challenge],['Gratitude',r.gratitude],['Talks with Rabb',r.talksRabb],['Tomorrow ONE',r.tomorrow]];
       fields.forEach(row => {
@@ -1492,7 +1551,9 @@ function setupRealtime() {
     .on('postgres_changes', { event:'*', schema:'public', table:'becoming_settings', filter:'user_id=eq.'+currentUser.id }, (payload) => {
       if (Date.now() - lastSettingsWrite < 1500) return;
       if (payload.new) {
-        userSettings = { structure:payload.new.structure||{blocks:[]}, hidden_defaults:payload.new.hidden_defaults||[], workout_structure:payload.new.workout_structure||{} };
+        const meta = (payload.new.structure && payload.new.structure.meta) || {};
+        userSettings = { structure:payload.new.structure||{blocks:[]}, hidden_defaults:payload.new.hidden_defaults||[], workout_structure:payload.new.workout_structure||{}, hidden_fields:meta.hidden_fields||[], hidden_tabs:meta.hidden_tabs||[], hidden_duas:meta.hidden_duas||[], journey_start:meta.journey_start||null };
+        applyVisibility(); renderDuas();
         renderChecklist();
         if (document.getElementById('panel-customize').classList.contains('active')) renderCustomize();
         if (document.getElementById('panel-gym').classList.contains('active')) renderGym();
@@ -1518,6 +1579,7 @@ function switchTab(panelName) {
   if (panelName === 'stats') renderStats();
   if (panelName === 'history') renderHistory();
   if (panelName === 'customize') renderCustomize();
+  if (panelName === 'duas') renderDuas();
   if (panelName === 'gym') renderGym();
   loadForms();
 }
@@ -1558,7 +1620,10 @@ async function initApp() {
   updateDateDisplay();
   await fetchSettings();
   await fetchDay(currentDate);
+  applyVisibility();
+  renderDuas();
   renderChecklist(); loadForms();
+  updateDateDisplay();
   setupRealtime();
 }
 
@@ -1569,36 +1634,294 @@ document.getElementById('authForgot').addEventListener('click', forgotPassword);
 document.getElementById('authPassword').addEventListener('keydown', (e) => { if (e.key === 'Enter') authSubmit(); });
 document.getElementById('authEmail').addEventListener('keydown', (e) => { if (e.key === 'Enter') document.getElementById('authPassword').focus(); });
 
-// WISDOM ROTATOR — authentic narrations from the Prophet ﷺ and Imam Ali (RA)
+// WISDOM ROTATOR — authentic Quran ayat + narrations from Prophet ﷺ, Imam Ali (RA), and the Sahaba
 const WISDOM = [
+  // Quran
+  { ar:'وَمَن يَتَّقِ ٱللَّهَ يَجْعَل لَّهُۥ مَخْرَجًۭا ۝ وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ', en:'Whoever fears Allah, He will make a way out for him, and provide for him from sources he never imagined.', by:'Quran', src:'Surah At-Talaq 65:2-3' },
+  { ar:'إِنَّ مَعَ ٱلْعُسْرِ يُسْرًۭا', en:'Indeed, with hardship comes ease.', by:'Quran', src:'Surah Ash-Sharh 94:6' },
+  { ar:'وَلَا تَيْـَٔسُوا۟ مِن رَّوْحِ ٱللَّهِ', en:'And do not despair of the mercy of Allah.', by:'Quran', src:'Surah Yusuf 12:87' },
+  { ar:'فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى وَلَا تَكْفُرُونِ', en:'So remember Me — I will remember you. And be grateful to Me, and never deny Me.', by:'Quran', src:'Surah Al-Baqarah 2:152' },
+  { ar:'إِنَّ ٱللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا۟ مَا بِأَنفُسِهِمْ', en:'Indeed, Allah will not change the condition of a people until they change what is within themselves.', by:'Quran', src:'Surah Ar-Ra\'d 13:11' },
+  { ar:'حَسْبُنَا ٱللَّهُ وَنِعْمَ ٱلْوَكِيلُ', en:'Sufficient for us is Allah, and He is the best Disposer of affairs.', by:'Quran', src:'Surah Aali \'Imran 3:173' },
+  { ar:'وَعَسَىٰٓ أَن تَكْرَهُوا۟ شَيْـًۭٔا وَهُوَ خَيْرٌۭ لَّكُمْ', en:'Perhaps you dislike a thing and it is good for you; and perhaps you love a thing and it is bad for you. Allah knows, while you do not.', by:'Quran', src:'Surah Al-Baqarah 2:216' },
+  { ar:'وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥٓ', en:'And whoever puts his trust in Allah — He is sufficient for him.', by:'Quran', src:'Surah At-Talaq 65:3' },
+  { ar:'يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ', en:'O you who believe, seek help through patience and prayer. Indeed, Allah is with the patient.', by:'Quran', src:'Surah Al-Baqarah 2:153' },
+  { ar:'وَٱذْكُر رَّبَّكَ إِذَا نَسِيتَ', en:'And remember your Lord when you forget.', by:'Quran', src:'Surah Al-Kahf 18:24' },
+  { ar:'إِنَّ ٱلصَّلَوٰةَ تَنْهَىٰ عَنِ ٱلْفَحْشَآءِ وَٱلْمُنكَرِ', en:'Indeed, prayer prohibits immorality and wrongdoing.', by:'Quran', src:'Surah Al-\'Ankabut 29:45' },
+  { ar:'وَلَنَبْلُوَنَّكُم بِشَىْءٍۢ مِّنَ ٱلْخَوْفِ وَٱلْجُوعِ ... وَبَشِّرِ ٱلصَّـٰبِرِينَ', en:'We will surely test you with something of fear and hunger and loss... but give glad tidings to the patient.', by:'Quran', src:'Surah Al-Baqarah 2:155' },
+  { ar:'قَدْ أَفْلَحَ مَن زَكَّىٰهَا ۝ وَقَدْ خَابَ مَن دَسَّىٰهَا', en:'He has succeeded who purifies the soul; and he has failed who corrupts it.', by:'Quran', src:'Surah Ash-Shams 91:9-10' },
+  { ar:'وَأَن لَّيْسَ لِلْإِنسَـٰنِ إِلَّا مَا سَعَىٰ', en:'And that man shall have nothing but what he strives for.', by:'Quran', src:'Surah An-Najm 53:39' },
+  { ar:'إِنَّ ٱللَّهَ مَعَ ٱلصَّـٰبِرِينَ', en:'Indeed, Allah is with the patient.', by:'Quran', src:'Surah Al-Anfal 8:46' },
+
+  // Prophet Muhammad ﷺ
   { ar:'إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ', en:'The strong is not the one who overcomes people by his strength — it is the one who controls himself when angry.', by:'Prophet Muhammad ﷺ', src:'Sahih al-Bukhari 6114' },
-  { ar:'مَنْ حُسْنِ إِسْلَامِ الْمَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ', en:'Part of the perfection of one’s Islam is leaving that which does not concern him.', by:'Prophet Muhammad ﷺ', src:'Jami at-Tirmidhi 2317' },
-  { ar:'الصَّبْرُ مِنَ الْإِيمَانِ بِمَنْزِلَةِ الرَّأْسِ مِنَ الْجَسَدِ', en:'Patience is to faith what the head is to the body — when the head is gone, the body is gone.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 82' },
-  { ar:'مَنْ عَرَفَ نَفْسَهُ فَقَدْ عَرَفَ رَبَّهُ', en:'He who has known himself has known his Lord.', by:'Imam Ali (RA)', src:'Ghurar al-Hikam' },
+  { ar:'مَنْ حُسْنِ إِسْلَامِ الْمَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ', en:'Part of the perfection of one\'s Islam is leaving that which does not concern him.', by:'Prophet Muhammad ﷺ', src:'Jami at-Tirmidhi 2317' },
   { ar:'اغْتَنِمْ خَمْسًا قَبْلَ خَمْسٍ', en:'Take benefit of five before five: your youth before old age, your health before sickness, your wealth before poverty, your free time before being busy, and your life before your death.', by:'Prophet Muhammad ﷺ', src:'Mustadrak al-Hakim 7846' },
   { ar:'الدُّنْيَا سِجْنُ الْمُؤْمِنِ وَجَنَّةُ الْكَافِرِ', en:'The world is a prison for the believer and a paradise for the disbeliever.', by:'Prophet Muhammad ﷺ', src:'Sahih Muslim 2956' },
-  { ar:'الْعِلْمُ خَيْرٌ مِنَ الْمَالِ، الْعِلْمُ يَحْرُسُكَ وَأَنْتَ تَحْرُسُ الْمَالَ', en:'Knowledge is better than wealth — knowledge guards you, while you must guard wealth.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 147' },
-  { ar:'لَا تَكُونُوا إِمَّعَةً، تَقُولُونَ: إِنْ أَحْسَنَ النَّاسُ أَحْسَنَّا', en:'Do not be a people without minds of your own, saying: if others do good we shall do good, and if they wrong we shall wrong. Discipline yourselves: if people do good, do good; and if they do evil, do not act unjustly.', by:'Prophet Muhammad ﷺ', src:'Jami at-Tirmidhi 2007' },
+  { ar:'لَا تَكُونُوا إِمَّعَةً، تَقُولُونَ: إِنْ أَحْسَنَ النَّاسُ أَحْسَنَّا', en:'Do not be a people without minds of your own. Discipline yourselves: if others do good, do good; and if they do evil, do not act unjustly.', by:'Prophet Muhammad ﷺ', src:'Jami at-Tirmidhi 2007' },
   { ar:'أَحَبُّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ', en:'The most beloved deeds to Allah are those done consistently, even if small.', by:'Prophet Muhammad ﷺ', src:'Sahih al-Bukhari 6464' },
   { ar:'مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ', en:'Whoever travels a path in search of knowledge, Allah will make easy for him a path to Paradise.', by:'Prophet Muhammad ﷺ', src:'Sahih Muslim 2699' },
-  { ar:'الْحِلْمُ غِطَاءٌ سَاتِرٌ، وَالْعَقْلُ حُسَامٌ قَاطِعٌ', en:'Forbearance is a concealing veil, and intellect is a sharp sword — so cover the flaws of your character with forbearance, and slay your desires with your intellect.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 424' },
-  { ar:'لَا فَقْرَ كَالْجَهْلِ وَلَا مِيرَاثَ كَالْأَدَبِ', en:'There is no poverty like ignorance, and no inheritance like good character.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 54' },
   { ar:'الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ وَأَحَبُّ إِلَى اللَّهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ', en:'The strong believer is better and more beloved to Allah than the weak believer — though there is good in both.', by:'Prophet Muhammad ﷺ', src:'Sahih Muslim 2664' },
   { ar:'مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ', en:'Whoever believes in Allah and the Last Day, let him speak good or remain silent.', by:'Prophet Muhammad ﷺ', src:'Sahih al-Bukhari 6018' },
+  { ar:'كُنْ فِي الدُّنْيَا كَأَنَّكَ غَرِيبٌ أَوْ عَابِرُ سَبِيلٍ', en:'Be in this world as a stranger or a traveller passing through.', by:'Prophet Muhammad ﷺ', src:'Sahih al-Bukhari 6416' },
+  { ar:'لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ', en:'None of you truly believes until he loves for his brother what he loves for himself.', by:'Prophet Muhammad ﷺ', src:'Sahih al-Bukhari 13' },
+  { ar:'إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى', en:'Actions are but by intentions, and every man shall have only that which he intended.', by:'Prophet Muhammad ﷺ', src:'Sahih al-Bukhari 1' },
+  { ar:'مَنْ لَا يَرْحَمُ لَا يُرْحَمُ', en:'Whoever does not show mercy will not be shown mercy.', by:'Prophet Muhammad ﷺ', src:'Sahih al-Bukhari 7376' },
+  { ar:'الْحَيَاءُ مِنَ الْإِيمَانِ', en:'Modesty (haya) is a branch of faith.', by:'Prophet Muhammad ﷺ', src:'Sahih al-Bukhari 9' },
+  { ar:'مَنْ صَمَتَ نَجَا', en:'Whoever stays silent is saved.', by:'Prophet Muhammad ﷺ', src:'Jami at-Tirmidhi 2501' },
+  { ar:'إِنَّ اللَّهَ يُحِبُّ إِذَا عَمِلَ أَحَدُكُمْ عَمَلًا أَنْ يُتْقِنَهُ', en:'Allah loves, when one of you does a work, that he does it with excellence.', by:'Prophet Muhammad ﷺ', src:'Al-Mu\'jam al-Awsat 897' },
+  { ar:'الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ', en:'The Muslim is the one from whose tongue and hand other Muslims are safe.', by:'Prophet Muhammad ﷺ', src:'Sahih al-Bukhari 10' },
+  { ar:'الطُّهُورُ شَطْرُ الْإِيمَانِ', en:'Cleanliness is half of faith.', by:'Prophet Muhammad ﷺ', src:'Sahih Muslim 223' },
+  { ar:'أَفْضَلُ الْجِهَادِ كَلِمَةُ حَقٍّ عِنْدَ سُلْطَانٍ جَائِرٍ', en:'The best jihad is a word of truth before a tyrannical ruler.', by:'Prophet Muhammad ﷺ', src:'Sunan Abi Dawud 4344' },
+  { ar:'لَا ضَرَرَ وَلَا ضِرَارَ', en:'Do not cause harm, nor return harm.', by:'Prophet Muhammad ﷺ', src:'Sunan Ibn Majah 2341' },
+
+  // Imam Ali (RA)
+  { ar:'الصَّبْرُ مِنَ الْإِيمَانِ بِمَنْزِلَةِ الرَّأْسِ مِنَ الْجَسَدِ', en:'Patience is to faith what the head is to the body — when the head is gone, the body is gone.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 82' },
+  { ar:'مَنْ عَرَفَ نَفْسَهُ فَقَدْ عَرَفَ رَبَّهُ', en:'He who has known himself has known his Lord.', by:'Imam Ali (RA)', src:'Ghurar al-Hikam' },
+  { ar:'الْعِلْمُ خَيْرٌ مِنَ الْمَالِ، الْعِلْمُ يَحْرُسُكَ وَأَنْتَ تَحْرُسُ الْمَالَ', en:'Knowledge is better than wealth — knowledge guards you, while you must guard wealth.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 147' },
+  { ar:'الْحِلْمُ غِطَاءٌ سَاتِرٌ، وَالْعَقْلُ حُسَامٌ قَاطِعٌ', en:'Forbearance is a concealing veil, and intellect is a sharp sword.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 424' },
+  { ar:'لَا فَقْرَ كَالْجَهْلِ وَلَا مِيرَاثَ كَالْأَدَبِ', en:'There is no poverty like ignorance, and no inheritance like good character.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 54' },
+  { ar:'قِيمَةُ كُلِّ امْرِئٍ مَا يُحْسِنُهُ', en:'The worth of every man lies in what he does well.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 81' },
+  { ar:'مَنْ أَطَالَ الْأَمَلَ أَسَاءَ الْعَمَلَ', en:'Whoever lengthens his hopes corrupts his actions.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 36' },
+  { ar:'مَنْ نَصَبَ نَفْسَهُ لِلنَّاسِ إِمَامًا فَلْيَبْدَأْ بِتَعْلِيمِ نَفْسِهِ قَبْلَ تَعْلِيمِ غَيْرِهِ', en:'Whoever sets himself up as a leader of people should begin by teaching himself before teaching others.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 73' },
+  { ar:'الدُّنْيَا دَارُ مَمَرٍّ لَا دَارُ مَقَرٍّ', en:'The world is a place of passage, not a place of permanent abode.', by:'Imam Ali (RA)', src:'Nahj al-Balagha' },
+  { ar:'إِذَا تَمَّ الْعَقْلُ نَقَصَ الْكَلَامُ', en:'When intellect is perfected, speech is reduced.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 71' },
+  { ar:'كُنْ فِي الْفِتْنَةِ كَابْنِ اللَّبُونِ — لَا ظَهْرٌ فَيُرْكَبَ، وَلَا ضَرْعٌ فَيُحْلَبَ', en:'In times of fitna be like the young camel — neither has a back to be ridden, nor an udder to be milked.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 1' },
+  { ar:'مَا قَالَ النَّاسُ لِشَيْءٍ "طُوبَى لَهُ" إِلَّا وَقَدْ خَبَّأَ لَهُ الدَّهْرُ يَوْمَ سُوءٍ', en:'Whenever people praised something saying "how blessed it is", time has hidden for it a day of misfortune.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 286' },
+  { ar:'الْبُخْلُ جَامِعٌ لِمَسَاوِئِ الْعُيُوبِ، وَهُوَ زِمَامٌ يُقَادُ بِهِ إِلَى كُلِّ سُوءٍ', en:'Stinginess gathers all defects together; it is the rein by which one is led to every evil.', by:'Imam Ali (RA)', src:'Nahj al-Balagha · Hikmah 378' },
+
+  // Other Sahaba
+  { ar:'حَاسِبُوا أَنْفُسَكُمْ قَبْلَ أَنْ تُحَاسَبُوا', en:'Take account of yourselves before you are taken to account, and weigh your deeds before they are weighed against you.', by:'Umar ibn al-Khattab (RA)', src:'Jami at-Tirmidhi 2459' },
+  { ar:'لَوْ كَانَ الصَّبْرُ رَجُلًا لَكَانَ كَرِيمًا', en:'If patience were a man, he would be the most noble of men.', by:'Umar ibn al-Khattab (RA)', src:'Hilyat al-Awliya' },
+  { ar:'إِنَّ أَخْوَفَ مَا أَخَافُ عَلَيْكُمْ اتِّبَاعُ الْهَوَى وَطُولُ الْأَمَلِ', en:'The two things I fear most for you are: following desires, and prolonging hopes — for following desires turns one away from the truth, and prolonging hopes makes one forget the Hereafter.', by:'Ali ibn Abi Talib (RA)', src:'Nahj al-Balagha · Khutbah 42' },
+  { ar:'إِنَّ هَذَا الْقُرْآنَ مَأْدُبَةُ اللَّهِ، فَتَعَلَّمُوا مِنْ مَأْدُبَتِهِ مَا اسْتَطَعْتُمْ', en:'This Quran is the banquet of Allah — so learn from His banquet whatever you can.', by:'Ibn Mas\'ud (RA)', src:'Sunan ad-Darimi 3315' },
+  { ar:'إِنَّ اللَّهَ يُعْطِي الدُّنْيَا مَنْ يُحِبُّ وَمَنْ لَا يُحِبُّ، وَلَا يُعْطِي الدِّينَ إِلَّا مَنْ يُحِبُّ', en:'Allah gives the world to whom He loves and whom He does not love, but He gives the deen only to whom He loves.', by:'Abdullah ibn Mas\'ud (RA)', src:'Musnad Ahmad' },
 ];
 function initWisdomRotator() {
   const root = document.getElementById('wisdomRotator');
   if (!root) return;
-  root.innerHTML = WISDOM.map((w,i) => '<div class="wisdom-slide'+(i===0?' active':'')+'"><div class="wisdom-arabic">'+w.ar+'</div><p class="wisdom-en">'+w.en+'</p><span class="wisdom-ref"><span class="by">'+w.by+'</span> · '+w.src+'</span></div>').join('');
+  // Shuffle once at load so each session starts fresh
+  const shuffled = WISDOM.slice().sort(() => Math.random() - 0.5);
+  root.innerHTML = shuffled.map((w,i) => '<div class="wisdom-slide'+(i===0?' active':'')+'"><div class="wisdom-arabic">'+w.ar+'</div><p class="wisdom-en">'+w.en+'</p><span class="wisdom-ref"><span class="by">'+w.by+'</span> · '+w.src+'</span></div>').join('');
   let idx = 0;
   const slides = root.querySelectorAll('.wisdom-slide');
-  setInterval(() => {
+  let timer = setInterval(advance, 8000);
+  function advance() {
     slides[idx].classList.remove('active');
     idx = (idx + 1) % slides.length;
     slides[idx].classList.add('active');
-  }, 7000);
+  }
+  // Pause rotation when tab is hidden — saves battery and prevents stutter on re-show
+  document.addEventListener('visibilitychange', () => {
+    clearInterval(timer);
+    if (!document.hidden) timer = setInterval(advance, 8000);
+  });
 }
 initWisdomRotator();
+
+// DUAS CATALOG — categorized Quran ayat + prophetic supplications
+const DUAS = [
+  // Quran protection
+  { id:'kursi', cat:'Protection', title:'Ayat al-Kursi · before sleep / morning / evening', ar:'ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌۭ وَلَا نَوْمٌۭ', tr:'Allahu la ilaha illa huwa, al-Hayyul-Qayyum...', en:'Prophet ﷺ: "Whoever recites Ayat al-Kursi after every fard prayer, nothing prevents him from entering Paradise except death." — Sunan an-Nasa\'i 9928. And before sleep, Allah appoints a guardian over him until morning. — Sahih al-Bukhari 2311. (Surah Al-Baqarah 2:255)' },
+  { id:'baqarah_last', cat:'Protection', title:'Last 2 ayat of Surah Al-Baqarah · at night', ar:'ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيْهِ مِن رَّبِّهِۦ ... رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا', tr:'Amana ar-rasulu bima unzila ilayhi min rabbihi... (Al-Baqarah 2:285-286)', en:'Prophet ﷺ: "Whoever recites the last two ayat of Surah Al-Baqarah at night, they will suffice him." — Sahih al-Bukhari 5009 / Sahih Muslim 808' },
+  { id:'mu3awwidhat', cat:'Protection', title:'The Mu\'awwidhat · 3x morning, 3x evening, before sleep', ar:'قُلْ هُوَ ٱللَّهُ أَحَدٌ · قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ · قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ', tr:'Surah Al-Ikhlas, Al-Falaq, An-Nas — recite each 3 times', en:'Prophet ﷺ used to recite these three surahs three times in the morning and evening, and before sleep he would blow into his hands and wipe over his body. "They will suffice you against everything." — Sunan Abi Dawud 5082, Jami at-Tirmidhi 2903' },
+  { id:'kahf_first', cat:'Protection', title:'First 10 ayat of Surah Al-Kahf · against the Dajjal', ar:'ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَـٰبَ ...', tr:'Alhamdu lillahil-ladhi anzala \'ala \'abdihil-kitab... (Al-Kahf 18:1-10)', en:'Prophet ﷺ: "Whoever memorises the first ten ayat of Surah Al-Kahf will be protected from the Dajjal." — Sahih Muslim 809. Recite Surah Al-Kahf every Friday for light between the two Fridays.' },
+
+  // Prophetic — daily shields
+  { id:'morning_evening_7x', cat:'Morning & Evening', title:'Hasbiyallahu · 7x morning, 7x evening', ar:'حَسْبِىَ ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ ٱلْعَرْشِ ٱلْعَظِيمِ', tr:'Hasbiyallahu la ilaha illa huwa, \'alayhi tawakkaltu wa huwa rabbul-\'arshil-\'adheem', en:'Whoever says this 7 times morning and evening, Allah will suffice him of all that worries him in this world and the next. — Sunan Abi Dawud 5081 (Surah At-Tawbah 9:129)' },
+  { id:'morning_3x', cat:'Morning & Evening', title:'In the name of Allah · 3x morning & evening', ar:'بِسْمِ ٱللَّهِ ٱلَّذِى لَا يَضُرُّ مَعَ ٱسْمِهِ شَىْءٌ فِى ٱلْأَرْضِ وَلَا فِى ٱلسَّمَآءِ وَهُوَ ٱلسَّمِيعُ ٱلْعَلِيمُ', tr:'Bismillahil-ladhi la yadurru ma\'asmihi shay\'un fil-ardi wa la fis-sama\'i wa huwa as-Samee\'ul-\'Aleem', en:'Whoever says this three times in the morning and three times in the evening, nothing will harm him. — Sunan Abi Dawud 5088, Jami at-Tirmidhi 3388' },
+  { id:'sayyid_istighfar', cat:'Forgiveness', title:'Sayyid al-Istighfar · master of seeking forgiveness', ar:'ٱللَّهُمَّ أَنتَ رَبِّى لَآ إِلَـٰهَ إِلَّآ أَنتَ خَلَقْتَنِى وَأَنَا۠ عَبْدُكَ', tr:'Allahumma anta rabbi la ilaha illa anta, khalaqtani wa ana \'abduka...', en:'Prophet ﷺ: "Whoever says this during the day with firm belief and dies before evening — or says it at night with firm belief and dies before morning — will be among the people of Paradise." — Sahih al-Bukhari 6306' },
+  { id:'astaghfirullah_100', cat:'Forgiveness', title:'Istighfar · 100x daily', ar:'أَسْتَغْفِرُ ٱللَّهَ ٱلَّذِى لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ وَأَتُوبُ إِلَيْهِ', tr:'Astaghfirullah al-ladhi la ilaha illa huwal-Hayyul-Qayyumu wa atubu ilayh', en:'Whoever says this, his sins are forgiven even if he had fled from the battlefield. — Sunan Abi Dawud 1517, Jami at-Tirmidhi 3577. Prophet ﷺ would seek forgiveness more than 70 times a day.' },
+
+  // Sleep
+  { id:'sleep_dua', cat:'Sleep', title:'Before sleep · entrusting the soul to Allah', ar:'بِٱسْمِكَ ٱللَّهُمَّ أَمُوتُ وَأَحْيَا', tr:'Bismika Allahumma amutu wa ahya', en:'Prophet ﷺ said this when going to sleep, and on waking: "Alhamdu lillahil-ladhi ahyana ba\'da ma amatana wa ilayhin-nushur." — Sahih al-Bukhari 6312' },
+  { id:'sleep_blow', cat:'Sleep', title:'Before sleep · blow into hands with the 3 Quls', ar:'قُلْ هُوَ ٱللَّهُ أَحَدٌ · قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ · قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ', tr:'Recite each surah, blow into your palms, then wipe over your body — head first, then face, then front of body. Repeat 3 times.', en:'This was the Sunnah of the Prophet ﷺ every night before sleep. — Sahih al-Bukhari 5017' },
+  { id:'mulk_sleep', cat:'Sleep', title:'Surah Al-Mulk before sleep', ar:'تَبَـٰرَكَ ٱلَّذِى بِيَدِهِ ٱلْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌ', tr:'Surah Al-Mulk (29 ayat) — recite the entire surah', en:'Prophet ﷺ: "There is a surah in the Quran of thirty ayat which intercedes for a man until he is forgiven — Tabarakal-ladhi biyadihil-mulk." — Jami at-Tirmidhi 2891' },
+
+  // Anxiety, grief, distress
+  { id:'anxiety', cat:'Anxiety & Grief', title:'For anxiety, grief, and weakness', ar:'ٱللَّهُمَّ إِنِّى أَعُوذُ بِكَ مِنَ ٱلْهَمِّ وَٱلْحَزَنِ، وَٱلْعَجْزِ وَٱلْكَسَلِ، وَٱلْبُخْلِ وَٱلْجُبْنِ، وَضَلَعِ ٱلدَّيْنِ وَغَلَبَةِ ٱلرِّجَالِ', tr:'Allahumma inni a\'udhu bika minal-hammi wal-hazan, wal-\'ajzi wal-kasal, wal-bukhli wal-jubn, wa dala\'id-dayni wa ghalabatir-rijal', en:'O Allah, I seek refuge in You from anxiety and grief, weakness and laziness, miserliness and cowardice, the burden of debt, and being overpowered by men. — Sahih al-Bukhari 6369' },
+  { id:'distress_yunus', cat:'Anxiety & Grief', title:'Dua of Yunus · in moments of distress', ar:'لَّآ إِلَـٰهَ إِلَّآ أَنتَ سُبْحَـٰنَكَ إِنِّى كُنتُ مِنَ ٱلظَّـٰلِمِينَ', tr:'La ilaha illa anta, subhanaka inni kuntu min adh-dhalimeen', en:'Prophet ﷺ: "No Muslim makes this dua for any matter except that Allah responds to him." — Jami at-Tirmidhi 3505 (Surah Al-Anbiya 21:87)' },
+  { id:'distress_kalbi', cat:'Anxiety & Grief', title:'When the heart is heavy', ar:'يَا حَىُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ، أَصْلِحْ لِى شَأْنِى كُلَّهُ، وَلَا تَكِلْنِى إِلَىٰ نَفْسِى طَرْفَةَ عَيْنٍ', tr:'Ya Hayyu ya Qayyum, bi rahmatika astagheeth, aslih li sha\'ni kullahu, wa la takilni ila nafsi tarfata \'ayn', en:'O Ever-Living, O Sustainer — by Your mercy I seek aid. Set right all of my affairs, and do not entrust me to myself for the blink of an eye. — Mustadrak al-Hakim 1875' },
+
+  // Before tasks
+  { id:'tawakkul', cat:'Before Important Tasks', title:'Before any important task', ar:'بِسْمِ ٱللَّهِ تَوَكَّلْتُ عَلَى ٱللَّهِ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِٱللَّهِ', tr:'Bismillahi, tawakkaltu \'alallahi, wa la hawla wa la quwwata illa billah', en:'In the name of Allah, I place my trust in Allah; there is no power or strength except with Allah.' },
+  { id:'leaving_home', cat:'Before Important Tasks', title:'When leaving the house', ar:'بِسْمِ ٱللَّهِ تَوَكَّلْتُ عَلَى ٱللَّهِ، ٱللَّهُمَّ إِنِّى أَعُوذُ بِكَ أَنْ أَضِلَّ أَوْ أُضَلَّ، أَوْ أَزِلَّ أَوْ أُزَلَّ، أَوْ أَظْلِمَ أَوْ أُظْلَمَ', tr:'Bismillahi, tawakkaltu \'alallah. Allahumma inni a\'udhu bika an adilla aw udall, aw azilla aw uzall, aw adhlima aw udhlam', en:'It is said: "You are guided, sufficed, and protected" — and Shaytan moves away from him. — Sunan Abi Dawud 5094, Jami at-Tirmidhi 3427' },
+  { id:'istikhara', cat:'Before Important Tasks', title:'Salat al-Istikhara · seeking guidance', ar:'ٱللَّهُمَّ إِنِّى أَسْتَخِيرُكَ بِعِلْمِكَ، وَأَسْتَقْدِرُكَ بِقُدْرَتِكَ، وَأَسْأَلُكَ مِن فَضْلِكَ ٱلْعَظِيمِ', tr:'Allahumma inni astakhiruka bi \'ilmika wa astaqdiruka bi qudratika wa as\'aluka min fadlikal-\'adheem...', en:'Pray 2 nafl rakats then make this dua. The Prophet ﷺ taught the istikhara for all matters as he taught us a surah of the Quran. — Sahih al-Bukhari 1162' },
+
+  // Sustenance
+  { id:'rizq', cat:'Sustenance', title:'For halal sustenance & barakah in rizq', ar:'ٱللَّهُمَّ ٱكْفِنِى بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِى بِفَضْلِكَ عَمَّن سِوَاكَ', tr:'Allahumma-kfini bi halalika \'an haramika, wa aghnini bi fadlika \'amman siwak', en:'O Allah, suffice me with what You have made lawful instead of what You have made unlawful, and make me independent of all those besides You by Your grace. — Jami at-Tirmidhi 3563' },
+  { id:'barakah_morning', cat:'Sustenance', title:'For barakah in the morning', ar:'ٱللَّهُمَّ بَارِكْ لِأُمَّتِى فِى بُكُورِهَا', tr:'Allahumma barik li ummati fi bukuriha', en:'Prophet ﷺ said this and added: "Whoever begins his day with this dua, his work and rizq are blessed." — Jami at-Tirmidhi 1212. The early morning is a blessed time.' },
+
+  // Knowledge & nafs
+  { id:'knowledge', cat:'Knowledge & Nafs', title:'For increase in knowledge', ar:'رَّبِّ زِدْنِى عِلْمًۭا', tr:'Rabbi zidni \'ilma', en:'My Lord, increase me in knowledge. — Surah Ta-Ha 20:114' },
+  { id:'taqwa_nafs', cat:'Knowledge & Nafs', title:'For taqwa and purification of the soul', ar:'ٱللَّهُمَّ ءَاتِ نَفْسِى تَقْوَاهَا، وَزَكِّهَا أَنتَ خَيْرُ مَن زَكَّاهَا، أَنتَ وَلِيُّهَا وَمَوْلَاهَا', tr:'Allahumma aati nafsi taqwaha, wa zakkiha anta khayru man zakkaha, anta waliyyuha wa mawlaha', en:'O Allah, grant my soul its taqwa, and purify it — You are the best to purify it, You are its Guardian and Master. — Sahih Muslim 2722' },
+  { id:'shaytan', cat:'Knowledge & Nafs', title:'When the nafs whispers', ar:'أَعُوذُ بِٱللَّهِ مِنَ ٱلشَّيْطَـٰنِ ٱلرَّجِيمِ', tr:'A\'udhu billahi min ash-shaytanir-rajeem', en:'I seek refuge in Allah from the accursed Shaytan. Recite at the first whisper, then turn away from the thought.' },
+  { id:'sincerity', cat:'Knowledge & Nafs', title:'For sincerity and a sound heart', ar:'ٱللَّهُمَّ إِنَّا نَعُوذُ بِكَ مِنْ أَن نُّشْرِكَ بِكَ شَيْـًٔا نَعْلَمُهُ، وَنَسْتَغْفِرُكَ لِمَا لَا نَعْلَمُهُ', tr:'Allahumma inna na\'udhu bika min an nushrika bika shay\'an na\'lamuhu, wa nastaghfiruka lima la na\'lamuh', en:'O Allah, we seek refuge in You from associating anything with You knowingly, and we seek Your forgiveness for what we do unknowingly. — Musnad Ahmad 19606 (against hidden shirk)' },
+
+  // After prayer
+  { id:'after_prayer_33', cat:'After Prayer', title:'After every fard prayer · the 33s', ar:'سُبْحَانَ ٱللَّهِ ٣٣ · ٱلْحَمْدُ لِلَّهِ ٣٣ · ٱللَّهُ أَكْبَرُ ٣٤', tr:'Subhan\'Allah 33x · Alhamdulillah 33x · Allahu Akbar 34x', en:'Prophet ﷺ: "Whoever says these after every prayer, his sins are forgiven even if they be like the foam of the sea." — Sahih Muslim 597' },
+  { id:'after_prayer_kursi', cat:'After Prayer', title:'After every fard prayer · Ayat al-Kursi', ar:'ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ', tr:'Recite Ayat al-Kursi (Al-Baqarah 2:255)', en:'Prophet ﷺ: "Whoever recites Ayat al-Kursi after every fard prayer, nothing prevents him from entering Paradise except death." — Sunan an-Nasa\'i 9928' },
+];
+
+function renderDuas() {
+  const root = document.getElementById('duasContainer');
+  if (!root) return;
+  const cats = ['All', ...Array.from(new Set(DUAS.map(d => d.cat)))];
+  const catBox = document.getElementById('duaCats');
+  const activeCat = catBox.dataset.active || 'All';
+  catBox.innerHTML = cats.map(c => '<button class="dua-cat-btn'+(c===activeCat?' active':'')+'" data-cat="'+escapeHTML(c)+'">'+escapeHTML(c)+'</button>').join('');
+  catBox.querySelectorAll('.dua-cat-btn').forEach(btn => btn.addEventListener('click', () => { catBox.dataset.active = btn.dataset.cat; renderDuas(); }));
+  const hidden = new Set(userSettings.hidden_duas || []);
+  const list = DUAS.filter(d => activeCat === 'All' || d.cat === activeCat);
+  root.innerHTML = list.map(d => {
+    if (hidden.has(d.id)) return '';
+    return '<div class="dua-card" data-dua="'+escapeHTML(d.id)+'"><span class="dua-cat-tag">'+escapeHTML(d.cat)+'</span><div class="dua-title">'+escapeHTML(d.title)+'</div><div class="dua-arabic">'+d.ar+'</div><div class="dua-transliteration">'+escapeHTML(d.tr)+'</div><div class="dua-meaning">'+escapeHTML(d.en)+'</div></div>';
+  }).join('');
+}
+
+// VISIBILITY (fields, tabs, duas) — applied after settings load and on every change
+const TAB_LIST = [
+  { id:'today', label:'Today' }, { id:'physical', label:'Physical' }, { id:'trading', label:'Trading' },
+  { id:'gym', label:'Gym' }, { id:'reflection', label:'Reflection' }, { id:'duas', label:'Duas' },
+  { id:'stats', label:'Stats' }, { id:'history', label:'History' }
+  // 'customize' is intentionally excluded — never hideable
+];
+const FIELD_GROUPS = [
+  { panel:'Physical', fields:[
+    {id:'weight',label:'Weight (kg)'},{id:'sleep',label:'Sleep (hours)'},{id:'water',label:'Water (litres)'},{id:'gym_sess',label:'Gym session'},
+    {id:'energy',label:'Energy (1-10)'},{id:'mood',label:'Mood (1-10)'},{id:'nafs',label:'Nafs loudness (1-10)'},{id:'screentime',label:'Screen time (hours)'},
+    {id:'breakfast',label:'Breakfast'},{id:'lunch',label:'Lunch'},{id:'snack',label:'Pre-session snack'},{id:'dinner',label:'Dinner'},
+  ] },
+  { panel:'Trading', fields:[
+    {id:'sessionType',label:'Session type'},{id:'tradeCount',label:'Number of trades'},{id:'wins',label:'Wins'},{id:'losses',label:'Losses'},
+    {id:'followedPlan',label:'Followed plan?'},{id:'revenge',label:'Revenge traded?'},{id:'overtraded',label:'Overtraded?'},{id:'discipline',label:'Discipline (1-10)'},{id:'lesson',label:'One lesson / observation'},
+  ] },
+  { panel:'Reflection', fields:[
+    {id:'didRight',label:'What did I do right today?'},{id:'challenge',label:'Challenge faced today'},{id:'manClose',label:'The man I want to be — was I close?'},
+    {id:'gratitude',label:'One thing I am grateful to Allah for'},{id:'talksRabb',label:'Talks with my Rabb'},{id:'tomorrow',label:'Tomorrow\'s ONE thing'},
+    {id:'badHabit',label:'Bad habit today'},{id:'scrolled',label:'Scrolled / wasted time'},{id:'fasted',label:'Fasted today'},
+  ] },
+];
+
+function applyVisibility() {
+  const hf = new Set(userSettings.hidden_fields || []);
+  document.querySelectorAll('[data-field]').forEach(el => { el.style.display = hf.has(el.dataset.field) ? 'none' : ''; });
+  const ht = new Set(userSettings.hidden_tabs || []);
+  document.querySelectorAll('.tab[data-panel], .nav-item[data-panel]').forEach(el => {
+    if (el.dataset.panel === 'customize') return;
+    el.style.display = ht.has(el.dataset.panel) ? 'none' : '';
+  });
+  // If active panel is now hidden, jump to Today
+  const activePanel = document.querySelector('.panel.active');
+  if (activePanel && ht.has(activePanel.id.replace('panel-',''))) switchTab('today');
+}
+
+async function toggleHiddenField(id) {
+  const set = new Set(userSettings.hidden_fields || []);
+  set.has(id) ? set.delete(id) : set.add(id);
+  userSettings.hidden_fields = Array.from(set);
+  applyVisibility(); renderVisibilityControls();
+  await saveSettings();
+}
+async function toggleHiddenTab(id) {
+  const set = new Set(userSettings.hidden_tabs || []);
+  set.has(id) ? set.delete(id) : set.add(id);
+  userSettings.hidden_tabs = Array.from(set);
+  applyVisibility(); renderVisibilityControls();
+  await saveSettings();
+}
+async function toggleHiddenDua(id) {
+  const set = new Set(userSettings.hidden_duas || []);
+  set.has(id) ? set.delete(id) : set.add(id);
+  userSettings.hidden_duas = Array.from(set);
+  renderDuas(); renderVisibilityControls();
+  await saveSettings();
+}
+
+function renderVisibilityControls() {
+  const root = document.getElementById('visibilityControls');
+  if (!root) return;
+  const ht = new Set(userSettings.hidden_tabs || []);
+  const hf = new Set(userSettings.hidden_fields || []);
+  const hd = new Set(userSettings.hidden_duas || []);
+  let html = '';
+  // Tabs
+  html += '<div class="cust-block"><div class="cust-head"><div class="cust-title">Visible tabs</div><span class="cust-badge d">Nav</span></div><div class="cust-items">';
+  TAB_LIST.forEach(t => {
+    const hidden = ht.has(t.id);
+    html += '<div class="cust-item"><span class="cust-item-text'+(hidden?' hid':'')+'">'+escapeHTML(t.label)+'</span><button class="cust-action'+(hidden?' show-btn':'')+'" data-role="toggle-tab" data-id="'+escapeHTML(t.id)+'">'+(hidden?'Show':'Hide')+'</button></div>';
+  });
+  html += '</div></div>';
+  // Fields
+  FIELD_GROUPS.forEach(g => {
+    html += '<div class="cust-block"><div class="cust-head"><div class="cust-title">'+escapeHTML(g.panel)+' fields</div><span class="cust-badge d">Form</span></div><div class="cust-items">';
+    g.fields.forEach(f => {
+      const hidden = hf.has(f.id);
+      html += '<div class="cust-item"><span class="cust-item-text'+(hidden?' hid':'')+'">'+escapeHTML(f.label)+'</span><button class="cust-action'+(hidden?' show-btn':'')+'" data-role="toggle-field" data-id="'+escapeHTML(f.id)+'">'+(hidden?'Show':'Hide')+'</button></div>';
+    });
+    html += '</div></div>';
+  });
+  // Duas
+  html += '<div class="cust-block"><div class="cust-head"><div class="cust-title">Duas &amp; ayat</div><span class="cust-badge d">Duas</span></div><div class="cust-items">';
+  DUAS.forEach(d => {
+    const hidden = hd.has(d.id);
+    html += '<div class="cust-item"><span class="cust-item-text'+(hidden?' hid':'')+'">'+escapeHTML(d.title)+' <small style="color:var(--text-dim)">· '+escapeHTML(d.cat)+'</small></span><button class="cust-action'+(hidden?' show-btn':'')+'" data-role="toggle-dua" data-id="'+escapeHTML(d.id)+'">'+(hidden?'Show':'Hide')+'</button></div>';
+  });
+  html += '</div></div>';
+  root.innerHTML = html;
+  root.querySelectorAll('button[data-role]').forEach(btn => btn.addEventListener('click', () => {
+    const role = btn.dataset.role; const id = btn.dataset.id;
+    if (role === 'toggle-tab') toggleHiddenTab(id);
+    else if (role === 'toggle-field') toggleHiddenField(id);
+    else if (role === 'toggle-dua') toggleHiddenDua(id);
+  }));
+}
+
+// JOURNEY START — per-user day counter
+function renderJourneyStatus() {
+  const el = document.getElementById('journeyStatus');
+  if (!el) return;
+  const start = getJourneyStart();
+  if (!start) {
+    el.innerHTML = '<strong>Journey not started</strong>Tap "Start Day 1 today" to begin. Your day counter will reset and start counting from today. All your historical entries stay safe.';
+  } else {
+    const today = new Date().toISOString().split('T')[0];
+    const dn = dayNumber(today);
+    el.innerHTML = '<strong>You are on Day '+(dn||0)+'</strong>Started '+start+'. Reset to clear the counter, or set a custom start date to backdate your journey.';
+  }
+}
+async function setJourneyStart(dateStr) {
+  userSettings.journey_start = dateStr;
+  await saveSettings();
+  updateDateDisplay();
+  renderJourneyStatus();
+  if (document.getElementById('panel-stats').classList.contains('active')) renderStats();
+  toast(dateStr ? 'Journey set to ' + dateStr : 'Journey reset');
+}
+async function openJourneyStart() {
+  const cur = getJourneyStart();
+  const today = new Date().toISOString().split('T')[0];
+  const input = prompt('Set your journey start date (YYYY-MM-DD).\nLeave blank and press OK to start today.\nType "reset" to clear.', cur || today);
+  if (input === null) return;
+  const v = input.trim();
+  if (!v) return setJourneyStart(today);
+  if (v.toLowerCase() === 'reset') return setJourneyStart(null);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) { toast('Invalid date format', true); return; }
+  if (isNaN(new Date(v+'T00:00:00').getTime())) { toast('Invalid date', true); return; }
+  setJourneyStart(v);
+}
+document.addEventListener('click', (e) => {
+  if (e.target.id === 'startJourneyBtn') {
+    const today = new Date().toISOString().split('T')[0];
+    if (getJourneyStart() && !confirm('Reset your journey to start fresh from today (Day 1)? Historical entries stay safe.')) return;
+    setJourneyStart(today);
+  } else if (e.target.id === 'customStartBtn') {
+    openJourneyStart();
+  } else if (e.target.id === 'resetJourneyBtn') {
+    if (!confirm('Clear journey start? The day counter will show "Not started" until you start again.')) return;
+    setJourneyStart(null);
+  }
+});
 
 checkSession();
 </script>
