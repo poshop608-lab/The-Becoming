@@ -74,9 +74,9 @@
   .hero h1 .accent{background:linear-gradient(135deg,#c4b5fd 0%,#a78bfa 45%,#67e8f9 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:hueShift 8s ease-in-out infinite;text-shadow:none}
   @keyframes hueShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
   .hero .subtitle{font-family:var(--sans);font-size:11px;color:var(--text-muted);letter-spacing:.32em;text-transform:uppercase;margin-bottom:26px;font-weight:500}
-  .wisdom-rotator{max-width:720px;margin:8px auto 0;display:grid;will-change:contents}
-  .wisdom-rotator > .wisdom-slide{grid-area:1/1;opacity:0;transform:translateY(16px) scale(.985);filter:blur(8px);transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1),filter 1s cubic-bezier(.22,1,.36,1);pointer-events:none;visibility:hidden;will-change:opacity,transform,filter}
-  .wisdom-rotator > .wisdom-slide.active{opacity:1;transform:translateY(0) scale(1);filter:blur(0);pointer-events:auto;visibility:visible}
+  .wisdom-rotator{max-width:720px;margin:8px auto 0;display:grid}
+  .wisdom-rotator > .wisdom-slide{grid-area:1/1;opacity:0;transform:translateY(8px);transition:opacity .8s ease,transform .8s ease;pointer-events:none;visibility:hidden;will-change:opacity,transform}
+  .wisdom-rotator > .wisdom-slide.active{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible}
   .wisdom-arabic{font-family:var(--arabic);font-size:clamp(20px,3vw,28px);color:var(--gold-bright);direction:rtl;margin-bottom:18px;line-height:2;font-weight:500;text-shadow:0 0 24px rgba(196,181,253,0.4)}
   .wisdom-en{font-family:var(--sans);font-style:normal;font-size:clamp(15px,1.6vw,18px);font-weight:500;color:var(--text);max-width:640px;margin:0 auto;line-height:1.6;letter-spacing:-0.005em}
   .wisdom-en::before,.wisdom-en::after{content:'"';color:var(--gold-bright);opacity:.55;font-weight:700;margin:0 4px}
@@ -86,6 +86,40 @@
   .wisdom-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.18);transition:all .5s cubic-bezier(.22,1,.36,1);cursor:pointer;border:none;padding:0}
   .wisdom-dot.active{background:var(--gold-bright);box-shadow:0 0 10px rgba(196,181,253,0.6);width:20px;border-radius:3px}
   @media (prefers-reduced-motion:reduce){.wisdom-rotator > .wisdom-slide{transition:opacity .3s ease;transform:none;filter:none}.wisdom-rotator > .wisdom-slide.active{transform:none;filter:none}.hero h1 .accent{animation:none}}
+  /* App modal */
+  .app-modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+  .app-modal.show{display:flex;animation:modalFade .25s ease}
+  @keyframes modalFade{from{opacity:0}to{opacity:1}}
+  .app-modal-backdrop{position:absolute;inset:0;background:rgba(5,5,11,0.7);backdrop-filter:blur(10px) saturate(120%);-webkit-backdrop-filter:blur(10px) saturate(120%)}
+  .app-modal-panel{position:relative;background:linear-gradient(180deg,rgba(28,28,42,0.95) 0%,rgba(15,15,25,0.95) 100%);border:1px solid var(--border-light);border-radius:18px;padding:32px 28px;max-width:460px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.08),0 0 60px rgba(167,139,250,0.15);text-align:center;animation:modalIn .3s cubic-bezier(.22,1,.36,1)}
+  .app-modal-panel-wide{max-width:640px;text-align:left}
+  @keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+  .app-modal-close{position:absolute;top:12px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid var(--border-light);color:var(--text-muted);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+  .app-modal-close:hover{color:#fff;background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25)}
+  .app-modal-arabic{font-family:var(--arabic);font-size:26px;color:var(--gold-bright);margin-bottom:16px;direction:rtl;font-weight:500;line-height:1.6;text-shadow:0 0 18px rgba(196,181,253,0.4)}
+  .app-modal-title{font-family:var(--sans);font-size:24px;font-weight:800;letter-spacing:-0.02em;color:#fff;margin-bottom:8px}
+  .app-modal-sub{font-family:var(--sans);font-size:13.5px;color:var(--text-muted);margin-bottom:22px;line-height:1.55}
+  .app-modal-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border-light);color:var(--text);padding:12px 14px;font-family:var(--sans);font-size:14px;font-weight:500;border-radius:10px;color-scheme:dark}
+  .app-modal-input:focus{outline:none;border-color:rgba(167,139,250,0.55);background:rgba(255,255,255,0.06);box-shadow:0 0 0 3px rgba(167,139,250,0.12)}
+  .app-modal-actions{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+  .journey-countdown{background:linear-gradient(135deg,rgba(167,139,250,0.12),rgba(103,232,249,0.06));border:1px solid rgba(167,139,250,0.28);border-radius:14px;padding:20px;margin:8px 0 22px;box-shadow:0 0 28px rgba(167,139,250,0.18)}
+  .jc-label{font-family:var(--sans);font-size:11px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+  .jc-time{font-family:var(--mono);font-size:34px;font-weight:700;letter-spacing:-0.01em;color:#fff;text-shadow:var(--text-glow);font-variant-numeric:tabular-nums;line-height:1.1}
+  .jc-zone{font-family:var(--sans);font-size:11px;color:var(--gold-bright);margin-top:6px;letter-spacing:.04em}
+  /* Expandable dua card */
+  .dua-card{cursor:pointer;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .dua-card:hover{transform:translateY(-2px);border-color:rgba(167,139,250,0.4);box-shadow:0 12px 32px rgba(0,0,0,0.5),0 0 24px rgba(167,139,250,0.1)}
+  .dua-card .read-more{display:inline-block;margin-top:12px;font-family:var(--sans);font-size:11px;font-weight:600;color:var(--gold-bright);letter-spacing:.04em;border:1px solid rgba(167,139,250,0.3);padding:5px 12px;border-radius:999px;background:rgba(167,139,250,0.08)}
+  .dua-card .dua-meaning-preview{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  /* Dua modal full content */
+  .dua-modal-cat{display:inline-block;font-family:var(--sans);font-size:10px;font-weight:600;color:var(--gold-bright);background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);padding:4px 10px;border-radius:999px;letter-spacing:.04em;margin-bottom:14px}
+  .dua-modal-title{font-family:var(--sans);font-size:20px;font-weight:700;color:#fff;margin-bottom:18px;letter-spacing:-0.01em;line-height:1.3}
+  .dua-modal-section{margin-bottom:22px}
+  .dua-modal-section-label{font-family:var(--sans);font-size:10px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+  .dua-modal-arabic{font-family:var(--arabic);font-size:24px;color:var(--gold-bright);direction:rtl;text-align:right;line-height:2.3;font-weight:500;text-shadow:0 0 18px rgba(196,181,253,0.3)}
+  .dua-modal-translit{font-family:var(--sans);font-style:italic;font-size:14.5px;font-weight:500;color:var(--text-muted);line-height:1.65}
+  .dua-modal-meaning{font-family:var(--sans);font-size:14.5px;color:var(--text);line-height:1.7}
+  .dua-modal-source{font-family:var(--sans);font-size:11.5px;color:var(--text-dim);margin-top:6px;letter-spacing:.04em;font-weight:500}
   /* Dua categories + cards */
   .dua-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
   .dua-cat-btn{padding:8px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--border-light);color:var(--text-muted);font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.01em;border-radius:999px;cursor:pointer;transition:all .2s}
@@ -539,6 +573,37 @@
 </nav>
 
 <div class="toast" id="toast">Saved</div>
+
+<div class="app-modal" id="journeyModal" aria-hidden="true">
+  <div class="app-modal-backdrop" data-close></div>
+  <div class="app-modal-panel">
+    <button class="app-modal-close" data-close aria-label="Close">×</button>
+    <div class="app-modal-arabic">بِسْمِ اللَّهِ نَبْدَأُ</div>
+    <h3 class="app-modal-title">Begin your journey</h3>
+    <p class="app-modal-sub">Day 1 starts the moment you confirm. The counter follows your local time and rolls over at midnight.</p>
+    <div class="journey-countdown" id="journeyCountdown">
+      <div class="jc-label">Next day rolls over in</div>
+      <div class="jc-time" id="jcTime">—</div>
+      <div class="jc-zone" id="jcZone">your local time</div>
+    </div>
+    <div class="app-modal-actions">
+      <button class="btn primary" id="confirmStartToday">Start Day 1 — today</button>
+      <button class="btn" id="openCustomDate">Backdate to a past date</button>
+    </div>
+    <div id="customDateRow" style="display:none;margin-top:14px">
+      <input type="date" id="customDateInput" class="app-modal-input" />
+      <button class="btn primary" id="confirmCustomDate" style="margin-top:10px;width:100%">Set this date as Day 1</button>
+    </div>
+  </div>
+</div>
+
+<div class="app-modal" id="duaModal" aria-hidden="true">
+  <div class="app-modal-backdrop" data-close></div>
+  <div class="app-modal-panel app-modal-panel-wide">
+    <button class="app-modal-close" data-close aria-label="Close">×</button>
+    <div id="duaModalBody"></div>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -1720,12 +1785,40 @@ function initWisdomRotator() {
 initWisdomRotator();
 
 // DUAS CATALOG — categorized Quran ayat + prophetic supplications
+// Each entry: id, cat, title, ar (preview), tr (transliteration preview), en (short context), full_ar (full text — falls back to ar), full_tr, full_en, source
 const DUAS = [
   // Quran protection
-  { id:'kursi', cat:'Protection', title:'Ayat al-Kursi · before sleep / morning / evening', ar:'ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌۭ وَلَا نَوْمٌۭ', tr:'Allahu la ilaha illa huwa, al-Hayyul-Qayyum...', en:'Prophet ﷺ: "Whoever recites Ayat al-Kursi after every fard prayer, nothing prevents him from entering Paradise except death." — Sunan an-Nasa\'i 9928. And before sleep, Allah appoints a guardian over him until morning. — Sahih al-Bukhari 2311. (Surah Al-Baqarah 2:255)' },
-  { id:'baqarah_last', cat:'Protection', title:'Last 2 ayat of Surah Al-Baqarah · at night', ar:'ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيْهِ مِن رَّبِّهِۦ ... رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا', tr:'Amana ar-rasulu bima unzila ilayhi min rabbihi... (Al-Baqarah 2:285-286)', en:'Prophet ﷺ: "Whoever recites the last two ayat of Surah Al-Baqarah at night, they will suffice him." — Sahih al-Bukhari 5009 / Sahih Muslim 808' },
-  { id:'mu3awwidhat', cat:'Protection', title:'The Mu\'awwidhat · 3x morning, 3x evening, before sleep', ar:'قُلْ هُوَ ٱللَّهُ أَحَدٌ · قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ · قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ', tr:'Surah Al-Ikhlas, Al-Falaq, An-Nas — recite each 3 times', en:'Prophet ﷺ used to recite these three surahs three times in the morning and evening, and before sleep he would blow into his hands and wipe over his body. "They will suffice you against everything." — Sunan Abi Dawud 5082, Jami at-Tirmidhi 2903' },
-  { id:'kahf_first', cat:'Protection', title:'First 10 ayat of Surah Al-Kahf · against the Dajjal', ar:'ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَـٰبَ ...', tr:'Alhamdu lillahil-ladhi anzala \'ala \'abdihil-kitab... (Al-Kahf 18:1-10)', en:'Prophet ﷺ: "Whoever memorises the first ten ayat of Surah Al-Kahf will be protected from the Dajjal." — Sahih Muslim 809. Recite Surah Al-Kahf every Friday for light between the two Fridays.' },
+  { id:'kursi', cat:'Protection', title:'Ayat al-Kursi · The greatest ayah in the Quran', ar:'ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ', tr:'Allahu la ilaha illa huwa, al-Hayyul-Qayyum...', en:'Prophet ﷺ: "Whoever recites Ayat al-Kursi after every fard prayer, nothing prevents him from entering Paradise except death."', source:'Surah Al-Baqarah 2:255',
+    full_ar:'ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌۭ وَلَا نَوْمٌۭ ۚ لَّهُۥ مَا فِى ٱلسَّمَـٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍۢ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ',
+    full_tr:'Allahu la ilaha illa huwa, al-Hayyul-Qayyum. La ta\'khudhuhu sinatun wa la nawm. Lahu ma fis-samawati wa ma fil-ard. Man dhal-ladhi yashfa\'u \'indahu illa bi idhnih. Ya\'lamu ma bayna aydihim wa ma khalfahum, wa la yuhituna bi shay\'in min \'ilmihi illa bima sha\'. Wasi\'a kursiyyuhus-samawati wal-ard, wa la ya\'uduhu hifdhuhuma, wa huwal-\'Aliyyul-\'Adheem.',
+    full_en:'Allah — there is no deity except Him, the Ever-Living, the Sustainer of all existence. Neither drowsiness overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is before them and what will be after them, and they encompass nothing of His knowledge except for what He wills. His Kursi extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great. (2:255)\n\nProphet ﷺ: "Whoever recites Ayat al-Kursi after every fard prayer, nothing prevents him from entering Paradise except death." — Sunan an-Nasa\'i 9928. And before sleep, Allah appoints a guardian over him until morning, and Shaytan cannot come near him. — Sahih al-Bukhari 2311.' },
+
+  { id:'baqarah_last', cat:'Protection', title:'Last 2 ayat of Surah Al-Baqarah · at night',
+    ar:'ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيْهِ مِن رَّبِّهِۦ',
+    tr:'Amana ar-rasulu bima unzila ilayhi min rabbih...',
+    en:'Prophet ﷺ: "Whoever recites the last two ayat of Surah Al-Baqarah at night, they will suffice him."',
+    source:'Surah Al-Baqarah 2:285-286',
+    full_ar:'ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيْهِ مِن رَّبِّهِۦ وَٱلْمُؤْمِنُونَ ۚ كُلٌّ ءَامَنَ بِٱللَّهِ وَمَلَـٰٓئِكَتِهِۦ وَكُتُبِهِۦ وَرُسُلِهِۦ لَا نُفَرِّقُ بَيْنَ أَحَدٍۢ مِّن رُّسُلِهِۦ ۚ وَقَالُوا۟ سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ ٱلْمَصِيرُ\n\nلَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًۭا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَـٰفِرِينَ',
+    full_tr:'285. Amana ar-rasulu bima unzila ilayhi min rabbihi wal-mu\'minun. Kullun amana billahi wa mala\'ikatihi wa kutubihi wa rusulih. La nufarriqu bayna ahadin min rusulih. Wa qalu sami\'na wa ata\'na. Ghufranaka rabbana wa ilaykal-maseer.\n\n286. La yukallifullahu nafsan illa wus\'aha. Laha ma kasabat, wa \'alayha mak-tasabat. Rabbana la tu\'akhidhna in naseena aw akhta\'na. Rabbana wa la tahmil \'alayna isran kama hamaltahu \'alal-ladheena min qablina. Rabbana wa la tuhammilna ma la taqata lana bih. Wa-\'fu \'anna, wagh-fir lana, war-hamna. Anta mawlana fansurna \'alal qawmil-kafireen.',
+    full_en:'285. The Messenger has believed in what was revealed to him from his Lord, and so have the believers. All of them have believed in Allah and His angels and His books and His messengers, [saying], "We make no distinction between any of His messengers." And they say, "We hear and we obey. Your forgiveness, our Lord, and to You is the final destination."\n\n286. Allah does not charge a soul except [with that within] its capacity. It will have [the consequence of] what good it has gained, and it will bear [the consequence of] what evil it has earned. "Our Lord, do not impose blame upon us if we have forgotten or erred. Our Lord, and lay not upon us a burden like that which You laid upon those before us. Our Lord, and burden us not with that which we have no ability to bear. And pardon us; and forgive us; and have mercy upon us. You are our protector, so give us victory over the disbelieving people."\n\nProphet ﷺ: "Whoever recites these two ayat at night, they will suffice him." — Sahih al-Bukhari 5009 / Sahih Muslim 808.' },
+
+  { id:'mu3awwidhat', cat:'Protection', title:'The Mu\'awwidhat · The 3 protective surahs',
+    ar:'قُلْ هُوَ ٱللَّهُ أَحَدٌ · قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ · قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ',
+    tr:'Surah Al-Ikhlas, Al-Falaq, An-Nas — recite each 3 times',
+    en:'Prophet ﷺ used to recite these three surahs three times morning and evening. "They will suffice you against everything."',
+    source:'Sunan Abi Dawud 5082, Jami at-Tirmidhi 2903',
+    full_ar:'الْإِخْلَاص (112)\nقُلْ هُوَ ٱللَّهُ أَحَدٌ ۝ ٱللَّهُ ٱلصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ\n\nالْفَلَق (113)\nقُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ ٱلنَّفَّـٰثَـٰتِ فِى ٱلْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ\n\nالنَّاس (114)\nقُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ ۝ مَلِكِ ٱلنَّاسِ ۝ إِلَـٰهِ ٱلنَّاسِ ۝ مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ۝ ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ ۝ مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ',
+    full_tr:'Al-Ikhlas: Qul huwa Allahu ahad. Allahus-samad. Lam yalid wa lam yulad. Wa lam yakun lahu kufuwan ahad.\n\nAl-Falaq: Qul a\'udhu bi rabbil-falaq. Min sharri ma khalaq. Wa min sharri ghasiqin idha waqab. Wa min sharrin-naffathati fil-\'uqad. Wa min sharri hasidin idha hasad.\n\nAn-Nas: Qul a\'udhu bi rabbin-nas. Malikin-nas. Ilahin-nas. Min sharril-waswasil-khannas. Al-ladhi yuwaswisu fi sudurin-nas. Minal-jinnati wan-nas.',
+    full_en:'Al-Ikhlas: Say, "He is Allah, [who is] One. Allah, the Eternal Refuge. He neither begets nor is born. Nor is there to Him any equivalent."\n\nAl-Falaq: Say, "I seek refuge in the Lord of daybreak — from the evil of that which He created; and from the evil of darkness when it settles; and from the evil of the blowers in knots; and from the evil of an envier when he envies."\n\nAn-Nas: Say, "I seek refuge in the Lord of mankind, the Sovereign of mankind, the God of mankind, from the evil of the retreating whisperer — who whispers [evil] into the breasts of mankind — from among the jinn and mankind."\n\nProphet ﷺ would recite these three surahs, blow into his hands and wipe over his body — head first, then face, then front of body — three times before sleep. — Sahih al-Bukhari 5017.' },
+
+  { id:'kahf_first', cat:'Protection', title:'First 10 ayat of Surah Al-Kahf · against the Dajjal',
+    ar:'ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَـٰبَ',
+    tr:'Alhamdu lillahil-ladhi anzala \'ala \'abdihil-kitab...',
+    en:'Prophet ﷺ: "Whoever memorises the first ten ayat of Surah Al-Kahf will be protected from the Dajjal."',
+    source:'Sahih Muslim 809 · Surah Al-Kahf 18:1-10',
+    full_ar:'ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَـٰبَ وَلَمْ يَجْعَل لَّهُۥ عِوَجَا ۜ ۝ قَيِّمًۭا لِّيُنذِرَ بَأْسًۭا شَدِيدًۭا مِّن لَّدُنْهُ وَيُبَشِّرَ ٱلْمُؤْمِنِينَ ٱلَّذِينَ يَعْمَلُونَ ٱلصَّـٰلِحَـٰتِ أَنَّ لَهُمْ أَجْرًا حَسَنًۭا ۝ مَّـٰكِثِينَ فِيهِ أَبَدًۭا ۝ وَيُنذِرَ ٱلَّذِينَ قَالُوا۟ ٱتَّخَذَ ٱللَّهُ وَلَدًۭا ۝ مَّا لَهُم بِهِۦ مِنْ عِلْمٍۢ وَلَا لِـَٔابَآئِهِمْ ۚ كَبُرَتْ كَلِمَةًۭ تَخْرُجُ مِنْ أَفْوَٰهِهِمْ ۚ إِن يَقُولُونَ إِلَّا كَذِبًۭا ۝ فَلَعَلَّكَ بَـٰخِعٌۭ نَّفْسَكَ عَلَىٰٓ ءَاثَـٰرِهِمْ إِن لَّمْ يُؤْمِنُوا۟ بِهَـٰذَا ٱلْحَدِيثِ أَسَفًا ۝ إِنَّا جَعَلْنَا مَا عَلَى ٱلْأَرْضِ زِينَةًۭ لَّهَا لِنَبْلُوَهُمْ أَيُّهُمْ أَحْسَنُ عَمَلًۭا ۝ وَإِنَّا لَجَـٰعِلُونَ مَا عَلَيْهَا صَعِيدًۭا جُرُزًا ۝ أَمْ حَسِبْتَ أَنَّ أَصْحَـٰبَ ٱلْكَهْفِ وَٱلرَّقِيمِ كَانُوا۟ مِنْ ءَايَـٰتِنَا عَجَبًا ۝ إِذْ أَوَى ٱلْفِتْيَةُ إِلَى ٱلْكَهْفِ فَقَالُوا۟ رَبَّنَآ ءَاتِنَا مِن لَّدُنكَ رَحْمَةًۭ وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًۭا',
+    full_tr:'1. Alhamdu lillahil-ladhi anzala \'ala \'abdihil-kitaba wa lam yaj\'al lahu \'iwaja. 2. Qayyiman li yundhira ba\'san shadidan min ladunhu wa yubashshiral-mu\'mineenal-ladheena ya\'malunas-salihati anna lahum ajran hasana. 3. Makitheena fihi abada. 4. Wa yundhiral-ladheena qalut-takhadhAllahu walada. 5. Ma lahum bihi min \'ilmin wa la li aba\'ihim. Kaburat kalimatan takhruju min afwahihim. In yaquluna illa kadhiba. 6. Fa la\'allaka bakhi\'un nafsaka \'ala atharihim in lam yu\'minu bi hadhal-hadithi asafa. 7. Inna ja\'alna ma \'alal-ardi zinatan laha li nabluwahum ayyuhum ahsanu \'amala. 8. Wa inna la-ja\'iluna ma \'alayha sa\'eedan juruza. 9. Am hasibta anna ashabal-kahfi war-raqimi kanu min ayatina \'ajaba. 10. Idh awal-fityatu ilal-kahfi fa qalu rabbana atina min ladunka rahmatan wa hayyi\' lana min amrina rashada.',
+    full_en:'1. [All] praise is [due] to Allah, who has sent down upon His Servant the Book and has not made therein any deviance. 2. [He has made it] straight, to warn of severe punishment from Him and to give good tidings to the believers who do righteous deeds that they will have a good reward. 3. In which they will remain forever. 4. And to warn those who say, "Allah has taken a son." 5. They have no knowledge of it, nor had their fathers. Grave is the word that comes out of their mouths; they speak not except a lie. 6. Then perhaps you would kill yourself through grief over them, [O Muhammad], if they do not believe in this message, [and] out of sorrow. 7. Indeed, We have made that which is on the earth adornment for it that We may test them [as to] which of them is best in deed. 8. And indeed, We will make that which is upon it [into] a barren ground. 9. Or have you thought that the companions of the cave and the inscription were, among Our signs, a wonder? 10. [Mention] when the youths retreated to the cave and said, "Our Lord, grant us from Yourself mercy and prepare for us from our affair right guidance."\n\nProphet ﷺ: "Whoever memorises the first ten ayat of Surah Al-Kahf will be protected from the Dajjal." — Sahih Muslim 809. Recite Surah Al-Kahf every Friday for light between the two Fridays.' },
 
   // Prophetic — daily shields
   { id:'morning_evening_7x', cat:'Morning & Evening', title:'Hasbiyallahu · 7x morning, 7x evening', ar:'حَسْبِىَ ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ ٱلْعَرْشِ ٱلْعَظِيمِ', tr:'Hasbiyallahu la ilaha illa huwa, \'alayhi tawakkaltu wa huwa rabbul-\'arshil-\'adheem', en:'Whoever says this 7 times morning and evening, Allah will suffice him of all that worries him in this world and the next. — Sunan Abi Dawud 5081 (Surah At-Tawbah 9:129)' },
@@ -1775,9 +1868,47 @@ function renderDuas() {
   const list = DUAS.filter(d => activeCat === 'All' || d.cat === activeCat);
   root.innerHTML = list.map(d => {
     if (hidden.has(d.id)) return '';
-    return '<div class="dua-card" data-dua="'+escapeHTML(d.id)+'"><span class="dua-cat-tag">'+escapeHTML(d.cat)+'</span><div class="dua-title">'+escapeHTML(d.title)+'</div><div class="dua-arabic">'+d.ar+'</div><div class="dua-transliteration">'+escapeHTML(d.tr)+'</div><div class="dua-meaning">'+escapeHTML(d.en)+'</div></div>';
+    const hasFullContent = d.full_ar || d.full_en;
+    return '<div class="dua-card" data-dua="'+escapeHTML(d.id)+'"><span class="dua-cat-tag">'+escapeHTML(d.cat)+'</span><div class="dua-title">'+escapeHTML(d.title)+'</div><div class="dua-arabic">'+d.ar+'</div><div class="dua-transliteration">'+escapeHTML(d.tr)+'</div><div class="dua-meaning dua-meaning-preview">'+escapeHTML(d.en)+'</div>'+(hasFullContent?'<span class="read-more">Tap to read full text</span>':'')+'</div>';
   }).join('');
+  root.querySelectorAll('.dua-card').forEach(card => card.addEventListener('click', () => openDuaModal(card.dataset.dua)));
 }
+function openDuaModal(id) {
+  const d = DUAS.find(x => x.id === id);
+  if (!d) return;
+  const body = document.getElementById('duaModalBody');
+  const ar = d.full_ar || d.ar;
+  const tr = d.full_tr || d.tr;
+  const en = d.full_en || d.en;
+  const src = d.source || '';
+  body.innerHTML =
+    '<span class="dua-modal-cat">'+escapeHTML(d.cat)+'</span>' +
+    '<h3 class="dua-modal-title">'+escapeHTML(d.title)+'</h3>' +
+    '<div class="dua-modal-section"><div class="dua-modal-section-label">Arabic</div><div class="dua-modal-arabic">'+ar.replace(/\n/g,'<br>')+'</div></div>' +
+    (tr?'<div class="dua-modal-section"><div class="dua-modal-section-label">Transliteration</div><div class="dua-modal-translit">'+escapeHTML(tr).replace(/\n/g,'<br>')+'</div></div>':'') +
+    '<div class="dua-modal-section"><div class="dua-modal-section-label">Meaning &amp; context</div><div class="dua-modal-meaning">'+escapeHTML(en).replace(/\n/g,'<br><br>')+'</div>'+(src?'<div class="dua-modal-source">'+escapeHTML(src)+'</div>':'')+'</div>';
+  showModal('duaModal');
+}
+function showModal(id) {
+  const m = document.getElementById(id);
+  m.classList.add('show');
+  m.setAttribute('aria-hidden','false');
+}
+function hideModal(id) {
+  const m = document.getElementById(id);
+  m.classList.remove('show');
+  m.setAttribute('aria-hidden','true');
+  if (id === 'journeyModal' && journeyTimer) { clearInterval(journeyTimer); journeyTimer = null; }
+}
+document.addEventListener('click', (e) => {
+  if (e.target.matches('[data-close]')) {
+    const m = e.target.closest('.app-modal');
+    if (m) hideModal(m.id);
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.querySelectorAll('.app-modal.show').forEach(m => hideModal(m.id));
+});
 
 // VISIBILITY (fields, tabs, duas) — applied after settings load and on every change
 const TAB_LIST = [
@@ -1898,28 +2029,53 @@ async function setJourneyStart(dateStr) {
   if (document.getElementById('panel-stats').classList.contains('active')) renderStats();
   toast(dateStr ? 'Journey set to ' + dateStr : 'Journey reset');
 }
-async function openJourneyStart() {
-  const cur = getJourneyStart();
+let journeyTimer = null;
+function tickJourneyCountdown() {
+  const el = document.getElementById('jcTime');
+  const zoneEl = document.getElementById('jcZone');
+  if (!el) return;
+  const now = new Date();
+  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+  const ms = tomorrow - now;
+  const h = Math.floor(ms / 3600000);
+  const m = Math.floor((ms % 3600000) / 60000);
+  const s = Math.floor((ms % 60000) / 1000);
+  el.textContent = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  if (zoneEl) {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'local';
+    zoneEl.textContent = 'until midnight · ' + tz;
+  }
+}
+function openJourneyStart() {
+  document.getElementById('customDateRow').style.display = 'none';
   const today = new Date().toISOString().split('T')[0];
-  const input = prompt('Set your journey start date (YYYY-MM-DD).\nLeave blank and press OK to start today.\nType "reset" to clear.', cur || today);
-  if (input === null) return;
-  const v = input.trim();
-  if (!v) return setJourneyStart(today);
-  if (v.toLowerCase() === 'reset') return setJourneyStart(null);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) { toast('Invalid date format', true); return; }
-  if (isNaN(new Date(v+'T00:00:00').getTime())) { toast('Invalid date', true); return; }
-  setJourneyStart(v);
+  document.getElementById('customDateInput').value = getJourneyStart() || today;
+  showModal('journeyModal');
+  tickJourneyCountdown();
+  if (journeyTimer) clearInterval(journeyTimer);
+  journeyTimer = setInterval(tickJourneyCountdown, 1000);
 }
 document.addEventListener('click', (e) => {
   if (e.target.id === 'startJourneyBtn') {
-    const today = new Date().toISOString().split('T')[0];
-    if (getJourneyStart() && !confirm('Reset your journey to start fresh from today (Day 1)? Historical entries stay safe.')) return;
-    setJourneyStart(today);
+    openJourneyStart();
   } else if (e.target.id === 'customStartBtn') {
     openJourneyStart();
+    document.getElementById('customDateRow').style.display = 'block';
   } else if (e.target.id === 'resetJourneyBtn') {
     if (!confirm('Clear journey start? The day counter will show "Not started" until you start again.')) return;
     setJourneyStart(null);
+  } else if (e.target.id === 'confirmStartToday') {
+    const today = new Date().toISOString().split('T')[0];
+    if (getJourneyStart() && !confirm('Reset your journey to start fresh from today (Day 1)? Historical entries stay safe.')) return;
+    setJourneyStart(today);
+    hideModal('journeyModal');
+  } else if (e.target.id === 'openCustomDate') {
+    document.getElementById('customDateRow').style.display = 'block';
+  } else if (e.target.id === 'confirmCustomDate') {
+    const v = document.getElementById('customDateInput').value;
+    if (!v) { toast('Pick a date first', true); return; }
+    setJourneyStart(v);
+    hideModal('journeyModal');
   }
 });
 
