@@ -189,6 +189,9 @@
   .block-num{font-family:var(--sans);font-size:13px;font-style:normal;font-weight:700;color:var(--gold-bright);min-width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.3);border-radius:50%;text-shadow:0 0 8px rgba(196,181,253,0.5)}
   .block-title{flex:1;font-family:var(--sans);font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.01em}
   .block-time{font-family:var(--sans);font-size:10.5px;color:var(--text-muted);letter-spacing:.04em;text-transform:none;font-weight:600;padding:3px 9px;background:rgba(255,255,255,0.04);border:1px solid var(--border-light);border-radius:999px}
+  .block-count{font-family:var(--sans);font-size:11.5px;color:var(--gold-bright);font-weight:700;padding:3px 9px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);border-radius:999px;font-variant-numeric:tabular-nums;text-shadow:0 0 8px rgba(196,181,253,0.4)}
+  .block-hide{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.04);border:1px solid var(--border-light);color:var(--text-dim);font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:300;transition:all .2s;padding:0}
+  .block-hide:hover{color:#fda4b1;border-color:rgba(251,113,133,0.5);background:rgba(251,113,133,0.1)}
   .block-count{font-family:var(--mono);font-size:12px;color:var(--gold);margin-left:8px;font-weight:700}
   .block-quote{padding:14px 20px;background:rgba(167,139,250,.04);border-bottom:1px solid var(--border);font-family:var(--sans);font-style:normal;font-size:13.5px;font-weight:400;color:var(--text-muted);line-height:1.55}
   .block-quote .arabic-small{font-family:var(--arabic);font-size:18px;color:var(--gold-bright);direction:rtl;display:block;margin-bottom:8px;font-style:normal;font-weight:500;text-align:right;line-height:2.1;text-shadow:0 0 14px rgba(196,181,253,0.3)}
@@ -349,6 +352,26 @@
   @media (max-width:700px){.history-row{grid-template-columns:1fr;gap:8px;padding:14px}.history-row.header{display:none}.form-grid{grid-template-columns:1fr}.set-row{grid-template-columns:24px 1fr 1fr 60px;gap:6px}.set-hint{display:none}}
   @media (max-width:640px){.container{padding:16px 12px 110px}.auth-box{padding:32px 22px}.tabs{display:none}.nav-bottom{display:block}.stats-grid{grid-template-columns:1fr 1fr}.topbar{flex-wrap:wrap;gap:8px}.user-email{font-size:10px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pr-grid{grid-template-columns:1fr 1fr}.toast{bottom:110px}.tz-picker{max-width:130px;font-size:10px}}
 
+  /* Stats grouped sections */
+  .stats-section{margin-bottom:32px}
+  .stats-section-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border-light)}
+  .stats-section-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(167,139,250,0.18),rgba(103,232,249,0.08));border:1px solid rgba(167,139,250,0.3);border-radius:10px;color:var(--gold-bright);font-size:14px;text-shadow:0 0 10px rgba(196,181,253,0.5)}
+  .stats-section-title{font-family:var(--sans);font-size:15px;font-weight:700;color:#fff;letter-spacing:.02em;margin:0;text-transform:none}
+  /* Collapsible accordion (customize) */
+  details.cust-section{background:var(--bg-card);border:1px solid var(--border-light);border-radius:16px;margin-bottom:14px;overflow:hidden;backdrop-filter:blur(18px) saturate(140%)}
+  details.cust-section[open]{box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 8px 28px rgba(0,0,0,0.4),0 0 24px rgba(167,139,250,0.08)}
+  details.cust-section > summary{list-style:none;padding:18px 22px;cursor:pointer;display:flex;align-items:center;gap:14px;-webkit-tap-highlight-color:transparent}
+  details.cust-section > summary::-webkit-details-marker{display:none}
+  details.cust-section > summary::after{content:'+';margin-left:auto;font-family:var(--sans);font-size:22px;font-weight:300;color:var(--text-muted);transition:transform .25s ease;line-height:1}
+  details.cust-section[open] > summary::after{content:'×';color:var(--gold-bright)}
+  .cust-sec-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(167,139,250,0.18),rgba(103,232,249,0.08));border:1px solid rgba(167,139,250,0.3);border-radius:10px;color:var(--gold-bright);font-size:16px;text-shadow:0 0 10px rgba(196,181,253,0.5);flex-shrink:0}
+  .cust-sec-title{font-family:var(--sans);font-size:15px;font-weight:700;color:#fff}
+  .cust-sec-sub{font-family:var(--sans);font-size:12px;color:var(--text-muted);margin-top:2px;font-weight:500}
+  .cust-sec-body{padding:6px 22px 22px;border-top:1px solid var(--border)}
+  /* Topbar customize gear button */
+  .topbar-gear{background:rgba(255,255,255,0.03);border:1px solid var(--border-light);color:var(--text-muted);width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;padding:0}
+  .topbar-gear:hover{color:var(--gold-bright);border-color:rgba(167,139,250,0.4);background:rgba(167,139,250,0.08)}
+  .topbar-gear svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
   /* Glow accents on key headings */
   .hero h1,.section-title,.progress-big,.auth-box h1,.pr-best,.workout-day-label{text-shadow:var(--text-glow)}
   .quote-arabic,.dua-arabic,.hero .ayah-arabic,.block-quote .arabic-small,.bismillah{font-family:var(--arabic);text-shadow:0 0 18px rgba(196,181,253,0.35)}
@@ -379,6 +402,7 @@
   <div class="topbar">
     <span class="user-email" id="userEmail">—</span>
     <select id="tzPicker" class="tz-picker" title="Timezone — controls today's date and gym day"></select>
+    <button class="topbar-gear" id="topbarGearBtn" title="Customize sections, fields, and tabs"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.1-1.3l2-1.6-2-3.4-2.4.9a7 7 0 00-2.3-1.3L13.8 3h-3.6l-.4 2.3a7 7 0 00-2.3 1.3l-2.4-.9-2 3.4 2 1.6A7 7 0 005 12a7 7 0 00.1 1.3l-2 1.6 2 3.4 2.4-.9a7 7 0 002.3 1.3l.4 2.3h3.6l.4-2.3a7 7 0 002.3-1.3l2.4.9 2-3.4-2-1.6c.1-.4.1-.9.1-1.3z"/></svg></button>
     <span class="sync-status synced" id="syncStatus">Synced</span>
     <button class="signout-btn" id="signoutBtn">Sign out</button>
   </div>
@@ -540,31 +564,51 @@
   </section>
 
   <section class="panel" id="panel-customize">
-    <h2 class="section-title">Customize<span class="section-sub">Your checklist, your way</span></h2>
+    <h2 class="section-title">Customize<span class="section-sub">Your dashboard, your way</span></h2>
     <div class="section-arabic">خَصِّصْ قَائِمَتَكَ</div>
 
-    <h3 class="section-title" style="font-size:18px;margin-top:24px">Your journey<span class="section-sub">Day counter</span></h3>
-    <div class="cust-info" id="journeyStatus"></div>
-    <div class="actions-bar" style="margin-top:0;padding-top:0;border:none">
-      <button class="btn primary" id="startJourneyBtn">Start Day 1 today</button>
-      <button class="btn" id="customStartBtn">Set custom start date</button>
-      <button class="btn danger" id="resetJourneyBtn">Reset journey</button>
-    </div>
+    <details class="cust-section" open>
+      <summary><div class="cust-sec-icon">◆</div><div><div class="cust-sec-title">Your journey</div><div class="cust-sec-sub">Day counter and start date</div></div></summary>
+      <div class="cust-sec-body">
+        <div class="cust-info" id="journeyStatus" style="margin-top:14px"></div>
+        <div class="actions-bar" style="margin-top:0;padding-top:0;border:none">
+          <button class="btn primary" id="startJourneyBtn">Start Day 1 today</button>
+          <button class="btn" id="customStartBtn">Set custom start date</button>
+          <button class="btn danger" id="resetJourneyBtn">Reset journey</button>
+        </div>
+      </div>
+    </details>
 
-    <h3 class="section-title" style="font-size:18px;margin-top:36px">Daily checklist<span class="section-sub">Add, hide, rename</span></h3>
-    <div class="cust-info"><strong>How this works</strong>Add items to any block. Hide defaults you don't need. Rename or delete your own blocks. Historical data stays intact.</div>
-    <div id="customizeContainer"></div>
-    <div class="actions-bar"><button class="btn" id="addBlockBtn">+ Add new block</button><button class="btn danger" id="resetCustBtn">Reset checklist defaults</button></div>
+    <details class="cust-section">
+      <summary><div class="cust-sec-icon">⊟</div><div><div class="cust-sec-title">Sections &amp; tabs</div><div class="cust-sec-sub">Hide tabs (Trading, Gym, etc.) and entire checklist sections</div></div></summary>
+      <div class="cust-sec-body"><div id="visibilityTabsBlocks"></div></div>
+    </details>
 
-    <h3 class="section-title" style="font-size:18px;margin-top:36px">Visibility<span class="section-sub">Hide tabs, fields, and duas</span></h3>
-    <div class="cust-info"><strong>Trim the app</strong>Hide any tab, form field, or dua you don't need. Customize itself can never be hidden. Changes sync instantly across your devices.</div>
-    <div id="visibilityControls"></div>
+    <details class="cust-section">
+      <summary><div class="cust-sec-icon">≡</div><div><div class="cust-sec-title">Form fields</div><div class="cust-sec-sub">Hide individual fields across Physical, Trading, Reflection</div></div></summary>
+      <div class="cust-sec-body"><div id="visibilityFields"></div></div>
+    </details>
 
-    <h3 class="section-title" style="font-size:18px;margin-top:36px">Workout split<span class="section-sub">Your weekly training</span></h3>
-    <div class="section-arabic">جَدْوَلُ التَّدْرِيبِ</div>
-    <div class="cust-info"><strong>Configure your split</strong>Edit day labels, add/remove exercises, mark rest days. Changes sync to the Gym tab instantly.</div>
-    <div id="workoutSplitContainer"></div>
-    <div class="actions-bar"><button class="btn danger" id="resetSplitBtn">Reset to default split</button></div>
+    <details class="cust-section">
+      <summary><div class="cust-sec-icon">☾</div><div><div class="cust-sec-title">Duas &amp; ayat</div><div class="cust-sec-sub">Show or hide individual duas and Quranic ayat</div></div></summary>
+      <div class="cust-sec-body"><div id="visibilityDuas"></div></div>
+    </details>
+
+    <details class="cust-section">
+      <summary><div class="cust-sec-icon">✎</div><div><div class="cust-sec-title">Daily checklist items</div><div class="cust-sec-sub">Add, rename, or hide individual checklist items within sections</div></div></summary>
+      <div class="cust-sec-body">
+        <div id="customizeContainer"></div>
+        <div class="actions-bar"><button class="btn" id="addBlockBtn">+ Add new block</button><button class="btn danger" id="resetCustBtn">Reset checklist defaults</button></div>
+      </div>
+    </details>
+
+    <details class="cust-section">
+      <summary><div class="cust-sec-icon">⬢</div><div><div class="cust-sec-title">Workout split</div><div class="cust-sec-sub">Your weekly training plan — labels, exercises, rest days</div></div></summary>
+      <div class="cust-sec-body">
+        <div id="workoutSplitContainer"></div>
+        <div class="actions-bar"><button class="btn danger" id="resetSplitBtn">Reset to default split</button></div>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -661,7 +705,7 @@ let workoutsChannel = null;
 let lastLocalWrite = 0;
 let lastSettingsWrite = 0;
 let lastWorkoutWrite = 0;
-let userSettings = { structure:{blocks:[]}, hidden_defaults:[], workout_structure:{}, hidden_fields:[], hidden_tabs:[], hidden_duas:[], journey_start:null, timezone:null };
+let userSettings = { structure:{blocks:[]}, hidden_defaults:[], workout_structure:{}, hidden_fields:[], hidden_tabs:[], hidden_duas:[], hidden_blocks:[], journey_start:null, timezone:null };
 let completionChartInstance = null;
 let nafsChartInstance = null;
 let gymCharts = {};
@@ -671,15 +715,17 @@ let authMode = 'signin';
 
 function getEffectiveChecklist() {
   const hidden = new Set(userSettings.hidden_defaults || []);
+  const hiddenBlocks = new Set((userSettings.hidden_blocks || []).map(String));
   const userBlocks = (userSettings.structure && userSettings.structure.blocks) || [];
   const attached = {}, standalone = [];
   userBlocks.forEach(ub => { if (ub.attachToDefault) attached[ub.attachToDefault] = ub.items || []; else standalone.push(ub); });
-  const result = CHECKLIST_STRUCTURE.map(b => {
+  const result = CHECKLIST_STRUCTURE.filter(b => !hiddenBlocks.has(String(b.num))).map(b => {
     const kept = b.items.filter(it => !hidden.has(it.id));
     const extra = attached[b.num] || [];
     return Object.assign({}, b, { items: kept.concat(extra) });
   });
   standalone.forEach((ub, idx) => {
+    if (hiddenBlocks.has('C'+(idx+1))) return;
     result.push({ num:'C'+(idx+1), title:ub.title||'Custom block', time:ub.time||'', quote:null, items:ub.items||[] });
   });
   return result;
@@ -833,6 +879,7 @@ async function fetchSettings() {
       hidden_fields:meta.hidden_fields||[],
       hidden_tabs:meta.hidden_tabs||[],
       hidden_duas:meta.hidden_duas||[],
+      hidden_blocks:meta.hidden_blocks||[],
       journey_start:meta.journey_start||null,
       timezone:meta.timezone||null,
     };
@@ -846,6 +893,7 @@ async function saveSettings() {
     hidden_fields:userSettings.hidden_fields||[],
     hidden_tabs:userSettings.hidden_tabs||[],
     hidden_duas:userSettings.hidden_duas||[],
+    hidden_blocks:userSettings.hidden_blocks||[],
     journey_start:userSettings.journey_start||null,
     timezone:userSettings.timezone||null,
   }});
@@ -931,7 +979,8 @@ function renderChecklist() {
     let inner = '<div class="block-header"><div class="block-num">'+block.num+'</div>';
     inner += '<div class="block-title">'+escapeHTML(block.title)+'</div>';
     inner += '<div class="block-time">'+escapeHTML(block.time)+'</div>';
-    inner += '<div class="block-count">'+blockDone+'/'+block.items.length+'</div></div>';
+    inner += '<div class="block-count">'+blockDone+'/'+block.items.length+'</div>';
+    inner += '<button class="block-hide" data-block-num="'+escapeHTML(String(block.num))+'" title="Hide this section">×</button></div>';
     if (block.quote) inner += '<div class="block-quote"><span class="arabic-small">'+block.quote.ar+'</span>'+escapeHTML(block.quote.en)+'<span class="src">'+escapeHTML(block.quote.src)+'</span></div>';
     inner += '<div class="block-items"></div>';
     blockEl.innerHTML = inner;
@@ -960,6 +1009,17 @@ function renderChecklist() {
   document.getElementById('progDone').textContent = done;
   document.getElementById('progTotal').textContent = total;
   document.getElementById('progFill').style.width = total ? (done/total*100)+'%' : '0%';
+  container.querySelectorAll('.block-hide').forEach(btn => btn.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    const num = btn.dataset.blockNum;
+    if (!confirm('Hide this section? You can bring it back anytime from Customize → Sections.')) return;
+    const set = new Set((userSettings.hidden_blocks || []).map(String));
+    set.add(num);
+    userSettings.hidden_blocks = Array.from(set);
+    renderChecklist();
+    await saveSettings();
+    toast('Section hidden');
+  }));
 }
 function loadForms() {
   const data = cache[currentDate] || { physical:{}, trading:{}, reflection:{} };
@@ -1275,36 +1335,52 @@ async function renderStats() {
   const jStart = getJourneyStart();
   const journeyDays = jStart ? Math.max(0, Math.floor((new Date(currentDate+'T12:00:00Z') - new Date(jStart+'T12:00:00Z'))/86400000) + 1) : null;
 
+  // Group cards into themed sections so it's not just a wall of grids
+  const card = (cls, label, value, sub, unit) => '<div class="stat-card '+cls+'"><div class="stat-label">'+label+'</div><div class="stat-value">'+value+(unit?'<span class="unit">'+unit+'</span>':'')+'</div><div class="stat-sub">'+sub+'</div></div>';
+  const section = (title, icon, cards) => cards.length ? '<div class="stats-section"><div class="stats-section-head"><span class="stats-section-icon">'+icon+'</span><h3 class="stats-section-title">'+title+'</h3></div><div class="stats-grid">'+cards.join('')+'</div></div>' : '';
+
+  const journeyCards = [
+    card('', 'Journey day', (journeyDays!==null?journeyDays:'—'), jStart?'Since '+jStart:'Not started'),
+    card('', 'Days tracked', totalDays, 'Entries logged'),
+    card('green', 'Strong days 80%+', perfectDays, (totalDays?Math.round(perfectDays/totalDays*100):0)+'% of tracked days'),
+    card('', 'Current streak', currentStreak, 'Consecutive 80%+', 'days'),
+    card('', 'Avg completion', avgPct, 'Over all tracked days', '%'),
+  ];
+  const spiritualCards = [
+    card('blue', 'Fajr in masjid', fajrCount, (totalDays?Math.round(fajrCount/totalDays*100):0)+'% of days'),
+    card('green', 'Witr prayed', witrCount, (totalDays?Math.round(witrCount/totalDays*100):0)+'% of days'),
+    card('red', 'No-scroll days', noScrollCount, (totalDays?Math.round(noScrollCount/totalDays*100):0)+'% of days'),
+    card('', 'Reflections written', reflectionCount, (totalDays?Math.round(reflectionCount/totalDays*100):0)+'% of days'),
+  ];
+  const bodyCards = [
+    card('', 'Avg sleep', avgSleep, sleepN+' days logged', 'h'),
+    card('blue', 'Avg water', avgWater, waterN+' days logged', 'L'),
+    card('red', 'Avg screen time', avgScreen, screenN+' days logged', 'h'),
+  ];
+  const gymCards = [
+    card('blue', 'Workouts logged', realWorkouts.length, (scheduledGymDays?Math.round(realWorkouts.length/scheduledGymDays*100):0)+'% of scheduled'),
+    card('', 'Rest days taken', userRestDays, 'Marked as rest'),
+    card('red', 'Skipped gym days', skippedGymDays, 'Scheduled but not logged'),
+    card('', 'Total volume', Math.round(totalVolume).toLocaleString(), 'Weight × reps', 'kg'),
+    card('', 'Total sets', totalSets, 'Working sets'),
+    card('', 'Total reps', totalReps.toLocaleString(), 'Across all sets'),
+    card('', 'Avg session', avgDuration, 'Time in the gym', 'min'),
+  ];
+  if (topCat) gymCards.push('<div class="stat-card blue"><div class="stat-label">Top muscle group</div><div class="stat-value" style="text-transform:capitalize">'+escapeHTML(topCat[0])+'</div><div class="stat-sub">'+topCat[1]+' sets</div></div>');
+  if (heaviest) gymCards.push('<div class="stat-card green"><div class="stat-label">Best estimated 1RM</div><div class="stat-value">'+heaviest.e+'<span class="unit">kg</span></div><div class="stat-sub">'+escapeHTML(heaviest.name)+' · '+heaviest.weight+'×'+heaviest.reps+'</div></div>');
+  // Trading section only shows if user has actually traded (otherwise hide entirely — no point cluttering for non-traders)
+  const tradingCards = [];
+  if (tradingSessions > 0) {
+    tradingCards.push(card('', 'Trading sessions', tradingSessions, (totalDays?Math.round(tradingSessions/totalDays*100):0)+'% of days'));
+    if (tradingWins+tradingLosses > 0) tradingCards.push(card('green', 'Win rate', winRate, tradingWins+'W · '+tradingLosses+'L', '%'));
+  }
+
   let html = '';
-  // Section: Journey
-  html += '<div class="stat-card"><div class="stat-label">Journey day</div><div class="stat-value">'+(journeyDays!==null?journeyDays:'—')+'</div><div class="stat-sub">'+(jStart?'Since '+jStart:'Not started')+'</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Days tracked</div><div class="stat-value">'+totalDays+'</div><div class="stat-sub">Entries logged</div></div>';
-  html += '<div class="stat-card green"><div class="stat-label">Strong days 80%+</div><div class="stat-value">'+perfectDays+'</div><div class="stat-sub">'+(totalDays?Math.round(perfectDays/totalDays*100):0)+'% of tracked days</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Current streak</div><div class="stat-value">'+currentStreak+'<span class="unit">days</span></div><div class="stat-sub">Consecutive 80%+</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Avg completion</div><div class="stat-value">'+avgPct+'<span class="unit">%</span></div><div class="stat-sub">Over all tracked days</div></div>';
-  // Section: Spiritual
-  html += '<div class="stat-card blue"><div class="stat-label">Fajr in masjid</div><div class="stat-value">'+fajrCount+'</div><div class="stat-sub">'+(totalDays?Math.round(fajrCount/totalDays*100):0)+'% of days</div></div>';
-  html += '<div class="stat-card green"><div class="stat-label">Witr prayed</div><div class="stat-value">'+witrCount+'</div><div class="stat-sub">'+(totalDays?Math.round(witrCount/totalDays*100):0)+'% of days</div></div>';
-  html += '<div class="stat-card red"><div class="stat-label">No-scroll days</div><div class="stat-value">'+noScrollCount+'</div><div class="stat-sub">'+(totalDays?Math.round(noScrollCount/totalDays*100):0)+'% of days</div></div>';
-  // Section: Gym
-  html += '<div class="stat-card blue"><div class="stat-label">Workouts logged</div><div class="stat-value">'+realWorkouts.length+'</div><div class="stat-sub">'+(scheduledGymDays?Math.round(realWorkouts.length/scheduledGymDays*100):0)+'% of scheduled</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Rest days taken</div><div class="stat-value">'+userRestDays+'</div><div class="stat-sub">Marked as rest</div></div>';
-  html += '<div class="stat-card red"><div class="stat-label">Skipped gym days</div><div class="stat-value">'+skippedGymDays+'</div><div class="stat-sub">Scheduled but not logged</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Total volume</div><div class="stat-value">'+Math.round(totalVolume).toLocaleString()+'<span class="unit">kg</span></div><div class="stat-sub">Weight × reps</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Total sets</div><div class="stat-value">'+totalSets+'</div><div class="stat-sub">Working sets</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Total reps</div><div class="stat-value">'+totalReps.toLocaleString()+'</div><div class="stat-sub">Across all sets</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Avg session</div><div class="stat-value">'+avgDuration+'<span class="unit">min</span></div><div class="stat-sub">Time in the gym</div></div>';
-  if (topCat) html += '<div class="stat-card blue"><div class="stat-label">Top muscle group</div><div class="stat-value" style="text-transform:capitalize">'+escapeHTML(topCat[0])+'</div><div class="stat-sub">'+topCat[1]+' sets</div></div>';
-  if (heaviest) html += '<div class="stat-card green"><div class="stat-label">Best estimated 1RM</div><div class="stat-value">'+heaviest.e+'<span class="unit">kg</span></div><div class="stat-sub">'+escapeHTML(heaviest.name)+' · '+heaviest.weight+'×'+heaviest.reps+'</div></div>';
-  // Section: Trading
-  html += '<div class="stat-card"><div class="stat-label">Trading sessions</div><div class="stat-value">'+tradingSessions+'</div><div class="stat-sub">'+(totalDays?Math.round(tradingSessions/totalDays*100):0)+'% of days</div></div>';
-  if (tradingWins+tradingLosses > 0) html += '<div class="stat-card green"><div class="stat-label">Win rate</div><div class="stat-value">'+winRate+'<span class="unit">%</span></div><div class="stat-sub">'+tradingWins+'W · '+tradingLosses+'L</div></div>';
-  // Section: Body
-  html += '<div class="stat-card"><div class="stat-label">Avg sleep</div><div class="stat-value">'+avgSleep+'<span class="unit">h</span></div><div class="stat-sub">'+sleepN+' days logged</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Avg water</div><div class="stat-value">'+avgWater+'<span class="unit">L</span></div><div class="stat-sub">'+waterN+' days logged</div></div>';
-  html += '<div class="stat-card red"><div class="stat-label">Avg screen time</div><div class="stat-value">'+avgScreen+'<span class="unit">h</span></div><div class="stat-sub">'+screenN+' days logged</div></div>';
-  // Section: Reflection
-  html += '<div class="stat-card"><div class="stat-label">Reflections written</div><div class="stat-value">'+reflectionCount+'</div><div class="stat-sub">'+(totalDays?Math.round(reflectionCount/totalDays*100):0)+'% of days</div></div>';
+  html += section('Journey', '◆', journeyCards);
+  html += section('Spiritual', '☾', spiritualCards);
+  html += section('Body', '✦', bodyCards);
+  html += section('Gym', '⬢', gymCards);
+  html += section('Trading', '↗', tradingCards);
   document.getElementById('statsGrid').innerHTML = html;
   if (completionChartInstance) completionChartInstance.destroy();
   completionChartInstance = new Chart(document.getElementById('completionChart').getContext('2d'), { type:'line', data:{ labels, datasets:[{ label:'Completion %', data:completionData, borderColor:'#c9a961', backgroundColor:'rgba(201,169,97,0.1)', fill:true, tension:0.3, borderWidth:2.5, pointRadius:4, pointBackgroundColor:'#c9a961' }] }, options:{ responsive:true, maintainAspectRatio:false, scales:{ y:{ min:0, max:100, ticks:{color:'#8a8a82'}, grid:{color:'#2a2a2a'} }, x:{ ticks:{color:'#8a8a82'}, grid:{color:'#1c1c1c'} } }, plugins:{ legend:{display:false} } } });
@@ -1745,7 +1821,7 @@ function setupRealtime() {
       if (Date.now() - lastSettingsWrite < 1500) return;
       if (payload.new) {
         const meta = (payload.new.structure && payload.new.structure.meta) || {};
-        userSettings = { structure:payload.new.structure||{blocks:[]}, hidden_defaults:payload.new.hidden_defaults||[], workout_structure:payload.new.workout_structure||{}, hidden_fields:meta.hidden_fields||[], hidden_tabs:meta.hidden_tabs||[], hidden_duas:meta.hidden_duas||[], journey_start:meta.journey_start||null, timezone:meta.timezone||null };
+        userSettings = { structure:payload.new.structure||{blocks:[]}, hidden_defaults:payload.new.hidden_defaults||[], workout_structure:payload.new.workout_structure||{}, hidden_fields:meta.hidden_fields||[], hidden_tabs:meta.hidden_tabs||[], hidden_duas:meta.hidden_duas||[], hidden_blocks:meta.hidden_blocks||[], journey_start:meta.journey_start||null, timezone:meta.timezone||null };
         applyVisibility(); renderDuas();
         renderChecklist();
         if (document.getElementById('panel-customize').classList.contains('active')) renderCustomize();
@@ -1805,6 +1881,8 @@ async function initApp() {
   document.getElementById('saveTradingBtn').addEventListener('click', saveTrading);
   document.getElementById('saveReflectionBtn').addEventListener('click', saveReflection);
   document.getElementById('signoutBtn').addEventListener('click', signOut);
+  const gear = document.getElementById('topbarGearBtn');
+  if (gear) gear.addEventListener('click', () => switchTab('customize'));
   document.getElementById('downloadReportBtn').addEventListener('click', downloadReport);
   document.getElementById('exportBtn').addEventListener('click', exportData);
   document.getElementById('addBlockBtn').addEventListener('click', addNewBlock);
@@ -2134,43 +2212,82 @@ async function toggleHiddenDua(id) {
   await saveSettings();
 }
 
+async function toggleHiddenBlock(num) {
+  const set = new Set((userSettings.hidden_blocks || []).map(String));
+  set.has(String(num)) ? set.delete(String(num)) : set.add(String(num));
+  userSettings.hidden_blocks = Array.from(set);
+  renderChecklist(); renderVisibilityControls();
+  await saveSettings();
+}
 function renderVisibilityControls() {
-  const root = document.getElementById('visibilityControls');
+  renderVisibilityTabsBlocks();
+  renderVisibilityFields();
+  renderVisibilityDuas();
+}
+function attachVisibilityHandlers(root) {
+  root.querySelectorAll('button[data-role]').forEach(btn => btn.addEventListener('click', () => {
+    const role = btn.dataset.role; const id = btn.dataset.id;
+    if (role === 'toggle-tab') toggleHiddenTab(id);
+    else if (role === 'toggle-field') toggleHiddenField(id);
+    else if (role === 'toggle-dua') toggleHiddenDua(id);
+    else if (role === 'toggle-block') toggleHiddenBlock(id);
+  }));
+}
+function renderVisibilityTabsBlocks() {
+  const root = document.getElementById('visibilityTabsBlocks');
   if (!root) return;
   const ht = new Set(userSettings.hidden_tabs || []);
-  const hf = new Set(userSettings.hidden_fields || []);
-  const hd = new Set(userSettings.hidden_duas || []);
+  const hb = new Set((userSettings.hidden_blocks || []).map(String));
   let html = '';
-  // Tabs
-  html += '<div class="cust-block"><div class="cust-head"><div class="cust-title">Visible tabs</div><span class="cust-badge d">Nav</span></div><div class="cust-items">';
+  html += '<div class="cust-block"><div class="cust-head"><div class="cust-title">Visible tabs</div><span class="cust-badge d">Top nav</span></div><div class="cust-items">';
   TAB_LIST.forEach(t => {
     const hidden = ht.has(t.id);
     html += '<div class="cust-item"><span class="cust-item-text'+(hidden?' hid':'')+'">'+escapeHTML(t.label)+'</span><button class="cust-action'+(hidden?' show-btn':'')+'" data-role="toggle-tab" data-id="'+escapeHTML(t.id)+'">'+(hidden?'Show':'Hide')+'</button></div>';
   });
   html += '</div></div>';
-  // Fields
+  html += '<div class="cust-block"><div class="cust-head"><div class="cust-title">Today checklist sections</div><span class="cust-badge d">Blocks</span></div><div class="cust-items">';
+  CHECKLIST_STRUCTURE.forEach(b => {
+    const hidden = hb.has(String(b.num));
+    html += '<div class="cust-item"><span class="cust-item-text'+(hidden?' hid':'')+'">'+b.num+'. '+escapeHTML(b.title)+' <small style="color:var(--text-dim)">· '+escapeHTML(b.time)+'</small></span><button class="cust-action'+(hidden?' show-btn':'')+'" data-role="toggle-block" data-id="'+escapeHTML(String(b.num))+'">'+(hidden?'Show':'Hide')+'</button></div>';
+  });
+  html += '</div></div>';
+  root.innerHTML = html;
+  attachVisibilityHandlers(root);
+}
+function renderVisibilityFields() {
+  const root = document.getElementById('visibilityFields');
+  if (!root) return;
+  const hf = new Set(userSettings.hidden_fields || []);
+  let html = '';
   FIELD_GROUPS.forEach(g => {
-    html += '<div class="cust-block"><div class="cust-head"><div class="cust-title">'+escapeHTML(g.panel)+' fields</div><span class="cust-badge d">Form</span></div><div class="cust-items">';
+    html += '<div class="cust-block"><div class="cust-head"><div class="cust-title">'+escapeHTML(g.panel)+'</div><span class="cust-badge d">Fields</span></div><div class="cust-items">';
     g.fields.forEach(f => {
       const hidden = hf.has(f.id);
       html += '<div class="cust-item"><span class="cust-item-text'+(hidden?' hid':'')+'">'+escapeHTML(f.label)+'</span><button class="cust-action'+(hidden?' show-btn':'')+'" data-role="toggle-field" data-id="'+escapeHTML(f.id)+'">'+(hidden?'Show':'Hide')+'</button></div>';
     });
     html += '</div></div>';
   });
-  // Duas
-  html += '<div class="cust-block"><div class="cust-head"><div class="cust-title">Duas &amp; ayat</div><span class="cust-badge d">Duas</span></div><div class="cust-items">';
-  DUAS.forEach(d => {
-    const hidden = hd.has(d.id);
-    html += '<div class="cust-item"><span class="cust-item-text'+(hidden?' hid':'')+'">'+escapeHTML(d.title)+' <small style="color:var(--text-dim)">· '+escapeHTML(d.cat)+'</small></span><button class="cust-action'+(hidden?' show-btn':'')+'" data-role="toggle-dua" data-id="'+escapeHTML(d.id)+'">'+(hidden?'Show':'Hide')+'</button></div>';
-  });
-  html += '</div></div>';
   root.innerHTML = html;
-  root.querySelectorAll('button[data-role]').forEach(btn => btn.addEventListener('click', () => {
-    const role = btn.dataset.role; const id = btn.dataset.id;
-    if (role === 'toggle-tab') toggleHiddenTab(id);
-    else if (role === 'toggle-field') toggleHiddenField(id);
-    else if (role === 'toggle-dua') toggleHiddenDua(id);
-  }));
+  attachVisibilityHandlers(root);
+}
+function renderVisibilityDuas() {
+  const root = document.getElementById('visibilityDuas');
+  if (!root) return;
+  const hd = new Set(userSettings.hidden_duas || []);
+  // Group by category for easier scanning
+  const byCat = {};
+  DUAS.forEach(d => { (byCat[d.cat] = byCat[d.cat] || []).push(d); });
+  let html = '';
+  Object.keys(byCat).forEach(cat => {
+    html += '<div class="cust-block"><div class="cust-head"><div class="cust-title">'+escapeHTML(cat)+'</div><span class="cust-badge d">'+byCat[cat].length+' duas</span></div><div class="cust-items">';
+    byCat[cat].forEach(d => {
+      const hidden = hd.has(d.id);
+      html += '<div class="cust-item"><span class="cust-item-text'+(hidden?' hid':'')+'">'+escapeHTML(d.title)+'</span><button class="cust-action'+(hidden?' show-btn':'')+'" data-role="toggle-dua" data-id="'+escapeHTML(d.id)+'">'+(hidden?'Show':'Hide')+'</button></div>';
+    });
+    html += '</div></div>';
+  });
+  root.innerHTML = html;
+  attachVisibilityHandlers(root);
 }
 
 // JOURNEY START — per-user day counter
