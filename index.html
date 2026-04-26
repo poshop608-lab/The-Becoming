@@ -7,7 +7,7 @@
 <title>The Becoming · Mohammed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#0a0a0a;--bg-card:#131313;--bg-elevated:#1c1c1c;--bg-deep:#050505;--border:#2a2a2a;--border-light:#383838;--text:#f5f5f0;--text-muted:#8a8a82;--text-dim:#5a5a55;--gold:#c9a961;--gold-dim:#8a7340;--gold-bright:#e4c881;--green:#6ba36b;--red:#a36b6b;--blue:#6b8aa3;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--arabic:'Amiri',serif;--r-sm:4px;--r:6px;--r-lg:8px}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -258,6 +258,71 @@
   .add-ex-form button{background:var(--gold);color:var(--bg);border:none;padding:8px 14px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:3px;cursor:pointer;white-space:nowrap}
   @media (max-width:700px){.history-row{grid-template-columns:1fr;gap:8px;padding:14px}.history-row.header{display:none}.form-grid{grid-template-columns:1fr}.set-row{grid-template-columns:24px 1fr 1fr 60px;gap:6px}.set-hint{display:none}}
   @media (max-width:640px){.container{padding:16px 12px 90px}.auth-box{padding:32px 22px}.tabs{display:none}.nav-bottom{display:block}.stats-grid{grid-template-columns:1fr 1fr}.topbar{flex-wrap:wrap;gap:8px}.user-email{font-size:10px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pr-grid{grid-template-columns:1fr 1fr}.toast{bottom:90px}}
+
+  /* ============ THEME SWITCHER ============ */
+  .theme-btn{background:transparent;border:1px solid var(--border-light);color:var(--text-muted);padding:6px 10px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;border-radius:3px;cursor:pointer;display:flex;align-items:center;gap:6px}
+  .theme-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .theme-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+  .theme-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+  .theme-modal.show{display:flex;animation:fadeIn .2s ease}
+  .theme-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto}
+  .theme-panel h3{font-family:var(--serif);font-size:26px;font-weight:700;font-style:italic;margin-bottom:6px}
+  .theme-panel .sub{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px}
+  .theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+  .theme-card{background:var(--bg-elevated);border:1px solid var(--border-light);border-radius:var(--r);padding:16px;cursor:pointer;text-align:left;color:var(--text);transition:all .15s}
+  .theme-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .theme-card.selected{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,169,97,.3)}
+  .theme-card .swatch{display:flex;gap:4px;margin-bottom:10px}
+  .theme-card .sw{width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,0.2)}
+  .theme-card .name{font-family:var(--sans);font-size:14px;font-weight:700;margin-bottom:4px}
+  .theme-card .desc{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:.05em}
+  .theme-close{margin-top:20px;padding:10px 22px;background:var(--bg-elevated);border:1px solid var(--border-light);color:var(--text);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;border-radius:var(--r-sm);cursor:pointer}
+
+  /* ============ LIGHT MINIMAL ============ */
+  body[data-theme="light"]{--bg:#ffffff;--bg-card:#fafafa;--bg-elevated:#f3f4f6;--bg-deep:#ffffff;--border:#e5e7eb;--border-light:#d1d5db;--text:#0f172a;--text-muted:#64748b;--text-dim:#94a3b8;--gold:#2563eb;--gold-dim:#1e40af;--gold-bright:#3b82f6;--green:#16a34a;--red:#dc2626;--blue:#0284c7;--serif:'Inter',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+  body[data-theme="light"]{background-image:none}
+  body[data-theme="light"] .hero h1,body[data-theme="light"] .auth-box h1,body[data-theme="light"] .section-title,body[data-theme="light"] .progress-big,body[data-theme="light"] .quote-arabic,body[data-theme="light"] .dua-arabic,body[data-theme="light"] .hero .ayah-arabic,body[data-theme="light"] .pr-best,body[data-theme="light"] .workout-day-label,body[data-theme="light"] .slider-val,body[data-theme="light"] .block-quote .arabic-small{text-shadow:none;font-style:normal}
+  body[data-theme="light"] .quote-strip,body[data-theme="light"] .progress-hero{background:var(--bg-card)}
+
+  /* ============ BRUTALIST ============ */
+  body[data-theme="brutalist"]{--bg:#f5f5f0;--bg-card:#ffffff;--bg-elevated:#fef9c3;--bg-deep:#ffffff;--border:#000000;--border-light:#000000;--text:#000000;--text-muted:#171717;--text-dim:#525252;--gold:#facc15;--gold-dim:#ca8a04;--gold-bright:#fde047;--green:#16a34a;--red:#dc2626;--blue:#1d4ed8;--serif:'Inter',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--r-sm:0;--r:0;--r-lg:0}
+  body[data-theme="brutalist"]{background-image:none}
+  body[data-theme="brutalist"] .stat-card,body[data-theme="brutalist"] .block,body[data-theme="brutalist"] .form-field,body[data-theme="brutalist"] .chart-card,body[data-theme="brutalist"] .pr-card,body[data-theme="brutalist"] .exercise-card,body[data-theme="brutalist"] .dua-card,body[data-theme="brutalist"] .cust-block,body[data-theme="brutalist"] .day-split,body[data-theme="brutalist"] .auth-box,body[data-theme="brutalist"] .quote-strip,body[data-theme="brutalist"] .progress-hero,body[data-theme="brutalist"] .global-date,body[data-theme="brutalist"] .topbar,body[data-theme="brutalist"] .tabs,body[data-theme="brutalist"] .complete-bar,body[data-theme="brutalist"] .workout-header{border:2px solid #000;box-shadow:6px 6px 0 #000}
+  body[data-theme="brutalist"] .btn,body[data-theme="brutalist"] .auth-box .btn-primary{border:2px solid #000;box-shadow:4px 4px 0 #000;font-weight:900}
+  body[data-theme="brutalist"] .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #000}
+  body[data-theme="brutalist"] .hero h1,body[data-theme="brutalist"] .section-title,body[data-theme="brutalist"] .progress-big{font-style:normal;font-weight:900;text-shadow:3px 3px 0 #facc15}
+  body[data-theme="brutalist"] .auth-box h1{font-style:normal;font-weight:900}
+  body[data-theme="brutalist"] .quote-arabic,body[data-theme="brutalist"] .dua-arabic,body[data-theme="brutalist"] .hero .ayah-arabic{text-shadow:none}
+
+  /* ============ GLASSMORPHISM ============ */
+  body[data-theme="glass"]{--bg:#1a1033;--bg-card:rgba(255,255,255,0.08);--bg-elevated:rgba(255,255,255,0.12);--bg-deep:#0f0820;--border:rgba(255,255,255,0.18);--border-light:rgba(255,255,255,0.28);--text:#ffffff;--text-muted:#c4b5fd;--text-dim:#9ca3af;--gold:#a78bfa;--gold-dim:#7c3aed;--gold-bright:#c4b5fd;--green:#5eead4;--red:#fb7185;--blue:#67e8f9}
+  body[data-theme="glass"]{background:linear-gradient(135deg,#1a1033 0%,#2d1b4e 35%,#1e3a5f 100%) fixed}
+  body[data-theme="glass"] .stat-card,body[data-theme="glass"] .block,body[data-theme="glass"] .form-field,body[data-theme="glass"] .chart-card,body[data-theme="glass"] .pr-card,body[data-theme="glass"] .exercise-card,body[data-theme="glass"] .dua-card,body[data-theme="glass"] .cust-block,body[data-theme="glass"] .day-split,body[data-theme="glass"] .auth-box,body[data-theme="glass"] .quote-strip,body[data-theme="glass"] .progress-hero,body[data-theme="glass"] .global-date,body[data-theme="glass"] .topbar,body[data-theme="glass"] .tabs,body[data-theme="glass"] .complete-bar,body[data-theme="glass"] .workout-header,body[data-theme="glass"] .rest-day-msg{backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18)}
+  body[data-theme="glass"] .nav-bottom{backdrop-filter:blur(20px);background:rgba(15,8,32,0.7)}
+
+  /* ============ iOS ============ */
+  body[data-theme="ios"]{--bg:#f2f2f7;--bg-card:#ffffff;--bg-elevated:#f9f9fb;--bg-deep:#ffffff;--border:#e5e5ea;--border-light:#d1d1d6;--text:#000000;--text-muted:#3c3c43;--text-dim:#8e8e93;--gold:#007aff;--gold-dim:#0051d5;--gold-bright:#5ac8fa;--green:#34c759;--red:#ff3b30;--blue:#5ac8fa;--serif:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--sans:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--mono:'SF Mono','Menlo',monospace;--r-sm:10px;--r:14px;--r-lg:20px}
+  body[data-theme="ios"]{background-image:none}
+  body[data-theme="ios"] .stat-card,body[data-theme="ios"] .block,body[data-theme="ios"] .form-field,body[data-theme="ios"] .chart-card,body[data-theme="ios"] .pr-card,body[data-theme="ios"] .exercise-card,body[data-theme="ios"] .dua-card,body[data-theme="ios"] .cust-block,body[data-theme="ios"] .day-split,body[data-theme="ios"] .auth-box,body[data-theme="ios"] .quote-strip,body[data-theme="ios"] .progress-hero,body[data-theme="ios"] .global-date,body[data-theme="ios"] .complete-bar,body[data-theme="ios"] .workout-header{box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);border:none}
+  body[data-theme="ios"] .hero h1,body[data-theme="ios"] .section-title,body[data-theme="ios"] .auth-box h1{font-style:normal;font-weight:700;letter-spacing:-0.03em}
+  body[data-theme="ios"] .btn{border-radius:980px;font-weight:600;letter-spacing:0;text-transform:none;font-size:14px}
+  body[data-theme="ios"] .btn.primary{background:#007aff;border-color:#007aff}
+
+  /* ============ CYBERPUNK ============ */
+  body[data-theme="cyber"]{--bg:#000000;--bg-card:#0a0014;--bg-elevated:#14001f;--bg-deep:#000000;--border:#ff00aa;--border-light:#00ff41;--text:#00ff41;--text-muted:#ff00aa;--text-dim:#5fff80;--gold:#00ff41;--gold-dim:#00aa2b;--gold-bright:#7fffaa;--green:#00ff41;--red:#ff003c;--blue:#00d4ff;--serif:'JetBrains Mono',monospace;--sans:'JetBrains Mono',monospace;--mono:'JetBrains Mono',monospace;--arabic:'JetBrains Mono',monospace}
+  body[data-theme="cyber"]{background:#000;background-image:repeating-linear-gradient(0deg,rgba(0,255,65,0.03) 0px,rgba(0,255,65,0.03) 1px,transparent 1px,transparent 3px)}
+  body[data-theme="cyber"] *{font-family:'JetBrains Mono',monospace !important}
+  body[data-theme="cyber"] .hero h1,body[data-theme="cyber"] .section-title,body[data-theme="cyber"] .progress-big,body[data-theme="cyber"] .stat-value,body[data-theme="cyber"] .pr-best,body[data-theme="cyber"] .auth-box h1{text-shadow:0 0 8px currentColor;font-style:normal;font-weight:700}
+  body[data-theme="cyber"] .gold,body[data-theme="cyber"] .accent{text-shadow:0 0 12px var(--gold)}
+  body[data-theme="cyber"] .stat-card,body[data-theme="cyber"] .block,body[data-theme="cyber"] .pr-card{box-shadow:inset 0 0 20px rgba(0,255,65,0.05),0 0 8px rgba(0,255,65,0.1)}
+  body[data-theme="cyber"] .btn.primary{background:#00ff41;color:#000;text-shadow:none;box-shadow:0 0 16px rgba(0,255,65,0.6)}
+
+  /* ============ NOTION ============ */
+  body[data-theme="notion"]{--bg:#fbfaf7;--bg-card:#ffffff;--bg-elevated:#f7f6f3;--bg-deep:#fbfaf7;--border:#e9e8e3;--border-light:#d4d3cd;--text:#37352f;--text-muted:#787774;--text-dim:#9b9a97;--gold:#0b6e99;--gold-dim:#0a5a7d;--gold-bright:#2eaadc;--green:#0f7b6c;--red:#e03e3e;--blue:#0b6e99;--serif:'Lora','Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+  body[data-theme="notion"]{background-image:none}
+  body[data-theme="notion"] .hero h1,body[data-theme="notion"] .section-title,body[data-theme="notion"] .auth-box h1,body[data-theme="notion"] .progress-big,body[data-theme="notion"] .pr-best,body[data-theme="notion"] .workout-day-label{font-family:'Lora','Playfair Display',Georgia,serif;text-shadow:none}
+  body[data-theme="notion"] .stat-card,body[data-theme="notion"] .form-field,body[data-theme="notion"] .pr-card,body[data-theme="notion"] .exercise-card,body[data-theme="notion"] .auth-box,body[data-theme="notion"] .quote-strip,body[data-theme="notion"] .progress-hero{box-shadow:0 1px 2px rgba(15,15,15,0.05);border:1px solid #e9e8e3}
+  body[data-theme="notion"] .quote-arabic,body[data-theme="notion"] .dua-arabic,body[data-theme="notion"] .hero .ayah-arabic,body[data-theme="notion"] .block-quote .arabic-small{text-shadow:none}
 </style>
 </head>
 <body>
@@ -284,6 +349,7 @@
   <div class="topbar">
     <span class="user-email" id="userEmail">—</span>
     <span class="sync-status synced" id="syncStatus">Synced</span>
+    <button class="theme-btn" id="themeBtn" title="Change theme"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M5.6 18.4L18.4 5.6"/></svg>Theme</button>
     <button class="signout-btn" id="signoutBtn">Sign out</button>
   </div>
   <section class="hero">
@@ -467,6 +533,23 @@
     <button class="nav-item" data-panel="customize"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.1-1.3l2-1.6-2-3.4-2.4.9a7 7 0 00-2.3-1.3L13.8 3h-3.6l-.4 2.3a7 7 0 00-2.3 1.3l-2.4-.9-2 3.4 2 1.6A7 7 0 005 12a7 7 0 00.1 1.3l-2 1.6 2 3.4 2.4-.9a7 7 0 002.3 1.3l.4 2.3h3.6l.4-2.3a7 7 0 002.3-1.3l2.4.9 2-3.4-2-1.6c.1-.4.1-.9.1-1.3z"/></svg><span>Settings</span></button>
   </div>
 </nav>
+
+<div class="theme-modal" id="themeModal">
+  <div class="theme-panel">
+    <h3>Choose theme</h3>
+    <div class="sub">All saved locally · pick anytime</div>
+    <div class="theme-grid" id="themeGrid">
+      <button class="theme-card" data-theme="default"><div class="swatch"><span class="sw" style="background:#0a0a0a"></span><span class="sw" style="background:#c9a961"></span><span class="sw" style="background:#131313"></span></div><div class="name">The Becoming</div><div class="desc">Original · gold + dark</div></button>
+      <button class="theme-card" data-theme="light"><div class="swatch"><span class="sw" style="background:#ffffff"></span><span class="sw" style="background:#2563eb"></span><span class="sw" style="background:#fafafa"></span></div><div class="name">Light Minimal</div><div class="desc">White + blue · spacious</div></button>
+      <button class="theme-card" data-theme="brutalist"><div class="swatch"><span class="sw" style="background:#000"></span><span class="sw" style="background:#facc15"></span><span class="sw" style="background:#fff"></span></div><div class="name">Brutalist</div><div class="desc">Bold · yellow + black</div></button>
+      <button class="theme-card" data-theme="glass"><div class="swatch"><span class="sw" style="background:linear-gradient(135deg,#a78bfa,#67e8f9)"></span><span class="sw" style="background:#1a1033"></span><span class="sw" style="background:#c4b5fd"></span></div><div class="name">Glassmorphism</div><div class="desc">Frosted · purple/teal</div></button>
+      <button class="theme-card" data-theme="ios"><div class="swatch"><span class="sw" style="background:#f2f2f7"></span><span class="sw" style="background:#007aff"></span><span class="sw" style="background:#fff"></span></div><div class="name">iOS</div><div class="desc">Rounded · system blue</div></button>
+      <button class="theme-card" data-theme="cyber"><div class="swatch"><span class="sw" style="background:#000"></span><span class="sw" style="background:#00ff41"></span><span class="sw" style="background:#ff00aa"></span></div><div class="name">Cyberpunk</div><div class="desc">Neon green/magenta</div></button>
+      <button class="theme-card" data-theme="notion"><div class="swatch"><span class="sw" style="background:#fbfaf7"></span><span class="sw" style="background:#37352f"></span><span class="sw" style="background:#0b6e99"></span></div><div class="name">Notion</div><div class="desc">Warm serif · clean</div></button>
+    </div>
+    <button class="theme-close" id="themeClose">Close</button>
+  </div>
+</div>
 
 <div class="toast" id="toast">Saved</div>
 
@@ -1525,6 +1608,30 @@ async function initApp() {
   renderChecklist(); loadForms();
   setupRealtime();
 }
+
+// THEME SWITCHER
+function applyTheme(name) {
+  if (name === 'default') document.body.removeAttribute('data-theme');
+  else document.body.setAttribute('data-theme', name);
+  localStorage.setItem('becoming_theme', name);
+  document.querySelectorAll('.theme-card').forEach(c => c.classList.toggle('selected', c.dataset.theme === name));
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const colors = { default:'#0a0a0a', light:'#ffffff', brutalist:'#f5f5f0', glass:'#1a1033', ios:'#f2f2f7', cyber:'#000000', notion:'#fbfaf7' };
+  if (meta) meta.setAttribute('content', colors[name] || '#0a0a0a');
+}
+const savedTheme = localStorage.getItem('becoming_theme') || 'default';
+applyTheme(savedTheme);
+document.getElementById('themeBtn').addEventListener('click', () => {
+  document.getElementById('themeModal').classList.add('show');
+  applyTheme(localStorage.getItem('becoming_theme') || 'default');
+});
+document.getElementById('themeClose').addEventListener('click', () => document.getElementById('themeModal').classList.remove('show'));
+document.getElementById('themeModal').addEventListener('click', (e) => { if (e.target.id === 'themeModal') e.currentTarget.classList.remove('show'); });
+document.querySelectorAll('.theme-card').forEach(card => card.addEventListener('click', () => {
+  applyTheme(card.dataset.theme);
+  toast('Theme: ' + card.querySelector('.name').textContent);
+  setTimeout(() => document.getElementById('themeModal').classList.remove('show'), 400);
+}));
 
 document.getElementById('tabSignin').addEventListener('click', () => setAuthMode('signin'));
 document.getElementById('tabSignup').addEventListener('click', () => setAuthMode('signup'));
