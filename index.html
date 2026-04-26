@@ -66,6 +66,8 @@
   .sync-status.synced{background:rgba(94,234,212,.10);color:#7ff3df;border-color:rgba(94,234,212,.25);box-shadow:0 0 12px rgba(94,234,212,.15)}
   .sync-status.syncing{background:rgba(167,139,250,.12);color:var(--gold-bright);border-color:rgba(167,139,250,.3)}
   .sync-status.offline{background:rgba(251,113,133,.12);color:#fda4b1;border-color:rgba(251,113,133,.3)}
+  .tz-picker{background:rgba(255,255,255,0.03);border:1px solid var(--border-light);color:var(--text-muted);padding:6px 10px;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.02em;border-radius:999px;cursor:pointer;max-width:160px;color-scheme:dark}
+  .tz-picker:hover,.tz-picker:focus{border-color:rgba(167,139,250,0.4);color:#fff;outline:none}
   .signout-btn{background:rgba(255,255,255,0.03);border:1px solid var(--border-light);color:var(--text-muted);padding:7px 14px;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;border-radius:999px;cursor:pointer;transition:all .2s}
   .signout-btn:hover{border-color:rgba(251,113,133,0.5);color:#fda4b1;background:rgba(251,113,133,0.08)}
   .hero{text-align:center;padding:32px 0 44px;border-bottom:1px solid var(--border);margin-bottom:32px;position:relative}
@@ -141,13 +143,16 @@
   .tab:hover{color:var(--text)}
   .tab:hover{color:var(--text)}
   .tab.active{background:linear-gradient(135deg,rgba(167,139,250,0.22) 0%,rgba(103,232,249,0.12) 100%);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,0.12),0 4px 18px rgba(167,139,250,0.25)}
-  .nav-bottom{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(7,7,13,0.72);border-top:1px solid var(--border-light);z-index:50;padding:6px 0 max(6px,env(safe-area-inset-bottom));overflow-x:auto;scrollbar-width:none;box-shadow:0 -8px 32px rgba(0,0,0,0.5)}
+  .nav-bottom{display:none;position:fixed;bottom:max(10px,env(safe-area-inset-bottom));left:12px;right:12px;background:rgba(15,15,25,0.78);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border:1px solid rgba(255,255,255,0.1);z-index:50;padding:6px;border-radius:22px;overflow-x:auto;scrollbar-width:none;box-shadow:0 12px 40px rgba(0,0,0,0.55),0 0 1px rgba(255,255,255,0.06) inset,0 0 24px rgba(167,139,250,0.12)}
   .nav-bottom::-webkit-scrollbar{display:none}
-  .nav-bottom-inner{display:flex;min-width:100%}
-  .nav-item{flex:1;min-width:64px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;background:transparent;border:none;color:var(--text-dim);font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:color .2s}
-  .nav-item svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-  .nav-item.active{color:var(--gold-bright);text-shadow:0 0 12px rgba(196,181,253,0.7)}
-  .nav-item.active svg{filter:drop-shadow(0 0 6px rgba(196,181,253,0.7))}
+  .nav-bottom-inner{display:flex;min-width:100%;gap:2px}
+  .nav-item{flex:1;min-width:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:9px 4px 8px;background:transparent;border:none;color:var(--text-dim);font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.01em;cursor:pointer;white-space:nowrap;border-radius:14px;transition:all .25s cubic-bezier(.4,0,.2,1);position:relative}
+  .nav-item svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s cubic-bezier(.4,1.4,.6,1)}
+  .nav-item:active{transform:scale(.92)}
+  .nav-item:active svg{transform:scale(.9)}
+  .nav-item.active{color:#fff;background:linear-gradient(135deg,rgba(167,139,250,0.28) 0%,rgba(103,232,249,0.14) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.12),0 4px 18px rgba(167,139,250,0.3)}
+  .nav-item.active svg{filter:drop-shadow(0 0 6px rgba(196,181,253,0.55));transform:translateY(-1px) scale(1.05)}
+  .nav-item.active span{text-shadow:0 0 10px rgba(196,181,253,0.5)}
   .panel{display:none}
   .panel.active{display:block;animation:fadeIn .3s ease}
   @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -171,36 +176,40 @@
   .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-light) 0%,transparent 100%)}
   .section-arabic{font-family:var(--arabic);font-size:22px;color:var(--gold);margin-bottom:20px;direction:rtl;text-align:right;font-weight:400;line-height:2}
   .section-sub{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:.2em;text-transform:uppercase;font-weight:600}
-  .progress-hero{background:linear-gradient(180deg,var(--bg-card) 0%,var(--bg-deep) 100%);border:1px solid var(--border);border-radius:var(--r);padding:32px 24px;margin-bottom:24px;text-align:center}
-  .progress-big{font-family:var(--serif);font-size:68px;font-weight:700;line-height:1;margin-bottom:10px;color:var(--gold)}
-  .progress-big .slash{color:var(--text-dim);margin:0 6px;font-weight:400}
-  .progress-big .total{color:var(--text-muted);font-size:44px;font-weight:500}
+  .progress-hero{background:linear-gradient(135deg,rgba(167,139,250,0.08) 0%,rgba(103,232,249,0.04) 50%,rgba(15,15,25,0.4) 100%);border:1px solid var(--border-light);border-radius:18px;padding:36px 24px;margin-bottom:24px;text-align:center;backdrop-filter:blur(18px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 8px 32px rgba(0,0,0,0.4),0 0 30px rgba(167,139,250,0.1)}
+  .progress-big{font-family:var(--sans);font-size:64px;font-weight:800;line-height:1;margin-bottom:10px;letter-spacing:-0.04em;background:linear-gradient(135deg,#fff 0%,#c4b5fd 60%,#67e8f9 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;font-variant-numeric:tabular-nums}
+  .progress-big .slash{color:var(--text-dim);margin:0 6px;font-weight:300;-webkit-text-fill-color:var(--text-dim)}
+  .progress-big .total{color:var(--text-muted);font-size:42px;font-weight:500;-webkit-text-fill-color:var(--text-muted)}
   .progress-label{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.25em;text-transform:uppercase;margin-bottom:20px;font-weight:600}
-  .progress-bar{height:4px;background:var(--bg-elevated);border-radius:2px;overflow:hidden;max-width:380px;margin:0 auto 16px}
-  .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim) 0%,var(--gold) 50%,var(--gold-bright) 100%);transition:width .5s ease;border-radius:2px}
+  .progress-bar{height:6px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;max-width:420px;margin:0 auto 16px;border:1px solid rgba(255,255,255,0.04)}
+  .progress-fill{height:100%;background:linear-gradient(90deg,#7c5cf0 0%,#a78bfa 40%,#67e8f9 100%);transition:width .5s cubic-bezier(.22,1,.36,1);border-radius:999px;box-shadow:0 0 14px rgba(167,139,250,0.5)}
   .progress-arabic{font-family:var(--arabic);font-size:18px;color:var(--gold-dim);direction:rtl;margin-top:6px;line-height:2}
-  .block{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
-  .block-header{padding:14px 20px;background:var(--bg-elevated);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
-  .block-num{font-family:var(--serif);font-size:22px;font-style:italic;font-weight:700;color:var(--gold);min-width:26px}
-  .block-title{flex:1;font-family:var(--sans);font-size:15px;font-weight:700}
-  .block-time{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:.15em;text-transform:uppercase;font-weight:600}
+  .block{background:var(--bg-card);border:1px solid var(--border-light);border-radius:16px;margin-bottom:14px;overflow:hidden;backdrop-filter:blur(18px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.05),0 6px 24px rgba(0,0,0,0.35)}
+  .block-header{padding:14px 20px;background:linear-gradient(135deg,rgba(167,139,250,0.08) 0%,rgba(103,232,249,0.04) 100%);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px}
+  .block-num{font-family:var(--sans);font-size:13px;font-style:normal;font-weight:700;color:var(--gold-bright);min-width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.3);border-radius:50%;text-shadow:0 0 8px rgba(196,181,253,0.5)}
+  .block-title{flex:1;font-family:var(--sans);font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.01em}
+  .block-time{font-family:var(--sans);font-size:10.5px;color:var(--text-muted);letter-spacing:.04em;text-transform:none;font-weight:600;padding:3px 9px;background:rgba(255,255,255,0.04);border:1px solid var(--border-light);border-radius:999px}
   .block-count{font-family:var(--mono);font-size:12px;color:var(--gold);margin-left:8px;font-weight:700}
-  .block-quote{padding:12px 20px;background:rgba(201,169,97,.04);border-bottom:1px solid var(--border);font-family:var(--serif);font-style:italic;font-size:14px;font-weight:500;color:var(--text-muted);line-height:1.5}
-  .block-quote .arabic-small{font-family:var(--arabic);font-size:19px;color:var(--gold);direction:rtl;display:block;margin-bottom:8px;font-style:normal;font-weight:400;text-align:right;line-height:2.2}
-  .block-quote .src{font-family:var(--mono);font-style:normal;font-size:9px;color:var(--gold-dim);letter-spacing:.2em;text-transform:uppercase;margin-top:4px;display:block;font-weight:600}
+  .block-quote{padding:14px 20px;background:rgba(167,139,250,.04);border-bottom:1px solid var(--border);font-family:var(--sans);font-style:normal;font-size:13.5px;font-weight:400;color:var(--text-muted);line-height:1.55}
+  .block-quote .arabic-small{font-family:var(--arabic);font-size:18px;color:var(--gold-bright);direction:rtl;display:block;margin-bottom:8px;font-style:normal;font-weight:500;text-align:right;line-height:2.1;text-shadow:0 0 14px rgba(196,181,253,0.3)}
+  .block-quote .src{font-family:var(--sans);font-style:normal;font-size:10.5px;color:var(--text-dim);letter-spacing:.04em;text-transform:none;margin-top:4px;display:block;font-weight:500}
   .block-items{padding:4px 0}
-  .item{display:flex;align-items:flex-start;gap:14px;padding:12px 20px;cursor:pointer;border-bottom:1px solid var(--border);transition:background .15s}
+  .item{display:flex;align-items:center;gap:14px;padding:14px 20px;cursor:pointer;border-bottom:1px solid var(--border);transition:all .2s ease;position:relative;-webkit-tap-highlight-color:transparent}
   .item:last-child{border-bottom:none}
-  .item:hover{background:var(--bg-elevated)}
-  .checkbox{width:20px;height:20px;border:2px solid var(--border-light);border-radius:var(--r-sm);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s ease}
-  .item.done .checkbox{background:var(--gold);border-color:var(--gold)}
-  .item.done .checkbox::after{content:'';width:5px;height:10px;border-right:2.5px solid var(--bg);border-bottom:2.5px solid var(--bg);transform:rotate(45deg) translateY(-1px);animation:checkDraw .2s ease forwards}
-  @keyframes checkDraw{from{opacity:0;transform:rotate(45deg) translateY(-1px) scale(.6)}to{opacity:1;transform:rotate(45deg) translateY(-1px) scale(1)}}
-  .item-text{flex:1;font-size:14px;font-weight:500;color:var(--text)}
-  .item-note{font-family:var(--serif);font-style:italic;font-size:13px;font-weight:500;color:var(--text-muted);margin-top:4px}
-  .item.done .item-text{color:var(--text-dim);text-decoration:line-through}
-  .item.critical{border-left:3px solid var(--red)}
-  .item.sunnah{border-left:3px solid var(--green)}
+  .item:hover{background:rgba(255,255,255,0.025)}
+  .item:active{background:rgba(167,139,250,0.08)}
+  .checkbox{width:24px;height:24px;border:1.5px solid var(--border-light);border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .25s cubic-bezier(.4,1.4,.6,1);background:rgba(255,255,255,0.02)}
+  .item:hover .checkbox{border-color:rgba(167,139,250,0.4)}
+  .item.done .checkbox{background:linear-gradient(135deg,#a78bfa 0%,#7c5cf0 100%);border-color:transparent;box-shadow:0 4px 14px rgba(124,92,240,0.45),inset 0 1px 0 rgba(255,255,255,0.25)}
+  .item.done .checkbox::after{content:'';width:6px;height:11px;border-right:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(45deg) translateY(-1px);animation:checkDraw .25s cubic-bezier(.4,1.4,.6,1) forwards}
+  @keyframes checkDraw{from{opacity:0;transform:rotate(45deg) translateY(-1px) scale(.4)}to{opacity:1;transform:rotate(45deg) translateY(-1px) scale(1)}}
+  .item-text{flex:1;font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--text);line-height:1.45;transition:color .2s,opacity .2s}
+  .item-note{font-family:var(--sans);font-style:normal;font-size:12.5px;font-weight:400;color:var(--text-muted);margin-top:4px}
+  .item.done .item-text{color:var(--text-dim);text-decoration:line-through;text-decoration-color:rgba(255,255,255,0.2);opacity:.7}
+  .item.critical{border-left:3px solid #fb7185;background:linear-gradient(90deg,rgba(251,113,133,0.05) 0%,transparent 40%)}
+  .item.sunnah{border-left:3px solid #5eead4;background:linear-gradient(90deg,rgba(94,234,212,0.05) 0%,transparent 40%)}
+  .item.critical.done{background:transparent}
+  .item.sunnah.done{background:transparent}
   .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:20px}
   .form-field{background:var(--bg-card);border:1px solid var(--border-light);border-radius:14px;padding:16px 18px}
   .form-field label{display:block;font-family:var(--sans);font-size:11px;color:var(--text-muted);letter-spacing:.04em;text-transform:none;margin-bottom:10px;font-weight:600}
@@ -338,7 +347,7 @@
   .add-ex-form select{font-family:var(--mono);font-size:10px;font-weight:600}
   .add-ex-form button{background:var(--gold);color:var(--bg);border:none;padding:8px 14px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:3px;cursor:pointer;white-space:nowrap}
   @media (max-width:700px){.history-row{grid-template-columns:1fr;gap:8px;padding:14px}.history-row.header{display:none}.form-grid{grid-template-columns:1fr}.set-row{grid-template-columns:24px 1fr 1fr 60px;gap:6px}.set-hint{display:none}}
-  @media (max-width:640px){.container{padding:16px 12px 90px}.auth-box{padding:32px 22px}.tabs{display:none}.nav-bottom{display:block}.stats-grid{grid-template-columns:1fr 1fr}.topbar{flex-wrap:wrap;gap:8px}.user-email{font-size:10px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pr-grid{grid-template-columns:1fr 1fr}.toast{bottom:90px}}
+  @media (max-width:640px){.container{padding:16px 12px 110px}.auth-box{padding:32px 22px}.tabs{display:none}.nav-bottom{display:block}.stats-grid{grid-template-columns:1fr 1fr}.topbar{flex-wrap:wrap;gap:8px}.user-email{font-size:10px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pr-grid{grid-template-columns:1fr 1fr}.toast{bottom:110px}.tz-picker{max-width:130px;font-size:10px}}
 
   /* Glow accents on key headings */
   .hero h1,.section-title,.progress-big,.auth-box h1,.pr-best,.workout-day-label{text-shadow:var(--text-glow)}
@@ -369,6 +378,7 @@
 <div class="container hidden" id="appContainer">
   <div class="topbar">
     <span class="user-email" id="userEmail">—</span>
+    <select id="tzPicker" class="tz-picker" title="Timezone — controls today's date and gym day"></select>
     <span class="sync-status synced" id="syncStatus">Synced</span>
     <button class="signout-btn" id="signoutBtn">Sign out</button>
   </div>
@@ -651,7 +661,7 @@ let workoutsChannel = null;
 let lastLocalWrite = 0;
 let lastSettingsWrite = 0;
 let lastWorkoutWrite = 0;
-let userSettings = { structure:{blocks:[]}, hidden_defaults:[], workout_structure:{}, hidden_fields:[], hidden_tabs:[], hidden_duas:[], journey_start:null };
+let userSettings = { structure:{blocks:[]}, hidden_defaults:[], workout_structure:{}, hidden_fields:[], hidden_tabs:[], hidden_duas:[], journey_start:null, timezone:null };
 let completionChartInstance = null;
 let nafsChartInstance = null;
 let gymCharts = {};
@@ -689,6 +699,23 @@ function dayNumber(dateStr) {
 }
 function formatDisplayDate(s) { return new Date(s).toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' }); }
 function dowFromDate(dateStr) { return new Date(dateStr + 'T00:00:00').getDay(); }
+// Timezone-aware "today" — uses Intl.DateTimeFormat to format current instant in the chosen TZ
+const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DAY_NAMES_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function getUserTZ() { return userSettings.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; }
+function getTodayInTZ(tz) {
+  try {
+    const parts = new Intl.DateTimeFormat('en-CA', { timeZone:tz, year:'numeric', month:'2-digit', day:'2-digit' }).formatToParts(new Date());
+    const o = {}; parts.forEach(p => { if (p.type !== 'literal') o[p.type] = p.value; });
+    return o.year + '-' + o.month + '-' + o.day;
+  } catch (e) { return new Date().toISOString().split('T')[0]; }
+}
+function dowInTZ(dateStr, tz) {
+  // dateStr is YYYY-MM-DD; interpret as midnight-local in that TZ for day-of-week purposes
+  // Simplest reliable approach: use the date as a calendar date (UTC midnight is good enough for dow)
+  return new Date(dateStr + 'T12:00:00Z').getUTCDay();
+}
+function dayName(dow) { return DAY_NAMES[((dow%7)+7)%7]; }
 function epley1RM(w, r) { if (!w || !r) return 0; return Math.round(w * (1 + r/30) * 10) / 10; }
 function setSyncStatus(state) {
   const el = document.getElementById('syncStatus');
@@ -807,6 +834,7 @@ async function fetchSettings() {
       hidden_tabs:meta.hidden_tabs||[],
       hidden_duas:meta.hidden_duas||[],
       journey_start:meta.journey_start||null,
+      timezone:meta.timezone||null,
     };
   }
 }
@@ -819,6 +847,7 @@ async function saveSettings() {
     hidden_tabs:userSettings.hidden_tabs||[],
     hidden_duas:userSettings.hidden_duas||[],
     journey_start:userSettings.journey_start||null,
+    timezone:userSettings.timezone||null,
   }});
   const { error } = await sb.from('becoming_settings').upsert({ user_id:currentUser.id, structure:structureToSave, hidden_defaults:userSettings.hidden_defaults, workout_structure:userSettings.workout_structure }, { onConflict:'user_id' });
   setSyncStatus(error ? 'offline' : 'synced');
@@ -842,7 +871,14 @@ async function fetchAllWorkouts() {
 async function upsertWorkout(dateStr, payload) {
   setSyncStatus('syncing');
   lastWorkoutWrite = Date.now();
-  const { data, error } = await sb.from('becoming_workouts').upsert({ user_id:currentUser.id, workout_date:dateStr, day_label:payload.day_label||null, exercises:payload.exercises||[], duration_minutes:payload.duration_minutes||null, overall_rpe:payload.overall_rpe||null }, { onConflict:'user_id,workout_date' }).select().maybeSingle();
+  // user_rest:true stores as day_label='__REST__' with empty exercises so we don't need a schema change
+  const isRest = payload.user_rest === true;
+  const isUnRest = payload.user_rest === false;
+  let label = payload.day_label || null;
+  let exercises = payload.exercises || [];
+  if (isRest) { label = '__REST__'; exercises = []; }
+  if (isUnRest) { label = null; exercises = []; }
+  const { data, error } = await sb.from('becoming_workouts').upsert({ user_id:currentUser.id, workout_date:dateStr, day_label:label, exercises:exercises, duration_minutes:payload.duration_minutes||null, overall_rpe:payload.overall_rpe||null }, { onConflict:'user_id,workout_date' }).select().maybeSingle();
   setSyncStatus(error ? 'offline' : 'synced');
   if (error) { console.error(error); toast('Workout save failed', true); return false; }
   workoutCache[dateStr] = data;
@@ -990,11 +1026,24 @@ async function renderTodaysWorkout() {
   const split = getWorkoutStructure();
   const day = split[String(dow)] || split[dow] || { label:'No plan', rest:false, exercises:[] };
   const root = document.getElementById('gymToday');
-  if (day.rest) { root.innerHTML = '<div class="rest-day-msg"><div class="icon">رَاحَة</div><p>Rest day · Active recovery only</p></div>'; return; }
+  const dn = dayName(dow);
+  // If user has marked TODAY as rest (overriding the split), respect that
+  const userMarkedRest = today && today.day_label === '__REST__';
+  if (day.rest || userMarkedRest) {
+    const why = userMarkedRest ? 'You marked today as a rest day' : 'Rest day in your split';
+    root.innerHTML = '<div class="workout-header"><div class="workout-day-label">'+escapeHTML(dn)+' · '+escapeHTML(day.label||'Rest')+'</div><button class="btn" id="unmarkRestBtn">Undo rest day</button></div>'+
+      '<div class="rest-day-msg"><div class="icon">رَاحَة</div><p>'+escapeHTML(why)+'</p><p style="font-size:14px;margin-top:14px;color:var(--text-dim)">Active recovery only — walk, stretch, hydrate.</p></div>';
+    const undo = document.getElementById('unmarkRestBtn');
+    if (undo) undo.addEventListener('click', async () => {
+      await upsertWorkout(currentDate, { user_rest:false });
+      renderTodaysWorkout();
+    });
+    return;
+  }
   const lastMap = buildLastSessionMap();
   const todayExMap = {};
   if (today && today.exercises) today.exercises.forEach(ex => { todayExMap[ex.exercise_id] = ex; });
-  let html = '<div class="workout-header"><div class="workout-day-label">'+escapeHTML(day.label)+'</div></div>';
+  let html = '<div class="workout-header"><div class="workout-day-label">'+escapeHTML(dn)+' · '+escapeHTML(day.label)+'</div><button class="btn" id="markRestBtn" style="margin-left:auto">Mark today as rest</button></div>';
   html += '<div data-day-label="'+escapeHTML(day.label)+'">';
   (day.exercises || []).forEach(ex => {
     const numSets = ex.sets || 3;
@@ -1037,6 +1086,13 @@ async function renderTodaysWorkout() {
     const p = collectWorkoutFromDOM(); if (!p) return;
     const ok = await upsertWorkout(currentDate, p);
     toast(ok ? 'Workout logged · alhamdulillah' : 'Save failed', !ok);
+  });
+  const restBtn = document.getElementById('markRestBtn');
+  if (restBtn) restBtn.addEventListener('click', async () => {
+    if (!confirm('Mark today as a rest day? You can undo this anytime.')) return;
+    await upsertWorkout(currentDate, { user_rest:true });
+    renderTodaysWorkout();
+    toast('Rest day logged');
   });
 }
 function computePRs(workouts) {
@@ -1166,17 +1222,89 @@ async function renderStats() {
   }
   const avgPct = completionData.length ? Math.round(completionData.reduce((a,b) => a+b, 0) / completionData.length) : 0;
   const workouts = Object.values(workoutCache).filter(w => w);
-  const totalVolume = workouts.reduce((sum, w) => { let v = 0; (w.exercises||[]).forEach(ex => (ex.sets||[]).forEach(s => { if (s.weight && s.reps) v += s.weight*s.reps; })); return sum + v; }, 0);
+  const realWorkouts = workouts.filter(w => w.day_label !== '__REST__' && (w.exercises||[]).length > 0);
+  const userRestDays = workouts.filter(w => w.day_label === '__REST__').length;
+  const totalVolume = realWorkouts.reduce((sum, w) => { let v = 0; (w.exercises||[]).forEach(ex => (ex.sets||[]).forEach(s => { if (s.weight && s.reps) v += s.weight*s.reps; })); return sum + v; }, 0);
+  const totalSets = realWorkouts.reduce((sum, w) => sum + (w.exercises||[]).reduce((s,ex) => s + (ex.sets||[]).filter(x => x.weight || x.reps).length, 0), 0);
+  const totalReps = realWorkouts.reduce((sum, w) => sum + (w.exercises||[]).reduce((s,ex) => s + (ex.sets||[]).reduce((a,x) => a + (parseInt(x.reps)||0), 0), 0), 0);
+  const totalDuration = realWorkouts.reduce((sum, w) => sum + (parseInt(w.duration_minutes)||0), 0);
+  const avgDuration = realWorkouts.length ? Math.round(totalDuration/realWorkouts.length) : 0;
+  // Most-trained category
+  const catCounts = {};
+  realWorkouts.forEach(w => (w.exercises||[]).forEach(ex => {
+    const c = (ex.category||'other').toLowerCase();
+    catCounts[c] = (catCounts[c]||0) + (ex.sets||[]).filter(x => x.weight || x.reps).length;
+  }));
+  const topCat = Object.entries(catCounts).sort((a,b) => b[1]-a[1])[0];
+  // Skipped scheduled gym days: scheduled by split, not rest, no workout entry
+  const split = getWorkoutStructure();
+  let skippedGymDays = 0, scheduledGymDays = 0;
+  dates.forEach(d => {
+    const dow = dowFromDate(d);
+    const day = split[String(dow)] || split[dow];
+    if (!day || day.rest) return;
+    scheduledGymDays++;
+    const w = workoutCache[d];
+    if (!w || w.day_label === '__REST__' || (w.exercises||[]).length === 0) skippedGymDays++;
+  });
+  // Reflection completion
+  let reflectionCount = 0;
+  dates.forEach(d => { const r = cache[d].reflection || {}; if (r.didRight || r.gratitude || r.tomorrow) reflectionCount++; });
+  // Trading
+  let tradingSessions = 0, tradingWins = 0, tradingLosses = 0;
+  dates.forEach(d => { const t = cache[d].trading || {}; if (t.sessionType && t.sessionType !== 'none') tradingSessions++; tradingWins += parseInt(t.wins)||0; tradingLosses += parseInt(t.losses)||0; });
+  const winRate = (tradingWins+tradingLosses) ? Math.round(tradingWins/(tradingWins+tradingLosses)*100) : 0;
+  // Sleep & screentime averages
+  let sleepSum = 0, sleepN = 0, screenSum = 0, screenN = 0, waterSum = 0, waterN = 0;
+  dates.forEach(d => {
+    const p = cache[d].physical || {};
+    if (p.sleep) { sleepSum += parseFloat(p.sleep); sleepN++; }
+    if (p.screentime) { screenSum += parseFloat(p.screentime); screenN++; }
+    if (p.water) { waterSum += parseFloat(p.water); waterN++; }
+  });
+  const avgSleep = sleepN ? (sleepSum/sleepN).toFixed(1) : '—';
+  const avgScreen = screenN ? (screenSum/screenN).toFixed(1) : '—';
+  const avgWater = waterN ? (waterSum/waterN).toFixed(1) : '—';
+  // Heaviest single rep max across all logs
+  let heaviest = null;
+  realWorkouts.forEach(w => (w.exercises||[]).forEach(ex => (ex.sets||[]).forEach(s => {
+    const e = epley1RM(parseFloat(s.weight), parseInt(s.reps));
+    if (e && (!heaviest || e > heaviest.e)) heaviest = { e, name:ex.name, weight:s.weight, reps:s.reps };
+  })));
+  // Journey day count
+  const jStart = getJourneyStart();
+  const journeyDays = jStart ? Math.max(0, Math.floor((new Date(currentDate+'T12:00:00Z') - new Date(jStart+'T12:00:00Z'))/86400000) + 1) : null;
+
   let html = '';
-  html += '<div class="stat-card"><div class="stat-label">Total days tracked</div><div class="stat-value">'+totalDays+'</div><div class="stat-sub">'+(getJourneyStart()?'Since '+getJourneyStart():'Journey not started')+'</div></div>';
-  html += '<div class="stat-card green"><div class="stat-label">Strong days 80%+</div><div class="stat-value">'+perfectDays+'</div><div class="stat-sub">'+(totalDays?Math.round(perfectDays/totalDays*100):0)+'% rate</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Current streak</div><div class="stat-value">'+currentStreak+'<span class="unit">days</span></div><div class="stat-sub">Consecutive strong days</div></div>';
+  // Section: Journey
+  html += '<div class="stat-card"><div class="stat-label">Journey day</div><div class="stat-value">'+(journeyDays!==null?journeyDays:'—')+'</div><div class="stat-sub">'+(jStart?'Since '+jStart:'Not started')+'</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Days tracked</div><div class="stat-value">'+totalDays+'</div><div class="stat-sub">Entries logged</div></div>';
+  html += '<div class="stat-card green"><div class="stat-label">Strong days 80%+</div><div class="stat-value">'+perfectDays+'</div><div class="stat-sub">'+(totalDays?Math.round(perfectDays/totalDays*100):0)+'% of tracked days</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Current streak</div><div class="stat-value">'+currentStreak+'<span class="unit">days</span></div><div class="stat-sub">Consecutive 80%+</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Avg completion</div><div class="stat-value">'+avgPct+'<span class="unit">%</span></div><div class="stat-sub">Over all tracked days</div></div>';
+  // Section: Spiritual
   html += '<div class="stat-card blue"><div class="stat-label">Fajr in masjid</div><div class="stat-value">'+fajrCount+'</div><div class="stat-sub">'+(totalDays?Math.round(fajrCount/totalDays*100):0)+'% of days</div></div>';
   html += '<div class="stat-card green"><div class="stat-label">Witr prayed</div><div class="stat-value">'+witrCount+'</div><div class="stat-sub">'+(totalDays?Math.round(witrCount/totalDays*100):0)+'% of days</div></div>';
   html += '<div class="stat-card red"><div class="stat-label">No-scroll days</div><div class="stat-value">'+noScrollCount+'</div><div class="stat-sub">'+(totalDays?Math.round(noScrollCount/totalDays*100):0)+'% of days</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Avg completion</div><div class="stat-value">'+avgPct+'<span class="unit">%</span></div><div class="stat-sub">Over all tracked days</div></div>';
-  html += '<div class="stat-card blue"><div class="stat-label">Workouts logged</div><div class="stat-value">'+workouts.length+'</div><div class="stat-sub">Gym sessions tracked</div></div>';
-  html += '<div class="stat-card"><div class="stat-label">Total volume lifted</div><div class="stat-value">'+Math.round(totalVolume).toLocaleString()+'<span class="unit">kg</span></div><div class="stat-sub">Sum weight × reps</div></div>';
+  // Section: Gym
+  html += '<div class="stat-card blue"><div class="stat-label">Workouts logged</div><div class="stat-value">'+realWorkouts.length+'</div><div class="stat-sub">'+(scheduledGymDays?Math.round(realWorkouts.length/scheduledGymDays*100):0)+'% of scheduled</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Rest days taken</div><div class="stat-value">'+userRestDays+'</div><div class="stat-sub">Marked as rest</div></div>';
+  html += '<div class="stat-card red"><div class="stat-label">Skipped gym days</div><div class="stat-value">'+skippedGymDays+'</div><div class="stat-sub">Scheduled but not logged</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Total volume</div><div class="stat-value">'+Math.round(totalVolume).toLocaleString()+'<span class="unit">kg</span></div><div class="stat-sub">Weight × reps</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Total sets</div><div class="stat-value">'+totalSets+'</div><div class="stat-sub">Working sets</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Total reps</div><div class="stat-value">'+totalReps.toLocaleString()+'</div><div class="stat-sub">Across all sets</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Avg session</div><div class="stat-value">'+avgDuration+'<span class="unit">min</span></div><div class="stat-sub">Time in the gym</div></div>';
+  if (topCat) html += '<div class="stat-card blue"><div class="stat-label">Top muscle group</div><div class="stat-value" style="text-transform:capitalize">'+escapeHTML(topCat[0])+'</div><div class="stat-sub">'+topCat[1]+' sets</div></div>';
+  if (heaviest) html += '<div class="stat-card green"><div class="stat-label">Best estimated 1RM</div><div class="stat-value">'+heaviest.e+'<span class="unit">kg</span></div><div class="stat-sub">'+escapeHTML(heaviest.name)+' · '+heaviest.weight+'×'+heaviest.reps+'</div></div>';
+  // Section: Trading
+  html += '<div class="stat-card"><div class="stat-label">Trading sessions</div><div class="stat-value">'+tradingSessions+'</div><div class="stat-sub">'+(totalDays?Math.round(tradingSessions/totalDays*100):0)+'% of days</div></div>';
+  if (tradingWins+tradingLosses > 0) html += '<div class="stat-card green"><div class="stat-label">Win rate</div><div class="stat-value">'+winRate+'<span class="unit">%</span></div><div class="stat-sub">'+tradingWins+'W · '+tradingLosses+'L</div></div>';
+  // Section: Body
+  html += '<div class="stat-card"><div class="stat-label">Avg sleep</div><div class="stat-value">'+avgSleep+'<span class="unit">h</span></div><div class="stat-sub">'+sleepN+' days logged</div></div>';
+  html += '<div class="stat-card"><div class="stat-label">Avg water</div><div class="stat-value">'+avgWater+'<span class="unit">L</span></div><div class="stat-sub">'+waterN+' days logged</div></div>';
+  html += '<div class="stat-card red"><div class="stat-label">Avg screen time</div><div class="stat-value">'+avgScreen+'<span class="unit">h</span></div><div class="stat-sub">'+screenN+' days logged</div></div>';
+  // Section: Reflection
+  html += '<div class="stat-card"><div class="stat-label">Reflections written</div><div class="stat-value">'+reflectionCount+'</div><div class="stat-sub">'+(totalDays?Math.round(reflectionCount/totalDays*100):0)+'% of days</div></div>';
   document.getElementById('statsGrid').innerHTML = html;
   if (completionChartInstance) completionChartInstance.destroy();
   completionChartInstance = new Chart(document.getElementById('completionChart').getContext('2d'), { type:'line', data:{ labels, datasets:[{ label:'Completion %', data:completionData, borderColor:'#c9a961', backgroundColor:'rgba(201,169,97,0.1)', fill:true, tension:0.3, borderWidth:2.5, pointRadius:4, pointBackgroundColor:'#c9a961' }] }, options:{ responsive:true, maintainAspectRatio:false, scales:{ y:{ min:0, max:100, ticks:{color:'#8a8a82'}, grid:{color:'#2a2a2a'} }, x:{ ticks:{color:'#8a8a82'}, grid:{color:'#1c1c1c'} } }, plugins:{ legend:{display:false} } } });
@@ -1617,7 +1745,7 @@ function setupRealtime() {
       if (Date.now() - lastSettingsWrite < 1500) return;
       if (payload.new) {
         const meta = (payload.new.structure && payload.new.structure.meta) || {};
-        userSettings = { structure:payload.new.structure||{blocks:[]}, hidden_defaults:payload.new.hidden_defaults||[], workout_structure:payload.new.workout_structure||{}, hidden_fields:meta.hidden_fields||[], hidden_tabs:meta.hidden_tabs||[], hidden_duas:meta.hidden_duas||[], journey_start:meta.journey_start||null };
+        userSettings = { structure:payload.new.structure||{blocks:[]}, hidden_defaults:payload.new.hidden_defaults||[], workout_structure:payload.new.workout_structure||{}, hidden_fields:meta.hidden_fields||[], hidden_tabs:meta.hidden_tabs||[], hidden_duas:meta.hidden_duas||[], journey_start:meta.journey_start||null, timezone:meta.timezone||null };
         applyVisibility(); renderDuas();
         renderChecklist();
         if (document.getElementById('panel-customize').classList.contains('active')) renderCustomize();
@@ -1684,12 +1812,49 @@ async function initApp() {
   document.getElementById('resetSplitBtn').addEventListener('click', resetWorkoutSplit);
   updateDateDisplay();
   await fetchSettings();
+  // Sync currentDate to the user's chosen timezone
+  const tzToday = getTodayInTZ(getUserTZ());
+  if (tzToday !== currentDate) currentDate = tzToday;
+  populateTZPicker();
   await fetchDay(currentDate);
   applyVisibility();
   renderDuas();
   renderChecklist(); loadForms();
   updateDateDisplay();
   setupRealtime();
+  // Auto-roll currentDate at TZ midnight
+  setInterval(() => {
+    const t = getTodayInTZ(getUserTZ());
+    if (t !== currentDate) {
+      currentDate = t;
+      const gd = document.getElementById('globalDate'); if (gd) gd.value = currentDate;
+      updateDateDisplay();
+      fetchDay(currentDate).then(() => { renderChecklist(); loadForms(); });
+      if (document.getElementById('panel-gym').classList.contains('active')) renderGym();
+    }
+  }, 30000);
+}
+const COMMON_TZS = ['Asia/Kolkata','Asia/Dubai','Asia/Karachi','Asia/Riyadh','Asia/Singapore','Asia/Tokyo','Asia/Shanghai','Europe/London','Europe/Berlin','Europe/Istanbul','Africa/Cairo','America/New_York','America/Chicago','America/Denver','America/Los_Angeles','America/Sao_Paulo','Australia/Sydney','Pacific/Auckland','UTC'];
+function populateTZPicker() {
+  const sel = document.getElementById('tzPicker');
+  if (!sel) return;
+  const cur = getUserTZ();
+  const options = new Set(COMMON_TZS);
+  options.add(cur);
+  sel.innerHTML = Array.from(options).sort().map(tz => '<option value="'+tz+'"'+(tz===cur?' selected':'')+'>'+tz.replace(/_/g,' ')+'</option>').join('');
+  sel.onchange = async () => {
+    userSettings.timezone = sel.value;
+    await saveSettings();
+    const t = getTodayInTZ(getUserTZ());
+    currentDate = t;
+    const gd = document.getElementById('globalDate'); if (gd) gd.value = currentDate;
+    updateDateDisplay();
+    await fetchDay(currentDate);
+    renderChecklist(); loadForms();
+    if (document.getElementById('panel-gym').classList.contains('active')) renderGym();
+    if (document.getElementById('panel-stats').classList.contains('active')) renderStats();
+    toast('Timezone: ' + sel.value);
+  };
 }
 
 document.getElementById('tabSignin').addEventListener('click', () => setAuthMode('signin'));
