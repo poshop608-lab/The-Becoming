@@ -1,0 +1,143 @@
+<!--
+  THE BECOMING — Email confirmation template
+  Paste the entire content below (everything inside <html>...</html>) into:
+  Supabase Dashboard → Authentication → Email Templates → "Confirm signup"
+  Save. New signups will receive this branded email.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirm your account · The Becoming</title>
+</head>
+<body style="margin:0;padding:0;background:#07070d;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;color:#f7f7fb;-webkit-font-smoothing:antialiased;">
+
+  <!-- Preheader (hidden, shows in inbox preview) -->
+  <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:#07070d;opacity:0;">
+    Bismillah. Confirm your email to begin your journey of becoming.
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#07070d;">
+    <tr>
+      <td align="center" style="padding:40px 16px;">
+
+        <!-- Outer card -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:linear-gradient(180deg,rgba(28,28,42,1) 0%,rgba(15,15,25,1) 100%);border:1px solid rgba(255,255,255,0.1);border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.6);">
+
+          <!-- Top accent bar -->
+          <tr>
+            <td style="height:4px;background:linear-gradient(90deg,#7c5cf0 0%,#a78bfa 50%,#67e8f9 100%);font-size:0;line-height:0;">&nbsp;</td>
+          </tr>
+
+          <!-- Hero -->
+          <tr>
+            <td align="center" style="padding:44px 32px 12px 32px;">
+              <div style="font-family:'Amiri','Times New Roman',serif;font-size:30px;color:#c4b5fd;margin-bottom:18px;line-height:1.6;direction:rtl;">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+              </div>
+              <h1 style="margin:0 0 8px 0;font-size:38px;font-weight:800;letter-spacing:-0.03em;line-height:1.05;color:#ffffff;">
+                The <span style="background:linear-gradient(135deg,#c4b5fd 0%,#a78bfa 50%,#67e8f9 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#a78bfa;">Becoming</span>
+              </h1>
+              <div style="font-size:11px;color:#a8a8b8;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;margin-bottom:24px;">
+                Private · Encrypted · Yours
+              </div>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:0 32px 8px 32px;">
+              <p style="margin:0 0 18px 0;font-size:16px;line-height:1.6;color:#f7f7fb;">
+                Assalamu alaykum,
+              </p>
+              <p style="margin:0 0 18px 0;font-size:15px;line-height:1.65;color:#c4c4d4;">
+                Welcome. You're one click away from beginning your journey of becoming the man Allah created you to be — disciplined in worship, strong in body, sharp in mind.
+              </p>
+              <p style="margin:0 0 28px 0;font-size:15px;line-height:1.65;color:#c4c4d4;">
+                Confirm your email to unlock your private dashboard.
+              </p>
+            </td>
+          </tr>
+
+          <!-- CTA button -->
+          <tr>
+            <td align="center" style="padding:0 32px 28px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="border-radius:12px;background:linear-gradient(135deg,#a78bfa 0%,#7c5cf0 100%);box-shadow:0 8px 24px rgba(124,92,240,0.4);">
+                    <a href="{{ .ConfirmationURL }}" target="_blank" style="display:inline-block;padding:16px 36px;font-size:14px;font-weight:700;letter-spacing:0.04em;color:#ffffff;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
+                      Confirm my email →
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <div style="margin-top:16px;font-size:12px;color:#6b6b7a;line-height:1.5;">
+                Or paste this link into your browser:<br>
+                <a href="{{ .ConfirmationURL }}" style="color:#a78bfa;word-break:break-all;text-decoration:none;">{{ .ConfirmationURL }}</a>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Ayah block -->
+          <tr>
+            <td style="padding:0 32px 32px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:linear-gradient(135deg,rgba(167,139,250,0.08),rgba(103,232,249,0.04));border:1px solid rgba(167,139,250,0.25);border-radius:14px;">
+                <tr>
+                  <td style="padding:22px 22px;text-align:center;">
+                    <div style="font-family:'Amiri','Times New Roman',serif;font-size:22px;color:#c4b5fd;line-height:1.9;direction:rtl;margin-bottom:10px;">
+                      إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ
+                    </div>
+                    <div style="font-size:14px;color:#c4c4d4;font-style:italic;line-height:1.5;">
+                      "Indeed, Allah will not change the condition of a people until they change what is within themselves."
+                    </div>
+                    <div style="font-size:11px;color:#a78bfa;letter-spacing:0.08em;font-weight:600;margin-top:10px;text-transform:uppercase;">
+                      Surah Ar-Ra'd · 13:11
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- What you get -->
+          <tr>
+            <td style="padding:0 32px 36px 32px;">
+              <div style="font-size:11px;color:#6b6b7a;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;margin-bottom:14px;">
+                What's inside
+              </div>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr><td style="padding:6px 0;font-size:14px;color:#c4c4d4;line-height:1.5;"><span style="color:#c4b5fd;font-weight:700;margin-right:10px;">·</span>Daily checklist tied to the 5 prayers — Dawn to Night</td></tr>
+                <tr><td style="padding:6px 0;font-size:14px;color:#c4c4d4;line-height:1.5;"><span style="color:#c4b5fd;font-weight:700;margin-right:10px;">·</span>Gym tracking with PRs, volume, and progress charts</td></tr>
+                <tr><td style="padding:6px 0;font-size:14px;color:#c4c4d4;line-height:1.5;"><span style="color:#c4b5fd;font-weight:700;margin-right:10px;">·</span>Trading journal &amp; discipline scoring</td></tr>
+                <tr><td style="padding:6px 0;font-size:14px;color:#c4c4d4;line-height:1.5;"><span style="color:#c4b5fd;font-weight:700;margin-right:10px;">·</span>26 authentic duas &amp; Quranic ayat for protection</td></tr>
+                <tr><td style="padding:6px 0;font-size:14px;color:#c4c4d4;line-height:1.5;"><span style="color:#c4b5fd;font-weight:700;margin-right:10px;">·</span>End-to-end private — your data, encrypted, yours alone</td></tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td align="center" style="padding:24px 32px 32px 32px;border-top:1px solid rgba(255,255,255,0.06);">
+              <div style="font-size:12px;color:#6b6b7a;line-height:1.6;">
+                If you didn't create an account with The Becoming, you can safely ignore this email.
+              </div>
+              <div style="margin-top:14px;font-family:'Amiri','Times New Roman',serif;font-size:14px;color:#a78bfa;direction:rtl;">
+                جَزَاكَ اللَّهُ خَيْرًا
+              </div>
+            </td>
+          </tr>
+
+        </table>
+
+        <!-- Outside footer -->
+        <div style="max-width:560px;margin:18px auto 0;font-size:11px;color:#5a5a6a;text-align:center;line-height:1.5;">
+          The Becoming · A private dashboard for the believer who refuses to stay where he is.
+        </div>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

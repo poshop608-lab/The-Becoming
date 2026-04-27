@@ -108,6 +108,33 @@
   .jc-label{font-family:var(--sans);font-size:11px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
   .jc-time{font-family:var(--mono);font-size:34px;font-weight:700;letter-spacing:-0.01em;color:#fff;text-shadow:var(--text-glow);font-variant-numeric:tabular-nums;line-height:1.1}
   .jc-zone{font-family:var(--sans);font-size:11px;color:var(--gold-bright);margin-top:6px;letter-spacing:.04em}
+  /* Onboarding quiz */
+  .onboard-panel{max-width:560px;text-align:left;padding:36px 32px 28px}
+  .onboard-progress{height:4px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;margin-bottom:14px}
+  .onboard-progress-fill{height:100%;background:linear-gradient(90deg,#7c5cf0,#a78bfa,#67e8f9);transition:width .4s cubic-bezier(.22,1,.36,1);border-radius:999px;box-shadow:0 0 12px rgba(167,139,250,0.5)}
+  .onboard-step-num{font-family:var(--mono);font-size:11px;color:var(--gold-bright);letter-spacing:.12em;font-weight:600;margin-bottom:18px;text-transform:uppercase}
+  .onboard-q{font-family:var(--sans);font-size:24px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.2;margin-bottom:8px}
+  .onboard-sub{font-family:var(--sans);font-size:13.5px;color:var(--text-muted);line-height:1.55;margin-bottom:22px}
+  .onboard-options{display:grid;gap:10px;margin-bottom:8px}
+  .onboard-options.cols-2{grid-template-columns:1fr 1fr}
+  .onboard-options.cols-7{grid-template-columns:repeat(7,1fr);gap:6px}
+  .onboard-opt{display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--border-light);border-radius:12px;cursor:pointer;transition:all .2s;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--text);text-align:left;width:100%}
+  .onboard-opt:hover{border-color:rgba(167,139,250,0.4);background:rgba(167,139,250,0.06);color:#fff}
+  .onboard-opt.selected{background:linear-gradient(135deg,rgba(167,139,250,0.2),rgba(103,232,249,0.1));border-color:rgba(167,139,250,0.55);color:#fff;box-shadow:0 4px 18px rgba(167,139,250,0.2)}
+  .onboard-opt-check{width:20px;height:20px;border:1.5px solid var(--border-light);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);transition:all .2s}
+  .onboard-opt.selected .onboard-opt-check{background:linear-gradient(135deg,#a78bfa,#7c5cf0);border-color:transparent;box-shadow:0 0 12px rgba(167,139,250,0.4)}
+  .onboard-opt.selected .onboard-opt-check::after{content:'';width:5px;height:9px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg) translateY(-1px)}
+  .onboard-opt.cols-7-opt{flex-direction:column;justify-content:center;text-align:center;padding:14px 4px;font-size:12px;gap:6px}
+  .onboard-opt.cols-7-opt .onboard-opt-check{width:16px;height:16px}
+  .onboard-actions{display:flex;gap:10px;margin-top:24px}
+  .onboard-actions .btn{flex:1}
+  .onboard-skip{display:block;margin:14px auto 0;background:transparent;border:none;color:var(--text-dim);font-family:var(--sans);font-size:12px;cursor:pointer;text-decoration:underline;text-decoration-color:rgba(255,255,255,0.15);padding:6px 12px}
+  .onboard-skip:hover{color:var(--text-muted)}
+  .onboard-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border-light);color:var(--text);padding:12px 14px;font-family:var(--sans);font-size:14px;font-weight:500;border-radius:10px;color-scheme:dark}
+  .onboard-input:focus{outline:none;border-color:rgba(167,139,250,0.55);background:rgba(255,255,255,0.06);box-shadow:0 0 0 3px rgba(167,139,250,0.12)}
+  .onboard-finish{text-align:center;padding:8px 0 4px}
+  .onboard-finish-icon{font-family:var(--arabic);font-size:42px;color:var(--gold-bright);text-shadow:0 0 22px rgba(196,181,253,0.5);margin-bottom:14px;line-height:1.4}
+  .onboard-finish .onboard-q{margin-bottom:14px}
   /* Expandable dua card */
   .dua-card{cursor:pointer;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
   .dua-card:hover{transform:translateY(-2px);border-color:rgba(167,139,250,0.4);box-shadow:0 12px 32px rgba(0,0,0,0.5),0 0 24px rgba(167,139,250,0.1)}
@@ -574,6 +601,7 @@
         <div class="actions-bar" style="margin-top:0;padding-top:0;border:none">
           <button class="btn primary" id="startJourneyBtn">Start Day 1 today</button>
           <button class="btn" id="customStartBtn">Set custom start date</button>
+          <button class="btn" id="reRunOnboardBtn">Re-run setup quiz</button>
           <button class="btn danger" id="resetJourneyBtn">Reset journey</button>
         </div>
       </div>
@@ -659,6 +687,20 @@
   </div>
 </div>
 
+<div class="app-modal" id="onboardModal" aria-hidden="true">
+  <div class="app-modal-backdrop"></div>
+  <div class="app-modal-panel app-modal-panel-wide onboard-panel">
+    <div class="onboard-progress"><div class="onboard-progress-fill" id="onboardProgressFill"></div></div>
+    <div class="onboard-step-num" id="onboardStepNum">Step 1 of 7</div>
+    <div id="onboardBody"></div>
+    <div class="onboard-actions">
+      <button class="btn" id="onboardBackBtn">Back</button>
+      <button class="btn primary" id="onboardNextBtn">Next →</button>
+    </div>
+    <button class="onboard-skip" id="onboardSkipBtn">Skip — I'll customize manually</button>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script type="module">
@@ -682,14 +724,15 @@ const CHECKLIST_STRUCTURE = [
 
 const TOTAL_DEFAULT = CHECKLIST_STRUCTURE.reduce((s,b) => s + b.items.length, 0);
 
+// Keys 0..6 = Sun..Sat. Default split: Mon=Push, Tue=Pull, Wed=Shoulders, Thu=Push2, Fri=Pull2, Sat=Legs, Sun=Rest
 const DEFAULT_WORKOUT_SPLIT = {
-  "0":{"label":"Push · Chest + Triceps","rest":false,"exercises":[{"id":"d_inc_bb","name":"Incline barbell bench","sets":4,"reps":"6-8","category":"push"},{"id":"d_flat_db","name":"Flat dumbbell press","sets":3,"reps":"8-10","category":"push"},{"id":"d_mach_press","name":"Machine chest press","sets":3,"reps":"10","category":"push"},{"id":"d_cable_fly","name":"Cable fly","sets":3,"reps":"12","category":"push"},{"id":"d_oh_tri","name":"Overhead tricep extension","sets":3,"reps":"10","category":"push"},{"id":"d_rope_pd","name":"Tricep rope pushdown","sets":3,"reps":"12","category":"push"}]},
-  "1":{"label":"Pull · Back + Biceps + Forearms","rest":false,"exercises":[{"id":"d_lat_pd","name":"Lat pulldown wide grip","sets":4,"reps":"8-10","category":"pull"},{"id":"d_cable_row","name":"Seated cable row","sets":3,"reps":"10","category":"pull"},{"id":"d_lat_po","name":"Lat pullover","sets":3,"reps":"12","category":"pull"},{"id":"d_preacher","name":"Preacher curl","sets":4,"reps":"8-10","category":"pull"},{"id":"d_hammer","name":"Hammer curl","sets":3,"reps":"10","category":"pull"},{"id":"d_wrist","name":"Wrist curls","sets":3,"reps":"15","category":"pull"},{"id":"d_rev_wrist","name":"Reverse wrist curls","sets":3,"reps":"15","category":"pull"}]},
-  "2":{"label":"Shoulders + Traps","rest":false,"exercises":[{"id":"d_db_ohp","name":"Seated dumbbell shoulder press","sets":4,"reps":"8","category":"shoulders"},{"id":"d_lat_raise","name":"Lateral raises","sets":4,"reps":"12-15","category":"shoulders"},{"id":"d_bb_shrug","name":"Barbell shrugs","sets":4,"reps":"10-12","category":"shoulders"},{"id":"d_db_shrug","name":"Dumbbell shrugs","sets":3,"reps":"12","category":"shoulders"},{"id":"d_rev_pec","name":"Reverse pec deck","sets":3,"reps":"12","category":"shoulders"},{"id":"d_face_pull","name":"Face pulls","sets":3,"reps":"15","category":"shoulders"}]},
-  "3":{"label":"Push · Volume Day","rest":false,"exercises":[{"id":"d_flat_bb","name":"Flat barbell bench","sets":4,"reps":"8","category":"push"},{"id":"d_inc_db","name":"Incline dumbbell press","sets":3,"reps":"10","category":"push"},{"id":"d_cable_fly2","name":"Cable fly","sets":4,"reps":"12-15","category":"push"},{"id":"d_dips","name":"Dips","sets":3,"reps":"8-10","category":"push"},{"id":"d_skull","name":"Skullcrushers","sets":3,"reps":"10","category":"push"},{"id":"d_kickback","name":"Tricep kickbacks","sets":3,"reps":"12","category":"push"}]},
-  "4":{"label":"Pull · Volume Day","rest":false,"exercises":[{"id":"d_pullup","name":"Pull-ups","sets":3,"reps":"max","category":"pull"},{"id":"d_bb_row","name":"Barbell row","sets":4,"reps":"8","category":"pull"},{"id":"d_sa_row","name":"Single-arm cable row","sets":3,"reps":"10","category":"pull"},{"id":"d_bb_curl","name":"Barbell curl","sets":4,"reps":"8","category":"pull"},{"id":"d_inc_curl","name":"Incline dumbbell curl","sets":3,"reps":"10","category":"pull"},{"id":"d_wrist2","name":"Wrist curls","sets":4,"reps":"15","category":"pull"},{"id":"d_farmer","name":"Farmer's walk","sets":3,"reps":"30 sec","category":"pull"}]},
-  "5":{"label":"Legs + Lower Back","rest":false,"exercises":[{"id":"d_dl","name":"Conventional deadlift","sets":3,"reps":"6-8","category":"legs"},{"id":"d_squat","name":"Barbell back squat","sets":4,"reps":"8","category":"legs"},{"id":"d_lp","name":"Leg press","sets":3,"reps":"12","category":"legs"},{"id":"d_ham_curl","name":"Hamstring curl","sets":3,"reps":"12","category":"legs"},{"id":"d_back_ext","name":"Back extensions","sets":3,"reps":"12-15","category":"legs"},{"id":"d_calf","name":"Calf raises","sets":4,"reps":"15-20","category":"legs"}]},
-  "6":{"label":"Rest Day","rest":true,"exercises":[]}
+  "0":{"label":"Rest Day","rest":true,"exercises":[]},
+  "1":{"label":"Push · Chest + Triceps","rest":false,"exercises":[{"id":"d_inc_bb","name":"Incline barbell bench","sets":4,"reps":"6-8","category":"push"},{"id":"d_flat_db","name":"Flat dumbbell press","sets":3,"reps":"8-10","category":"push"},{"id":"d_mach_press","name":"Machine chest press","sets":3,"reps":"10","category":"push"},{"id":"d_cable_fly","name":"Cable fly","sets":3,"reps":"12","category":"push"},{"id":"d_oh_tri","name":"Overhead tricep extension","sets":3,"reps":"10","category":"push"},{"id":"d_rope_pd","name":"Tricep rope pushdown","sets":3,"reps":"12","category":"push"}]},
+  "2":{"label":"Pull · Back + Biceps + Forearms","rest":false,"exercises":[{"id":"d_lat_pd","name":"Lat pulldown wide grip","sets":4,"reps":"8-10","category":"pull"},{"id":"d_cable_row","name":"Seated cable row","sets":3,"reps":"10","category":"pull"},{"id":"d_lat_po","name":"Lat pullover","sets":3,"reps":"12","category":"pull"},{"id":"d_preacher","name":"Preacher curl","sets":4,"reps":"8-10","category":"pull"},{"id":"d_hammer","name":"Hammer curl","sets":3,"reps":"10","category":"pull"},{"id":"d_wrist","name":"Wrist curls","sets":3,"reps":"15","category":"pull"},{"id":"d_rev_wrist","name":"Reverse wrist curls","sets":3,"reps":"15","category":"pull"}]},
+  "3":{"label":"Shoulders + Traps","rest":false,"exercises":[{"id":"d_db_ohp","name":"Seated dumbbell shoulder press","sets":4,"reps":"8","category":"shoulders"},{"id":"d_lat_raise","name":"Lateral raises","sets":4,"reps":"12-15","category":"shoulders"},{"id":"d_bb_shrug","name":"Barbell shrugs","sets":4,"reps":"10-12","category":"shoulders"},{"id":"d_db_shrug","name":"Dumbbell shrugs","sets":3,"reps":"12","category":"shoulders"},{"id":"d_rev_pec","name":"Reverse pec deck","sets":3,"reps":"12","category":"shoulders"},{"id":"d_face_pull","name":"Face pulls","sets":3,"reps":"15","category":"shoulders"}]},
+  "4":{"label":"Push · Volume Day","rest":false,"exercises":[{"id":"d_flat_bb","name":"Flat barbell bench","sets":4,"reps":"8","category":"push"},{"id":"d_inc_db","name":"Incline dumbbell press","sets":3,"reps":"10","category":"push"},{"id":"d_cable_fly2","name":"Cable fly","sets":4,"reps":"12-15","category":"push"},{"id":"d_dips","name":"Dips","sets":3,"reps":"8-10","category":"push"},{"id":"d_skull","name":"Skullcrushers","sets":3,"reps":"10","category":"push"},{"id":"d_kickback","name":"Tricep kickbacks","sets":3,"reps":"12","category":"push"}]},
+  "5":{"label":"Pull · Volume Day","rest":false,"exercises":[{"id":"d_pullup","name":"Pull-ups","sets":3,"reps":"max","category":"pull"},{"id":"d_bb_row","name":"Barbell row","sets":4,"reps":"8","category":"pull"},{"id":"d_sa_row","name":"Single-arm cable row","sets":3,"reps":"10","category":"pull"},{"id":"d_bb_curl","name":"Barbell curl","sets":4,"reps":"8","category":"pull"},{"id":"d_inc_curl","name":"Incline dumbbell curl","sets":3,"reps":"10","category":"pull"},{"id":"d_wrist2","name":"Wrist curls","sets":4,"reps":"15","category":"pull"},{"id":"d_farmer","name":"Farmer's walk","sets":3,"reps":"30 sec","category":"pull"}]},
+  "6":{"label":"Legs + Lower Back","rest":false,"exercises":[{"id":"d_dl","name":"Conventional deadlift","sets":3,"reps":"6-8","category":"legs"},{"id":"d_squat","name":"Barbell back squat","sets":4,"reps":"8","category":"legs"},{"id":"d_lp","name":"Leg press","sets":3,"reps":"12","category":"legs"},{"id":"d_ham_curl","name":"Hamstring curl","sets":3,"reps":"12","category":"legs"},{"id":"d_back_ext","name":"Back extensions","sets":3,"reps":"12-15","category":"legs"},{"id":"d_calf","name":"Calf raises","sets":4,"reps":"15-20","category":"legs"}]}
 };
 
 let currentDate = new Date().toISOString().split('T')[0];
@@ -705,7 +748,7 @@ let workoutsChannel = null;
 let lastLocalWrite = 0;
 let lastSettingsWrite = 0;
 let lastWorkoutWrite = 0;
-let userSettings = { structure:{blocks:[]}, hidden_defaults:[], workout_structure:{}, hidden_fields:[], hidden_tabs:[], hidden_duas:[], hidden_blocks:[], journey_start:null, timezone:null };
+let userSettings = { structure:{blocks:[]}, hidden_defaults:[], workout_structure:{}, hidden_fields:[], hidden_tabs:[], hidden_duas:[], hidden_blocks:[], journey_start:null, timezone:null, onboarded:false };
 let completionChartInstance = null;
 let nafsChartInstance = null;
 let gymCharts = {};
@@ -882,6 +925,7 @@ async function fetchSettings() {
       hidden_blocks:meta.hidden_blocks||[],
       journey_start:meta.journey_start||null,
       timezone:meta.timezone||null,
+      onboarded:meta.onboarded===true,
     };
   }
 }
@@ -896,6 +940,7 @@ async function saveSettings() {
     hidden_blocks:userSettings.hidden_blocks||[],
     journey_start:userSettings.journey_start||null,
     timezone:userSettings.timezone||null,
+    onboarded:userSettings.onboarded===true,
   }});
   const { error } = await sb.from('becoming_settings').upsert({ user_id:currentUser.id, structure:structureToSave, hidden_defaults:userSettings.hidden_defaults, workout_structure:userSettings.workout_structure }, { onConflict:'user_id' });
   setSyncStatus(error ? 'offline' : 'synced');
@@ -1821,7 +1866,7 @@ function setupRealtime() {
       if (Date.now() - lastSettingsWrite < 1500) return;
       if (payload.new) {
         const meta = (payload.new.structure && payload.new.structure.meta) || {};
-        userSettings = { structure:payload.new.structure||{blocks:[]}, hidden_defaults:payload.new.hidden_defaults||[], workout_structure:payload.new.workout_structure||{}, hidden_fields:meta.hidden_fields||[], hidden_tabs:meta.hidden_tabs||[], hidden_duas:meta.hidden_duas||[], hidden_blocks:meta.hidden_blocks||[], journey_start:meta.journey_start||null, timezone:meta.timezone||null };
+        userSettings = { structure:payload.new.structure||{blocks:[]}, hidden_defaults:payload.new.hidden_defaults||[], workout_structure:payload.new.workout_structure||{}, hidden_fields:meta.hidden_fields||[], hidden_tabs:meta.hidden_tabs||[], hidden_duas:meta.hidden_duas||[], hidden_blocks:meta.hidden_blocks||[], journey_start:meta.journey_start||null, timezone:meta.timezone||null, onboarded:meta.onboarded===true };
         applyVisibility(); renderDuas();
         renderChecklist();
         if (document.getElementById('panel-customize').classList.contains('active')) renderCustomize();
@@ -1900,6 +1945,7 @@ async function initApp() {
   renderChecklist(); loadForms();
   updateDateDisplay();
   setupRealtime();
+  if (!userSettings.onboarded) setTimeout(startOnboarding, 300);
   // Auto-roll currentDate at TZ midnight
   setInterval(() => {
     const t = getTodayInTZ(getUserTZ());
@@ -2358,6 +2404,193 @@ document.addEventListener('click', (e) => {
     if (!v) { toast('Pick a date first', true); return; }
     setJourneyStart(v);
     hideModal('journeyModal');
+  }
+});
+
+// ============ ONBOARDING QUIZ ============
+const ONBOARD_STEPS = [
+  { id:'goals', type:'multi', q:'What do you want to track?', sub:'Pick everything that matters to you. You can change this anytime.', options:[
+    { id:'salah', label:'Salah & dhikr' },
+    { id:'gym', label:'Gym & strength training' },
+    { id:'trading', label:'Trading' },
+    { id:'quran', label:'Quran & reading' },
+    { id:'reflection', label:'Daily reflection / journaling' },
+    { id:'body', label:'Sleep, water, body metrics' },
+    { id:'diet', label:'Meals & diet' },
+  ]},
+  { id:'trader', type:'single', q:'Are you actively trading?', sub:'If yes, you\'ll get the Trading tab + a "Trading pivot" block in your daily checklist. If not, we\'ll hide them.', options:[
+    { id:'yes', label:'Yes — I trade markets regularly' },
+    { id:'sim', label:'I\'m practicing on a sim / paper account' },
+    { id:'no', label:'No — hide trading completely' },
+  ]},
+  { id:'gymdays', type:'multi-7', q:'Which days do you train at the gym?', sub:'Tap each day you usually lift. Untapped days become rest days. You can change your split anytime in Customize.', options:[
+    { id:'1', label:'Mon' },{ id:'2', label:'Tue' },{ id:'3', label:'Wed' },
+    { id:'4', label:'Thu' },{ id:'5', label:'Fri' },{ id:'6', label:'Sat' },{ id:'0', label:'Sun' },
+  ]},
+  { id:'spiritual', type:'multi', q:'Which acts of worship do you want on your daily list?', sub:'These add (or remove) checklist items. All can be toggled later.', options:[
+    { id:'fajr_masjid', label:'Fajr in jamaah at masjid' },
+    { id:'sunnah', label:'Sunnah rakats around fard prayers' },
+    { id:'dhikr', label:'Post-prayer dhikr (33s)' },
+    { id:'mulk', label:'Surah Al-Mulk before sleep' },
+    { id:'kahf', label:'Quran daily (Al-Kahf on Fridays)' },
+    { id:'fasting', label:'Voluntary fasting (Mon/Thu)' },
+    { id:'tahajjud', label:'Tahajjud / qiyam' },
+  ]},
+  { id:'guard', type:'multi', q:'Which guardrails do you want?', sub:'Critical items shown with a red bar — they protect your trajectory.', options:[
+    { id:'no_ig', label:'No Instagram / reels' },
+    { id:'no_scroll', label:'No mindless scrolling' },
+    { id:'low_screen', label:'Screen time under 1h/day' },
+    { id:'lower_gaze', label:'Guard the gaze' },
+  ]},
+  { id:'tz', type:'tz', q:'Pick your timezone', sub:'This sets when "today" rolls over to "tomorrow" — affects the day counter and gym day picker.' },
+  { id:'finish', type:'finish', q:'Bismillah — you\'re ready', sub:'Your dashboard is now set up around what matters to you. Start Day 1 whenever you\'re ready.' },
+];
+const ONBOARD = { stepIdx:0, answers:{} };
+function startOnboarding() { ONBOARD.stepIdx = 0; ONBOARD.answers = {}; showModal('onboardModal'); renderOnboardStep(); }
+function renderOnboardStep() {
+  const step = ONBOARD_STEPS[ONBOARD.stepIdx];
+  const body = document.getElementById('onboardBody');
+  document.getElementById('onboardStepNum').textContent = 'Step ' + (ONBOARD.stepIdx+1) + ' of ' + ONBOARD_STEPS.length;
+  document.getElementById('onboardProgressFill').style.width = ((ONBOARD.stepIdx+1)/ONBOARD_STEPS.length*100) + '%';
+  document.getElementById('onboardBackBtn').style.visibility = ONBOARD.stepIdx === 0 ? 'hidden' : 'visible';
+  const nextBtn = document.getElementById('onboardNextBtn');
+  if (step.type === 'finish') { nextBtn.textContent = 'Open my dashboard'; }
+  else if (ONBOARD.stepIdx === ONBOARD_STEPS.length - 2) { nextBtn.textContent = 'Almost done →'; }
+  else { nextBtn.textContent = 'Next →'; }
+  let html = '';
+  if (step.type === 'finish') {
+    html = '<div class="onboard-finish"><div class="onboard-finish-icon">بِسْمِ اللَّهِ نَبْدَأُ</div><div class="onboard-q">'+step.q+'</div><div class="onboard-sub">'+step.sub+'</div></div>';
+  } else {
+    html = '<div class="onboard-q">'+step.q+'</div><div class="onboard-sub">'+step.sub+'</div>';
+    if (step.type === 'tz') {
+      const cur = ONBOARD.answers.tz || getUserTZ();
+      const opts = new Set(COMMON_TZS); opts.add(cur);
+      html += '<select class="onboard-input" id="onboardTzSel">' + Array.from(opts).sort().map(tz => '<option value="'+tz+'"'+(tz===cur?' selected':'')+'>'+tz.replace(/_/g,' ')+'</option>').join('') + '</select>';
+    } else {
+      const colsClass = step.type === 'multi-7' ? ' cols-7' : '';
+      const optClass = step.type === 'multi-7' ? ' cols-7-opt' : '';
+      const selected = new Set(ONBOARD.answers[step.id] || []);
+      html += '<div class="onboard-options'+colsClass+'">';
+      step.options.forEach(opt => {
+        const isSel = selected.has(opt.id);
+        html += '<button class="onboard-opt'+(isSel?' selected':'')+optClass+'" data-opt="'+escapeHTML(opt.id)+'"><span class="onboard-opt-check"></span><span>'+escapeHTML(opt.label)+'</span></button>';
+      });
+      html += '</div>';
+    }
+  }
+  body.innerHTML = html;
+  body.querySelectorAll('.onboard-opt').forEach(btn => btn.addEventListener('click', () => {
+    const v = btn.dataset.opt;
+    if (step.type === 'single') {
+      ONBOARD.answers[step.id] = [v];
+      body.querySelectorAll('.onboard-opt').forEach(b => b.classList.toggle('selected', b.dataset.opt === v));
+    } else {
+      const cur = new Set(ONBOARD.answers[step.id] || []);
+      cur.has(v) ? cur.delete(v) : cur.add(v);
+      ONBOARD.answers[step.id] = Array.from(cur);
+      btn.classList.toggle('selected', cur.has(v));
+    }
+  }));
+}
+async function applyOnboardAnswers() {
+  const a = ONBOARD.answers;
+  const goals = new Set(a.goals || []);
+  const trader = (a.trader && a.trader[0]) || 'no';
+  const gymDays = new Set(a.gymdays || []);
+  const spiritual = new Set(a.spiritual || []);
+  const guard = new Set(a.guard || []);
+
+  // Hidden tabs based on goals
+  const hiddenTabs = new Set();
+  if (trader === 'no' || !goals.has('trading')) hiddenTabs.add('trading');
+  if (!goals.has('gym')) hiddenTabs.add('gym');
+  if (!goals.has('reflection')) hiddenTabs.add('reflection');
+  // Hidden checklist blocks
+  const hiddenBlocks = new Set();
+  if (trader === 'no' || !goals.has('trading')) hiddenBlocks.add('5'); // Trading pivot block
+  // Hidden form fields
+  const hiddenFields = new Set();
+  if (trader === 'no' || !goals.has('trading')) ['sessionType','tradeCount','wins','losses','followedPlan','revenge','overtraded','discipline','lesson'].forEach(f => hiddenFields.add(f));
+  if (!goals.has('gym')) hiddenFields.add('gym_sess');
+  if (!goals.has('body')) ['weight','sleep','water','energy','mood','nafs','screentime'].forEach(f => hiddenFields.add(f));
+  if (!goals.has('diet')) ['breakfast','lunch','snack','dinner'].forEach(f => hiddenFields.add(f));
+  if (!goals.has('reflection')) ['didRight','challenge','manClose','gratitude','talksRabb','tomorrow','badHabit','scrolled','fasted'].forEach(f => hiddenFields.add(f));
+
+  // Hidden default checklist items based on spiritual selections
+  const hiddenDefaults = new Set(userSettings.hidden_defaults || []);
+  if (!spiritual.has('fajr_masjid')) hiddenDefaults.add('fajr_masjid');
+  if (!spiritual.has('sunnah')) ['fajr_sunnah','dhuhr_sunnah_before','dhuhr_sunnah_after','asr_sunnah','maghrib_sunnah','isha_sunnah'].forEach(i => hiddenDefaults.add(i));
+  if (!spiritual.has('dhikr')) ['fajr_dhikr','dhuhr_dhikr','asr_dhikr','maghrib_dhikr','isha_dhikr'].forEach(i => hiddenDefaults.add(i));
+  if (!spiritual.has('mulk')) hiddenDefaults.add('mulk_sleep');
+  if (!spiritual.has('kahf')) hiddenDefaults.add('mulk');
+  // Guardrails
+  if (!guard.has('no_ig')) ['no_ig','no_ig_browser'].forEach(i => hiddenDefaults.add(i));
+  if (!guard.has('no_scroll')) hiddenDefaults.add('no_scroll');
+  if (!guard.has('low_screen')) hiddenDefaults.add('low_screen');
+  if (!guard.has('lower_gaze')) hiddenDefaults.add('lower_gaze');
+  if (!spiritual.has('fasting')) hiddenDefaults.add('fasted');
+
+  // Workout split: re-distribute the 6 training-day templates from DEFAULT across the user's chosen training days,
+  // keeping the original sequence (Push, Pull, Shoulders, Push2, Pull2, Legs). Untrained days = rest.
+  // Order training days starting from Monday so Mon = first training day in the sequence (the natural week start).
+  let workoutStructure = {};
+  if (goals.has('gym') && gymDays.size > 0) {
+    const trainingDayKeys = ['1','2','3','4','5','6','0']; // Mon..Sat..Sun
+    const selectedTrainingDays = trainingDayKeys.filter(k => gymDays.has(k));
+    // Pull the 6 non-rest day templates from DEFAULT in original order
+    const templates = [];
+    for (let i = 0; i < 7; i++) {
+      const t = DEFAULT_WORKOUT_SPLIT[String(i)];
+      if (t && !t.rest) templates.push(t);
+    }
+    // Assign templates in order to selected training days; cycle if user trains > template count
+    selectedTrainingDays.forEach((dayKey, idx) => {
+      const tpl = templates[idx % templates.length];
+      workoutStructure[dayKey] = JSON.parse(JSON.stringify(tpl));
+      workoutStructure[dayKey].rest = false;
+    });
+    // Fill the rest as rest days
+    for (let d = 0; d < 7; d++) {
+      const k = String(d);
+      if (!workoutStructure[k]) workoutStructure[k] = { label:'Rest Day', rest:true, exercises:[] };
+    }
+  } else {
+    // User didn't pick gym — keep their existing split if any, else copy default unchanged
+    workoutStructure = userSettings.workout_structure && Object.keys(userSettings.workout_structure).length ? JSON.parse(JSON.stringify(userSettings.workout_structure)) : JSON.parse(JSON.stringify(DEFAULT_WORKOUT_SPLIT));
+  }
+
+  // Timezone
+  const tzSel = document.getElementById('onboardTzSel');
+  if (tzSel && tzSel.value) userSettings.timezone = tzSel.value;
+  else if (!userSettings.timezone) userSettings.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+
+  userSettings.hidden_tabs = Array.from(hiddenTabs);
+  userSettings.hidden_blocks = Array.from(hiddenBlocks);
+  userSettings.hidden_fields = Array.from(hiddenFields);
+  userSettings.hidden_defaults = Array.from(hiddenDefaults);
+  userSettings.workout_structure = workoutStructure;
+  userSettings.onboarded = true;
+  await saveSettings();
+  populateTZPicker();
+  applyVisibility();
+  renderChecklist();
+  renderDuas();
+  hideModal('onboardModal');
+  toast('Welcome to The Becoming · bismillah');
+}
+document.addEventListener('click', (e) => {
+  if (e.target.id === 'onboardNextBtn') {
+    if (ONBOARD.stepIdx === ONBOARD_STEPS.length - 1) { applyOnboardAnswers(); return; }
+    ONBOARD.stepIdx++;
+    renderOnboardStep();
+  } else if (e.target.id === 'onboardBackBtn') {
+    if (ONBOARD.stepIdx > 0) { ONBOARD.stepIdx--; renderOnboardStep(); }
+  } else if (e.target.id === 'onboardSkipBtn') {
+    userSettings.onboarded = true;
+    saveSettings();
+    hideModal('onboardModal');
+  } else if (e.target.id === 'reRunOnboardBtn') {
+    startOnboarding();
   }
 });
 
