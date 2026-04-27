@@ -1,86 +1,77 @@
-# Branded confirmation email — setup
+# Branded Supabase email templates
 
-The repo includes `email-confirm-template.html` — a dark glassmorphic confirmation email that matches the app's look (gradient wordmark, bismillah, Ar-Ra'd ayah, glowing CTA button).
+The `emails/` folder contains 5 dark glassmorphic email templates matching the dashboard's look (gradient wordmark, bismillah header, Quran/hadith ayah block, glowing CTA). Each one is tuned to its specific Supabase auth event.
 
-You have two paths to use it. Path A is free and takes 2 minutes. Path B is what you want long-term if you have your own domain.
-
----
-
-## Path A — Use Supabase's built-in email (fastest, free)
-
-1. Open https://supabase.com/dashboard → your project (`ggszthbqteiehsmdwcmq`).
-2. Left sidebar → **Authentication** → **Email Templates**.
-3. Pick the **"Confirm signup"** template from the dropdown.
-4. Open `email-confirm-template.html` from this repo, copy **everything** (the whole file).
-5. Paste it into the Supabase template editor, replacing the default content.
-6. **Important:** Supabase uses `{{ .ConfirmationURL }}` as the placeholder for the confirm link. The template already has it — leave it as-is.
-7. Optional: change the **Subject** to something like `Bismillah · Confirm your email to begin` — defaults to "Confirm your signup" otherwise.
-8. Click **Save**.
-
-That's it. Next signup gets the branded email from `noreply@mail.app.supabase.io`.
-
-**Limits on the free path:** Supabase's built-in mailer is rate-limited to ~3 emails per hour for free projects. For a personal app this is fine. If you start sharing the app and signups spike, switch to Path B.
+| # | File | Supabase template name | Suggested subject |
+|---|------|------------------------|-------------------|
+| 1 | `emails/01-confirm-signup.html` | **Confirm signup** | `Bismillah · Confirm your email to begin` |
+| 2 | `emails/02-magic-link.html` | **Magic Link** | `Your sign-in link · The Becoming` |
+| 3 | `emails/03-reset-password.html` | **Reset Password** | `Reset your password · The Becoming` |
+| 4 | `emails/04-change-email.html` | **Change Email Address** | `Confirm your new email · The Becoming` |
+| 5 | `emails/05-invite.html` | **Invite User** | `You're invited to The Becoming` |
 
 ---
 
-## Path B — Custom SMTP (your own domain · scales)
+## Install (once you have Resend SMTP plugged in)
 
-Pick an email provider. **Resend** is the easiest:
+For **each** template above, do:
 
-### Step 1 — Create the email account
+1. Open the `.html` file from the `emails/` folder in this repo. Click **Raw** on GitHub → Ctrl+A → Ctrl+C.
+2. Open https://supabase.com/dashboard → your project → **Authentication** → **Email Templates**.
+3. Pick the matching template name from the dropdown (see table above).
+4. Clear the editor → paste the HTML → set the suggested **Subject**.
+5. Click **Save**.
 
-1. Go to https://resend.com → sign up (free tier: 3,000 emails/month, 100/day).
-2. **Domains** → **Add Domain** → enter your domain (e.g. `thebecoming.app` or whatever you own).
-3. Resend shows you DNS records (TXT, MX, DKIM). Add them at your DNS provider (Vercel, Cloudflare, GoDaddy, wherever).
-4. Wait ~5 minutes for verification.
-5. **API Keys** → **Create API Key** → name it `supabase-smtp` → copy the key.
-
-### Step 2 — Plug Resend into Supabase
-
-1. Supabase Dashboard → your project → **Project Settings** (gear icon, bottom-left) → **Authentication** → scroll to **SMTP Settings**.
-2. Toggle **Enable Custom SMTP** ON.
-3. Fill in:
-   - **Sender email:** `noreply@yourdomain.com` (must be on a verified Resend domain)
-   - **Sender name:** `The Becoming`
-   - **Host:** `smtp.resend.com`
-   - **Port:** `465`
-   - **Username:** `resend`
-   - **Password:** *(paste the API key from Step 1)*
-4. Click **Save**.
-5. Click **Send test email** to confirm it works.
-
-### Step 3 — Paste the template (same as Path A)
-
-Same as above: Authentication → Email Templates → Confirm signup → paste `email-confirm-template.html` → Save.
-
-Now signup emails come from `noreply@yourdomain.com` with your branding, and you can send up to 100/day on Resend's free tier.
+Repeat for all 5. Total time: ~5 minutes.
 
 ---
 
-## Other Supabase email templates
+## Template placeholders
 
-The same template structure works for the other emails Supabase sends. The placeholders differ:
+Supabase fills these in automatically when sending:
 
-| Template | Placeholder for the action link |
-|---|---|
-| Confirm signup | `{{ .ConfirmationURL }}` |
-| Magic link | `{{ .ConfirmationURL }}` |
-| Reset password | `{{ .ConfirmationURL }}` |
-| Email change | `{{ .ConfirmationURL }}` |
-| Invite user | `{{ .ConfirmationURL }}` |
+| Placeholder | Used in | Meaning |
+|-------------|---------|---------|
+| `{{ .ConfirmationURL }}` | All 5 | The action link (confirm / sign in / reset / accept) |
+| `{{ .Email }}` | `04-change-email.html` | The user's current email address |
+| `{{ .NewEmail }}` | `04-change-email.html` | The new email address being requested |
+| `{{ .Token }}` | (not used here, but available) | The 6-digit OTP code, if you want token-based flows |
+| `{{ .TokenHash }}` | (not used here) | Hashed token for verifying via redirect |
+| `{{ .SiteURL }}` | (not used here) | Your project's site URL from Supabase config |
 
-To brand them all, copy `email-confirm-template.html` for each, then change:
-- The **headline** ("Confirm my email →" → "Reset my password →" etc.)
-- The **body copy**
-- Keep the bismillah, ayah, and color theme identical.
+Don't change the `{{ .ConfirmationURL }}` placeholders — they're how Supabase wires the action button to the right URL with the right token.
 
 ---
 
-## Alternative providers (if Resend doesn't suit you)
+## Already on Resend SMTP
 
-- **SendGrid** — host: `smtp.sendgrid.net`, port: `587`, username: `apikey`, password: API key. Free tier: 100/day.
-- **Mailgun** — host: `smtp.mailgun.org`, port: `587`. Free trial: 5,000 emails for 30 days.
-- **AWS SES** — cheapest at scale ($0.10 per 1,000 emails). Slightly more setup.
-- **Postmark** — $15/month entry, but the best deliverability for transactional email.
+If you've already toggled custom SMTP in Supabase (Project Settings → Authentication → SMTP Settings) with `smtp.resend.com`, then these templates will send through your verified Resend domain automatically. No further config needed — just paste the HTML.
 
-The template is identical for all of them — only the SMTP credentials in Supabase change.
+If you want to verify it's wired correctly:
+
+1. Project Settings → Authentication → SMTP Settings → confirm the sender email is on a domain marked **Verified** in your Resend dashboard.
+2. Click **Send test email** in the SMTP panel — should arrive within seconds from your sender address.
+
+---
+
+## After install
+
+Test each flow once:
+
+- **Confirm signup** — sign up a throwaway account. You'll get template 1.
+- **Magic link** — on the sign-in screen, request a magic link if you've enabled it.
+- **Reset password** — click "Forgot password" on sign-in. You'll get template 3.
+- **Change email** — from inside the app's account settings (when you build that flow). You'll get template 4.
+- **Invite** — only sent if you call `supabase.auth.admin.inviteUserByEmail()` from a server function or the dashboard's user management UI. You'll get template 5.
+
+Inbox preview a few of them in Gmail (web + iOS), Outlook, and Apple Mail. The templates use only inline-safe CSS (no flexbox, no CSS grid) and table-based layout for max compatibility.
+
+---
+
+## If something looks broken in a specific client
+
+- **Gradient text not rendering** → some Outlook versions strip `background-clip: text`. The wordmark falls back to solid `#a78bfa` purple in that case (look for the `color:#a78bfa` fallback set inline on the `<span>`).
+- **CTA button color flat** → Outlook strips the gradient `background:` on `<td>`. The button still works, just appears flat purple.
+- **Arabic font** → falls back from Amiri → Times New Roman in clients without web font support. Renders correctly either way; just slightly less ornate.
+
+If you see anything else, screenshot it and I'll patch.
