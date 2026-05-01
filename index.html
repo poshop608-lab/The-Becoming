@@ -319,6 +319,42 @@
   .gym-subpanel{display:none}
   .gym-subpanel.active{display:block;animation:fadeIn .3s ease}
   .workout-header{background:linear-gradient(135deg,rgba(167,139,250,0.08) 0%,rgba(103,232,249,0.04) 100%);border:1px solid var(--border-light);border-radius:14px;padding:18px 22px;margin-bottom:18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .split-picker{margin-bottom:14px}
+  .split-picker-label{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;font-weight:600}
+  .split-picker-pills{display:flex;flex-wrap:wrap;gap:8px}
+  .split-pill{padding:9px 16px;background:rgba(255,255,255,0.04);border:1px solid var(--border-light);color:var(--text-muted);font-family:var(--sans);font-size:12.5px;font-weight:600;border-radius:999px;cursor:pointer;transition:all .2s;letter-spacing:.01em}
+  .split-pill:hover{color:#fff;border-color:rgba(167,139,250,0.45);background:rgba(167,139,250,0.08)}
+  .split-pill.active{background:linear-gradient(135deg,rgba(167,139,250,0.28),rgba(103,232,249,0.14));color:#fff;border-color:rgba(167,139,250,0.55);box-shadow:0 4px 14px rgba(167,139,250,0.25)}
+  .split-pill.rest{margin-left:auto;color:var(--text-dim)}
+  .split-pill.rest:hover{color:#fda4b1;border-color:rgba(251,113,133,0.4);background:rgba(251,113,133,0.08)}
+  /* History — workouts log + exercise lookup */
+  .hist-workout{background:var(--bg-card);border:1px solid var(--border-light);border-radius:14px;margin-bottom:12px;overflow:hidden;backdrop-filter:blur(18px) saturate(140%)}
+  .hist-workout-head{padding:14px 18px;background:linear-gradient(135deg,rgba(167,139,250,0.06),rgba(103,232,249,0.03));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .hist-workout-date{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:4px}
+  .hist-workout-split{font-family:var(--sans);font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.01em}
+  .hist-workout-meta{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+  .hist-workout-meta span{font-family:var(--mono);font-size:11px;color:var(--gold-bright);font-weight:600;padding:3px 9px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.22);border-radius:999px;font-variant-numeric:tabular-nums}
+  .hist-ex-list{padding:6px 0}
+  .hist-ex-row{padding:10px 18px;border-bottom:1px solid var(--border);display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hist-ex-row:last-child{border-bottom:none}
+  .hist-ex-name{flex:1;min-width:160px;font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--text)}
+  .hist-ex-sets{display:flex;gap:6px;flex-wrap:wrap}
+  .hist-set{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--text-muted);padding:4px 10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;font-variant-numeric:tabular-nums}
+  .hist-set.pr{background:rgba(94,234,212,0.1);border-color:rgba(94,234,212,0.35);color:#9ff5e2;box-shadow:0 0 10px rgba(94,234,212,0.15)}
+  .lookup-bar{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+  .lookup-label{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+  .lookup-select{flex:1;min-width:240px;background:var(--bg-elevated);border:1px solid var(--border-light);color:var(--text);padding:11px 14px;font-family:var(--sans);font-size:14px;font-weight:600;border-radius:10px;color-scheme:dark}
+  .lookup-select:focus{outline:none;border-color:rgba(167,139,250,0.55);box-shadow:0 0 0 3px rgba(167,139,250,0.12)}
+  .lookup-bests{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:18px}
+  .lookup-best-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:12px;padding:14px 16px;border-left:3px solid var(--gold)}
+  .lookup-best-label{font-family:var(--mono);font-size:9.5px;color:var(--text-muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px;font-weight:600}
+  .lookup-best-val{font-family:var(--sans);font-size:24px;font-weight:800;color:var(--gold-bright);line-height:1;margin-bottom:5px}
+  .lookup-best-val .unit{font-size:12px;color:var(--text-muted);margin-left:3px;font-weight:500}
+  .lookup-best-date{font-family:var(--mono);font-size:10.5px;color:var(--text-dim);font-weight:500}
+  .lookup-sessions{display:flex;flex-direction:column;gap:8px}
+  .lookup-session{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .lookup-sess-date{font-family:var(--mono);font-size:11.5px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;min-width:130px}
+  .lookup-sess-split{display:inline-block;margin-left:6px;color:var(--gold-bright);text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:11px}
   .workout-day-label{font-family:var(--sans);font-size:22px;font-weight:800;font-style:normal;letter-spacing:-0.01em;background:linear-gradient(135deg,#c4b5fd 0%,#67e8f9 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;flex:1;min-width:200px}
   .rest-day-msg{background:var(--bg-card);border:1px solid var(--border-light);border-radius:16px;padding:52px 24px;text-align:center}
   .rest-day-msg .icon{font-family:var(--arabic);font-size:42px;color:var(--gold-bright);margin-bottom:14px;line-height:1.4;text-shadow:0 0 20px rgba(196,181,253,0.4)}
@@ -584,10 +620,17 @@
   </section>
 
   <section class="panel" id="panel-history">
-    <h2 class="section-title">All days<span class="section-sub">The record</span></h2>
+    <h2 class="section-title">History<span class="section-sub">The record</span></h2>
     <div class="section-arabic">السِّجِلُّ الْكَامِلُ</div>
-    <div class="history-table" id="historyTable"></div>
-    <div class="actions-bar"><button class="btn primary" id="downloadReportBtn">Download PDF Report</button><button class="btn" id="exportBtn">Export JSON backup</button></div>
+    <div class="gym-subtabs" id="historySubtabs">
+      <button class="gym-subtab active" data-hsub="days">Daily log</button>
+      <button class="gym-subtab" data-hsub="workouts">Workouts</button>
+      <button class="gym-subtab" data-hsub="lookup">Exercise lookup</button>
+    </div>
+    <div class="gym-subpanel active" id="hsub-days"><div class="history-table" id="historyTable"></div></div>
+    <div class="gym-subpanel" id="hsub-workouts"><div id="historyWorkouts"></div></div>
+    <div class="gym-subpanel" id="hsub-lookup"><div id="historyLookup"></div></div>
+    <div class="actions-bar"><button class="btn primary" id="downloadReportBtn" style="display:none">Download PDF Report</button><button class="btn" id="exportBtn">Export JSON backup</button></div>
   </section>
 
   <section class="panel" id="panel-customize">
@@ -1124,31 +1167,81 @@ function buildLastSessionMap() {
   });
   return map;
 }
+// Build the list of selectable splits from the user's workout_structure.
+// Returns [{ key, label, exercises }] for every non-rest day, deduped by label so the
+// same Push template appearing on Mon and Thu shows once. The key is the day-of-week
+// it came from (used for default selection); label is what the user sees on the pill.
+function getAvailableSplits() {
+  const split = getWorkoutStructure();
+  const seen = {};
+  const out = [];
+  for (let i = 0; i < 7; i++) {
+    const d = split[String(i)] || split[i];
+    if (!d || d.rest || !(d.exercises || []).length) continue;
+    const lbl = d.label || ('Day ' + i);
+    if (seen[lbl]) continue;
+    seen[lbl] = true;
+    out.push({ key:String(i), label:lbl, exercises:d.exercises || [] });
+  }
+  return out;
+}
+function findSplitByLabel(label) {
+  return getAvailableSplits().find(s => s.label === label) || null;
+}
+
 async function renderTodaysWorkout() {
   if (!allWorkoutsLoaded) await fetchAllWorkouts();
   const today = await fetchWorkout(currentDate);
   const dow = dowFromDate(currentDate);
   const split = getWorkoutStructure();
-  const day = split[String(dow)] || split[dow] || { label:'No plan', rest:false, exercises:[] };
+  const dowDay = split[String(dow)] || split[dow] || { label:'No plan', rest:false, exercises:[] };
   const root = document.getElementById('gymToday');
   const dn = dayName(dow);
-  // If user has marked TODAY as rest (overriding the split), respect that
   const userMarkedRest = today && today.day_label === '__REST__';
-  if (day.rest || userMarkedRest) {
-    const why = userMarkedRest ? 'You marked today as a rest day' : 'Rest day in your split';
-    root.innerHTML = '<div class="workout-header"><div class="workout-day-label">'+escapeHTML(dn)+' · '+escapeHTML(day.label||'Rest')+'</div><button class="btn" id="unmarkRestBtn">Undo rest day</button></div>'+
-      '<div class="rest-day-msg"><div class="icon">رَاحَة</div><p>'+escapeHTML(why)+'</p><p style="font-size:14px;margin-top:14px;color:var(--text-dim)">Active recovery only — walk, stretch, hydrate.</p></div>';
-    const undo = document.getElementById('unmarkRestBtn');
-    if (undo) undo.addEventListener('click', async () => {
+  const availableSplits = getAvailableSplits();
+
+  // Determine which split is active for today.
+  // 1. If a workout row already exists for today and its day_label matches an available split, use that.
+  // 2. Otherwise fall back to today's day-of-week split (if it isn't a rest day).
+  let activeSplit = null;
+  if (today && today.day_label && today.day_label !== '__REST__') {
+    activeSplit = findSplitByLabel(today.day_label);
+  }
+  if (!activeSplit && !dowDay.rest) {
+    activeSplit = findSplitByLabel(dowDay.label) || (availableSplits[0] || null);
+  }
+
+  if (userMarkedRest) {
+    root.innerHTML = '<div class="workout-header"><div class="workout-day-label">'+escapeHTML(dn)+' · Rest day</div><button class="btn" id="unmarkRestBtn">Undo rest day</button></div>'+
+      '<div class="rest-day-msg"><div class="icon">رَاحَة</div><p>You marked today as a rest day</p><p style="font-size:14px;margin-top:14px;color:var(--text-dim)">Active recovery only — walk, stretch, hydrate.</p></div>';
+    document.getElementById('unmarkRestBtn').addEventListener('click', async () => {
       await upsertWorkout(currentDate, { user_rest:false });
       renderTodaysWorkout();
     });
     return;
   }
+
+  // No splits configured at all — guide the user to Customize
+  if (availableSplits.length === 0) {
+    root.innerHTML = '<div class="rest-day-msg"><p>No workout splits configured.</p><p style="font-size:14px;margin-top:10px;color:var(--text-dim)">Add exercises to your weekly split in Customize → Workout split.</p></div>';
+    return;
+  }
+
+  const day = activeSplit || dowDay;
   const lastMap = buildLastSessionMap();
   const todayExMap = {};
   if (today && today.exercises) today.exercises.forEach(ex => { todayExMap[ex.exercise_id] = ex; });
-  let html = '<div class="workout-header"><div class="workout-day-label">'+escapeHTML(dn)+' · '+escapeHTML(day.label)+'</div><button class="btn" id="markRestBtn" style="margin-left:auto">Mark today as rest</button></div>';
+
+  // Split picker pills
+  let html = '<div class="split-picker"><div class="split-picker-label">Today I\'m doing</div><div class="split-picker-pills">';
+  availableSplits.forEach(s => {
+    const isActive = day.label === s.label;
+    html += '<button class="split-pill'+(isActive?' active':'')+'" data-split-label="'+escapeHTML(s.label)+'">'+escapeHTML(s.label)+'</button>';
+  });
+  html += '<button class="split-pill rest" data-split-rest="1">Rest day</button>';
+  html += '</div></div>';
+
+  html += '<div class="workout-header"><div class="workout-day-label">'+escapeHTML(dn)+' · '+escapeHTML(day.label)+'</div></div>';
   html += '<div data-day-label="'+escapeHTML(day.label)+'">';
   (day.exercises || []).forEach(ex => {
     const numSets = ex.sets || 3;
@@ -1192,8 +1285,18 @@ async function renderTodaysWorkout() {
     const ok = await upsertWorkout(currentDate, p);
     toast(ok ? 'Workout logged · alhamdulillah' : 'Save failed', !ok);
   });
-  const restBtn = document.getElementById('markRestBtn');
-  if (restBtn) restBtn.addEventListener('click', async () => {
+  // Split picker: switch which workout you're doing today
+  root.querySelectorAll('[data-split-label]').forEach(btn => btn.addEventListener('click', async () => {
+    const newLabel = btn.dataset.splitLabel;
+    if (newLabel === day.label) return;
+    // Warn if any sets have been entered for the current split (saved or just typed)
+    const hasData = Array.from(root.querySelectorAll('.in-w, .in-r')).some(el => el.value && el.value.trim() !== '');
+    if (hasData && !confirm('Switch to "' + newLabel + '"? The exercises you\'ve entered for "' + day.label + '" will be replaced.')) return;
+    await upsertWorkout(currentDate, { day_label:newLabel, exercises:[], duration_minutes:null, overall_rpe:null });
+    renderTodaysWorkout();
+  }));
+  const restPill = root.querySelector('[data-split-rest]');
+  if (restPill) restPill.addEventListener('click', async () => {
     if (!confirm('Mark today as a rest day? You can undo this anytime.')) return;
     await upsertWorkout(currentDate, { user_rest:true });
     renderTodaysWorkout();
@@ -1478,6 +1581,109 @@ async function renderHistory() {
       renderHistory();
     });
   });
+  renderHistoryWorkouts();
+  renderHistoryLookup();
+}
+
+// Reverse-chrono list of every logged workout — what split, what exercises, what weights.
+async function renderHistoryWorkouts() {
+  if (!allWorkoutsLoaded) await fetchAllWorkouts();
+  const root = document.getElementById('historyWorkouts');
+  if (!root) return;
+  const all = Object.values(workoutCache)
+    .filter(w => w && w.day_label !== '__REST__' && (w.exercises||[]).length > 0)
+    .sort((a,b) => b.workout_date.localeCompare(a.workout_date));
+  if (all.length === 0) { root.innerHTML = '<div class="rest-day-msg"><p style="font-style:italic">No workouts logged yet.</p></div>'; return; }
+  // Compute current PRs once so we can flag PR sets in the cards
+  const prs = computePRs(Object.values(workoutCache).filter(w => w));
+  let html = '';
+  all.forEach(w => {
+    const dow = dowFromDate(w.workout_date);
+    const dnShort = DAY_NAMES_SHORT[dow] || '';
+    const dateLabel = new Date(w.workout_date+'T12:00:00Z').toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+    let sessVol = 0, sessSets = 0, bestE1RM = 0;
+    (w.exercises||[]).forEach(ex => (ex.sets||[]).forEach(s => {
+      if (s.weight && s.reps) { sessVol += s.weight*s.reps; sessSets++; const e = epley1RM(s.weight,s.reps); if (e>bestE1RM) bestE1RM=e; }
+    }));
+    html += '<div class="hist-workout"><div class="hist-workout-head">';
+    html += '<div><div class="hist-workout-date">'+escapeHTML(dnShort)+' · '+escapeHTML(dateLabel)+'</div>';
+    html += '<div class="hist-workout-split">'+escapeHTML(w.day_label || 'Workout')+'</div></div>';
+    html += '<div class="hist-workout-meta">';
+    if (sessSets) html += '<span>'+sessSets+' sets</span>';
+    if (sessVol) html += '<span>'+Math.round(sessVol).toLocaleString()+' kg</span>';
+    if (w.duration_minutes) html += '<span>'+w.duration_minutes+' min</span>';
+    if (w.overall_rpe) html += '<span>RPE '+w.overall_rpe+'</span>';
+    html += '</div></div>';
+    html += '<div class="hist-ex-list">';
+    (w.exercises||[]).forEach(ex => {
+      const setStrs = (ex.sets||[]).filter(s => s.weight || s.reps).map(s => {
+        const w2 = s.weight ?? '–', r = s.reps ?? '–';
+        const isPR = prs[ex.exercise_id] && prs[ex.exercise_id].date === w.workout_date && prs[ex.exercise_id].weight == s.weight && prs[ex.exercise_id].reps == s.reps;
+        return '<span class="hist-set'+(isPR?' pr':'')+'">'+escapeHTML(String(w2))+'kg × '+escapeHTML(String(r))+(s.rpe?' @'+s.rpe:'')+(isPR?' ★':'')+'</span>';
+      });
+      if (!setStrs.length) return;
+      html += '<div class="hist-ex-row"><div class="hist-ex-name">'+escapeHTML(ex.name)+'</div><div class="hist-ex-sets">'+setStrs.join('')+'</div></div>';
+    });
+    html += '</div></div>';
+  });
+  root.innerHTML = html;
+}
+
+// Per-exercise lookup: pick an exercise from the dropdown, see its full history
+// (every session you did it, every set). Designed for "what did I bench last week?"
+async function renderHistoryLookup() {
+  if (!allWorkoutsLoaded) await fetchAllWorkouts();
+  const root = document.getElementById('historyLookup');
+  if (!root) return;
+  const all = Object.values(workoutCache).filter(w => w && (w.exercises||[]).length > 0);
+  // Build name→[{date, sets, day_label}] map. Use exercise name as the key so renames don't fragment history.
+  const byName = {};
+  all.forEach(w => (w.exercises||[]).forEach(ex => {
+    const k = ex.name || '(unnamed)';
+    if (!byName[k]) byName[k] = [];
+    byName[k].push({ date:w.workout_date, sets:(ex.sets||[]).filter(s => s.weight || s.reps), day_label:w.day_label });
+  }));
+  const names = Object.keys(byName).sort((a,b) => a.localeCompare(b));
+  if (names.length === 0) { root.innerHTML = '<div class="rest-day-msg"><p style="font-style:italic">No exercises logged yet.</p></div>'; return; }
+  // Preserve current selection across re-renders
+  const prevSel = root.querySelector('#lookupSelect');
+  const selected = (prevSel && prevSel.value) || names[0];
+  let html = '<div class="lookup-bar"><label class="lookup-label">Exercise</label><select id="lookupSelect" class="lookup-select">';
+  names.forEach(n => { html += '<option value="'+escapeHTML(n)+'"'+(n===selected?' selected':'')+'>'+escapeHTML(n)+' ('+byName[n].length+')</option>'; });
+  html += '</select></div><div id="lookupResults"></div>';
+  root.innerHTML = html;
+  const sel = root.querySelector('#lookupSelect');
+  const renderResults = () => {
+    const name = sel.value;
+    const sessions = (byName[name] || []).slice().sort((a,b) => b.date.localeCompare(a.date));
+    let best = { weight:0, reps:0, date:null }, bestE1RM = { e:0, weight:0, reps:0, date:null };
+    sessions.forEach(s => s.sets.forEach(set => {
+      if (!set.weight || !set.reps) return;
+      if (set.weight > best.weight || (set.weight === best.weight && set.reps > best.reps)) best = { weight:set.weight, reps:set.reps, date:s.date };
+      const e = epley1RM(set.weight, set.reps);
+      if (e > bestE1RM.e) bestE1RM = { e, weight:set.weight, reps:set.reps, date:s.date };
+    }));
+    let h = '';
+    if (best.date) {
+      h += '<div class="lookup-bests"><div class="lookup-best-card"><div class="lookup-best-label">Heaviest set</div><div class="lookup-best-val">'+best.weight+'<span class="unit">kg × '+best.reps+'</span></div><div class="lookup-best-date">'+escapeHTML(best.date)+'</div></div>';
+      h += '<div class="lookup-best-card"><div class="lookup-best-label">Best e1RM</div><div class="lookup-best-val">'+bestE1RM.e+'<span class="unit">kg</span></div><div class="lookup-best-date">'+bestE1RM.weight+'×'+bestE1RM.reps+' on '+escapeHTML(bestE1RM.date)+'</div></div>';
+      h += '<div class="lookup-best-card"><div class="lookup-best-label">Sessions</div><div class="lookup-best-val">'+sessions.length+'</div><div class="lookup-best-date">Times trained</div></div></div>';
+    }
+    h += '<div class="lookup-sessions">';
+    sessions.forEach(s => {
+      const dow = dowFromDate(s.date), dnShort = DAY_NAMES_SHORT[dow] || '';
+      const dateLabel = new Date(s.date+'T12:00:00Z').toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+      const setStrs = s.sets.map(set => {
+        const isPR = best.date === s.date && set.weight == best.weight && set.reps == best.reps;
+        return '<span class="hist-set'+(isPR?' pr':'')+'">'+escapeHTML(String(set.weight ?? '–'))+'kg × '+escapeHTML(String(set.reps ?? '–'))+(set.rpe?' @'+set.rpe:'')+(isPR?' ★':'')+'</span>';
+      }).join('');
+      h += '<div class="lookup-session"><div class="lookup-sess-date">'+escapeHTML(dnShort)+' · '+escapeHTML(dateLabel)+(s.day_label && s.day_label !== '__REST__' ? ' <span class="lookup-sess-split">'+escapeHTML(s.day_label)+'</span>' : '')+'</div><div class="hist-ex-sets">'+setStrs+'</div></div>';
+    });
+    h += '</div>';
+    root.querySelector('#lookupResults').innerHTML = h;
+  };
+  sel.addEventListener('change', renderResults);
+  renderResults();
 }
 
 // CUSTOMIZE
@@ -1900,12 +2106,22 @@ function switchTab(panelName) {
 
 async function initApp() {
   document.querySelectorAll('.tab, .nav-item').forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.panel)));
-  document.querySelectorAll('.gym-subtab').forEach(st => st.addEventListener('click', () => {
-    document.querySelectorAll('.gym-subtab').forEach(x => x.classList.remove('active'));
+  // Gym subtabs (today / prs / charts) — scoped to elements with data-sub
+  document.querySelectorAll('.gym-subtab[data-sub]').forEach(st => st.addEventListener('click', () => {
+    document.querySelectorAll('.gym-subtab[data-sub]').forEach(x => x.classList.remove('active'));
     st.classList.add('active');
-    document.querySelectorAll('.gym-subpanel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('#panel-gym .gym-subpanel').forEach(p => p.classList.remove('active'));
     document.getElementById('sub-'+st.dataset.sub).classList.add('active');
     gymSubTab = st.dataset.sub; renderGym();
+  }));
+  // History subtabs (days / workouts / lookup)
+  document.querySelectorAll('.gym-subtab[data-hsub]').forEach(st => st.addEventListener('click', () => {
+    document.querySelectorAll('.gym-subtab[data-hsub]').forEach(x => x.classList.remove('active'));
+    st.classList.add('active');
+    document.querySelectorAll('#panel-history .gym-subpanel').forEach(p => p.classList.remove('active'));
+    document.getElementById('hsub-'+st.dataset.hsub).classList.add('active');
+    if (st.dataset.hsub === 'workouts') renderHistoryWorkouts();
+    else if (st.dataset.hsub === 'lookup') renderHistoryLookup();
   }));
   document.querySelectorAll('.rating-row').forEach(row => {
     row.querySelectorAll('.rating-btn').forEach(btn => btn.addEventListener('click', () => { row.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); }));
